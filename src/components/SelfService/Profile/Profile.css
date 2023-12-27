@@ -1,0 +1,344 @@
+.cs_profile_photo_main_div {
+  /* background-color: orangered; */
+  height: 12rem;
+
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCRtp7uFdK9niUrbRcCicFvE_C9mzjOv-jxQ&usqp=CAU");
+  background-size: cover; /* Adjust to "contain" or other values as needed */
+  background-position: center; /* Adjust the position as needed */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cs_profile_photo_div {
+  background-color: #fff;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  position: relative;
+  /* background-image: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"); */
+}
+
+.cs_profile_photo_div img {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  caret-color: transparent;
+}
+
+.cs_profile_photo_div span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cs_cam_icon {
+  font-size: 30px;
+  color: transparent;
+  cursor: pointer;
+}
+
+.cs_profile_photo_div:hover .cs_cam_icon {
+  color: black;
+}
+
+.cs_profile_photo_bottom_name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.cs_profile_edit_view_top_div {
+  /* box-shadow: 2px 14px 16px rgba(0, 0, 0, 0.695); */
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 2rem;
+}
+.cs_profile_edit_view_top_heading {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(96, 96, 196);
+  cursor: pointer;
+  text-decoration: none;
+}
+.cs_div_profile {
+  display: flex;
+  /* background-color: aqua; */
+  /* margin: 50px; */
+}
+.cs_content_img_div_profile {
+  width: 100%;
+}
+
+.cs_content_div_profile {
+  display: flex;
+  gap: 1rem;
+  /* width: 100%; */
+  background-color: #f1f3f6;
+  /* flex-wrap: wrap; */
+  padding: 1rem;
+  /* background-color: black; */
+  /* justify-content: flex-start; */
+}
+.cs_card_content_div_profile {
+  /* display: flex; */
+  /* height: 20rem; */
+
+  margin: 1rem 0.5rem;
+  background-color: #fff;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+}
+
+.cs_card_head_profile {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(48, 42, 42);
+}
+
+.cs_card_content_div_profile {
+  padding-bottom: 1.5rem;
+}
+
+.cs_card_each_data_div_profile {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  color: rgb(62, 59, 59);
+  font-size: 1rem;
+
+  border-bottom: 1px solid rgba(188, 152, 212, 0.399);
+}
+
+.cs_card_data_each_head_profile {
+  /* padding: 0.2rem 0.5rem; */
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+}
+
+.cs_total_content_profile {
+  width: 100%;
+}
+
+/* edit profile */
+
+.cs_edit_link {
+  font-size: 1.2rem;
+}
+
+.cs_edit_div {
+  /* width: 100%; */
+  flex: 1;
+  /* background-color: #f2eaea; */
+  background-color: #f1f3f6;
+  /* min-height: 90vh; */
+}
+.cs_edit_employee_head_div {
+  border-top: 1px solid rgba(116, 123, 151, 0.304);
+  /* border-bottom: 1px solid black; */
+  /* width: 100%; */
+  padding: 1rem 1.5rem;
+  position: fixed;
+  width: 100%;
+  margin: -2rem 0 0 0.4rem;
+  background-color: #fff;
+  /* background-color: red; */
+  /* border-bottom: 1px solid rgba(188, 152, 212, 0.399); */
+  /* border: 1px solid rgba(188, 152, 212, 0.698); */
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.278);
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  align-items: center;
+  text-decoration: none;
+  /* position: fixed; */
+}
+.cs_font_icons {
+  font-size: 1rem;
+  fill: rgb(88, 88, 164);
+}
+.cs_edit_employee_head {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: -4px;
+  /* padding: 0; */
+}
+
+.cs_edit_form_div {
+  background-color: #fff;
+  margin: 2rem 1rem 4rem 1rem;
+  padding: 1rem 1rem 1rem 2rem;
+  min-height: 70vh;
+  /* height: 100rem; */
+  overflow-y: scroll;
+  /* overflow-y: visible; */
+  /* overflow: auto; */
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.202);
+  /* background-color: red; */
+}
+.cs_edit_side_head {
+  /* 
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: black; */
+  font-size: 1.3rem;
+  font-family: "Arial", sans-serif; /* Choose a professional font family */
+  font-weight: bold; /* Make the heading bold */
+  color: #333; /* Set the text color */
+
+  margin: 0.5rem 0 0.5rem 0; /* Add space below the heading */
+  /* letter-spacing: 1px; Adjust letter spacing for clarity */
+  /* text-transform: uppercase; Convert text to uppercase if desired */
+}
+.cs_edit_left_right_div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  /* width: 100%; */
+  margin-bottom: 1.5rem;
+  /* background-color: yellow; */
+}
+.cs_edit_left_input_right_input {
+  /* background-color: red; */
+  width: 50%;
+}
+
+.cs_edit_input_div {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  /* align-content: center; */
+  margin: 0.5rem 0 0 1rem;
+  /* background-color: red; */
+  /* height: 6rem; */
+}
+.cs_edit_left_input {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgb(100, 92, 92);
+  padding: 1rem 0 0 0;
+  margin-right: 0.5rem;
+  width: 37%;
+}
+
+.cs_edit_right_input {
+  border: none;
+  font-size: 1rem;
+  margin: 1rem 0rem 0rem 0rem;
+  padding: 0.8rem 0.5rem;
+  width: 63%;
+  /* flex: 1; */
+  background-color: #f8f8f8;
+  /* border-bottom: 1px solid rgba(147, 131, 196, 0.504); */
+}
+
+.cs_view_right_input {
+  font-family: "Arial", sans-serif; /* Choose a professional font family */
+  font-size: 1.1rem; /* Adjust font size as needed */
+
+  font-weight: 600;
+  color: #5a5656; /* Set the text color */
+  margin-top: 1.2rem;
+}
+
+.cs_edit_right_input:focus {
+  background-color: #f8f8f8;
+
+  /* border: none; */
+  outline: none;
+  border-bottom: 1px solid rgba(147, 131, 196, 0.504);
+}
+
+.cs_edit_submit_cancel_div {
+  /* display: flex;
+  gap: 1rem;
+  margin-top: 3rem; */
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  align-items: center;
+
+  border-top: 1px solid rgba(116, 123, 151, 0.304);
+
+  padding: 0.6rem 1.5rem;
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+  margin: -0.2rem 0 0 0.4rem;
+  background-color: #fff;
+
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.278);
+}
+
+.cs_edit_submit_button {
+  background-color: #007bff; /* Change to your preferred background color */
+  color: #fff; /* Change to your preferred text color */
+  padding: 8px 16px;
+  /* Adjust padding as needed */
+  border: none; /* Remove the default button border */
+  border-radius: 5px; /* Add rounded corners if desired */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 1rem; /* Change to your preferred font size */
+  font-weight: bold;
+}
+
+/* Style the submit button on hover */
+.cs_edit_submit_button:hover {
+  background-color: #0056b3; /* Change to a different color on hover if desired */
+}
+
+/* Style the <select> element */
+.cs_select_option_all {
+  /* width: 60%; */
+  /* padding: 8px; */
+  margin: 1rem 0rem 0rem 0rem;
+  padding: 0.8rem 0.5rem;
+  width: 63%;
+  font-family: "Arial", sans-serif;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: none; /* Remove the default focus outline */
+}
+
+.cs_view_button_close {
+  /* background-color: #fff; */
+  background-color: #75869d;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.31);
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.cs_view_button_close:hover {
+  background-color: #454f5f;
+}
+
+.cs_delete_button_delete {
+  /* background-color: #fff; */
+  background-color: #f76868;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.31);
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.cs_delete_button_delete:hover {
+  background-color: #ec1111;
+}

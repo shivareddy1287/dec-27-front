@@ -1,0 +1,142 @@
+.cs_bg_login {
+  /* background-color: #f1f3f6; */
+  /* background-color: #eff1f4; */
+  background-image: url("./company.jpg");
+
+  background-size: cover;
+  /* object-position: center; */
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: -2rem;
+  padding: 0 0 0.6rem 4rem;
+
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
+.cs_card_login {
+  background-color: #ffffff9c;
+  /* background-color: transparent; */
+  width: 60%;
+  /* padding: 1rem 1.6rem; */
+  height: 25rem;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.269);
+  display: flex;
+  gap: 1rem;
+  border-radius: 6px;
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  /* align-items: space-between; */
+}
+
+.cs_login_left_card {
+  width: 45%;
+  padding: 1rem;
+}
+
+.cs_login_right_card {
+  width: 55%;
+  /* background-color: #0056b3; */
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfJ1OL4p2Z4l12hAu5pQBctoyhCAuTykC9qA&usqp=CAU"); */
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsfEl_98_F30Ccm2EJvOKgQZaisBBqDn7wdA&usqp=CAU"); */
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXNR1oat_PtPxoZqbuQ-1JykCm5gC60fsSzw&usqp=CAU"); */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT11PqCGovScW4GYB4xGrY5hT0tFUx1kXtQS_Ta1QtyJQUPI91LKnVFAEqTXGhOEonJcM0&usqp=CAU");
+  background-size: cover;
+}
+.cs_card_login_head_div {
+  margin-bottom: 2rem;
+}
+.cs_card_login_heading {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+}
+.cs_card_login_para {
+  font-size: 1rem;
+  font-weight: 500;
+
+  padding: 0;
+}
+.cs_card_login_email {
+  background-color: #54aae0;
+  color: #fff;
+  width: 90%;
+  border: none;
+  font-size: 1rem;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+  padding: 1rem;
+}
+
+.cs_card_login_email::placeholder {
+  color: #fff;
+}
+
+.cs_card_login_email:focus {
+  background-color: #52a0d1;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+
+.cs_card_login_button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 90%;
+  background-color: #1180c4;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  font-weight: 500;
+  border-radius: 9999px; /* A large value to make it round */
+  border: none;
+  color: #fff;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  margin: 1rem 0 0 0;
+  cursor: pointer;
+}
+
+.cs_card_login_button:hover {
+  background-color: #0056b3;
+}
+
+.cs_card_login_error {
+  font-size: 1rem;
+
+  color: red;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+
+  height: 2rem;
+  /* background-color: #2563eb; */
+}
+.cs_card_login_forgot_div {
+  margin: 1rem 0.5rem 0rem 0.5rem;
+  padding: 0rem 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cs_card_login_forgot {
+  font-size: 1rem;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cs_card_login_password {
+  position: relative;
+}
+
+.cs_card_login_password_icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.cs_card_login_icon_eye {
+  fill: #fff;
+}

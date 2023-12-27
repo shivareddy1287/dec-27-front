@@ -1,0 +1,95 @@
+.bl_holyday-tabel {
+  width: 100%;
+  /* margin: 0 5%; */
+  caret-color: transparent;
+}
+
+.bl_holyday-tabel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bl_holyday-tabel input {
+  font-size: 40px;
+  height: 15px;
+  width: 15px;
+}
+
+.bl_holyday-tabel th,
+.bl_holyday-tabel td {
+  width: calc(100% / 5);
+  padding: 8px;
+  height: 30px;
+  text-align: start;
+  border-bottom: 0.1px solid #d0d0d0;
+}
+
+.bl_holyday-tabel thead th,
+.bl_holyday-tabel tr {
+  /* background-color: aqua; */
+}
+
+.bl_holyday-tabel_avatar_tab {
+  /* background-color: aqua; */
+  height: 60px;
+  border-bottom: 0.1px solid #d0d0d0;
+  align-items: center;
+  display: flex;
+  padding-left: 10px;
+}
+.bl_tabel_dots {
+  /* background-color: #d0d0d0; */
+  width: 45px;
+  text-align: center;
+}
+
+/* three dots icon */
+
+/* .bl_three_dots_icon {
+  position: relative;
+  padding: 15px;
+  margin-top: 10px;
+}
+.bl_three_dots_icon:hover {
+  color: rgb(80, 238, 243);
+}
+.bl_three_dots_options {
+  position: absolute;
+  background-color: aqua;
+  width: 100px;
+  top: 2rem;
+} */
+.bl_three_dots_icon {
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  /* margin-top: 10px; */
+}
+
+.bl_three_dots_icon:hover .bl_three_dots_options {
+  display: block;
+}
+
+.bl_three_dots_options {
+  list-style-type: none;
+  display: none;
+  position: absolute;
+  /* background-color: #ccc9c9; */
+  border-radius: 5px;
+  width: 100px;
+  top: 1.8rem;
+  left: 1rem;
+  padding: 5px;
+  z-index: 10;
+  background: #fff;
+  color: #000;
+  box-shadow: inset 7px 7px 14px #d5d5d5, inset -7px -7px 14px #ebebeb;
+}
+
+.bl_three_dots_options li {
+  padding: 8px 10px;
+}
+
+.bl_three_dots_options li:hover {
+  background-color: #d5d5d5;
+}

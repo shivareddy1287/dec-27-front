@@ -1,0 +1,62 @@
+.bl_cal {
+  /* padding: 50px; */
+}
+
+.schedule-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.schedule-header .e-date-header-wrap,
+.schedule-header .e-header-cells,
+.schedule-header .e-header-days,
+.schedule-header .e-all-day-cells,
+.schedule-header .e-date-header {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* .e-schedule .e-appointment-details {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #096f92;
+}
+
+.schedule-wrapper {
+  margin: 0 !important;
+  background-color: #096f92;
+  padding: 0 !important;
+}
+.schedule-header .e-header-cells {
+  padding: 100px !important;
+  background-color: #096f92;
+  margin: 0 !important;
+}
+
+.schedule-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.schedule-header .e-header-cells,
+.schedule-header .e-header-days {
+  padding: 0 !important;
+  margin: 0 !important;
+} */
+
+.bl_template-wrap {
+  background: #c9e5f6;
+  border-left: 5px solid #096f92;
+  width: 100vw;
+  /* height: 100px; */
+
+  color: #000;
+
+  padding: 0 10px;
+  /* padding-left: 20px;
+  padding-right: 5px;
+  padding-top: 7px;
+  padding-bottom: 10px; */
+  font-size: 14px;
+  font-weight: 500;
+}

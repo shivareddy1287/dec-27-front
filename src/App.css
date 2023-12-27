@@ -1,0 +1,862 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: inherit;
+}
+
+.bl-routes-path {
+  /* margin-top: 3.4rem; */
+  height: 92.5vh;
+  width: 100%;
+  overflow: auto;
+}
+
+/* //button  */
+
+.button_disabled {
+  padding: 0.4em 0.6em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  /* letter-spacing: 5px; */
+  /* text-transform: uppercase; */
+  color: #2c9caf;
+  transition: all 200ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.5;
+  outline: 2px solid #2c9caf;
+  margin: 8px;
+}
+
+.button {
+  padding: 0.4em 0.6em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  /* letter-spacing: 5px; */
+  /* text-transform: uppercase; */
+  color: #2c9caf;
+  cursor: pointer;
+  transition: all 200ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #2c9caf;
+  margin: 8px;
+}
+
+.button:hover {
+  color: #ffffff;
+  transform: scale(1.02);
+  outline: 2px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #268391;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #2c9caf;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.button:hover::before {
+  width: 250%;
+}
+
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+.sidebar {
+  box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
+}
+.nav-item,
+.navbar {
+  z-index: 10000;
+}
+@media screen and (max-width: 800px) {
+  .sidebar {
+    z-index: 10000000;
+  }
+}
+
+.e-dlg-center-center,
+.e-quick-popup-wrapper.e-device {
+  z-index: 1000000 !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 216, 216);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* color-picker style  */
+
+#preview {
+  background: transparent
+    url("https://ej2.syncfusion.com/react/demos/src/color-picker/images/pen.png")
+    no-repeat;
+  display: inline-block;
+  height: 80px;
+  margin: 10px 0;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: #008000;
+}
+
+.e-input-group:not(.e-float-icon-left),
+.e-input-group.e-success:not(.e-float-icon-left),
+.e-input-group.e-warning:not(.e-float-icon-left),
+.e-input-group.e-error:not(.e-float-icon-left),
+.e-input-group.e-control-wrapper:not(.e-float-icon-left),
+.e-input-group.e-control-wrapper.e-success:not(.e-float-icon-left),
+.e-input-group.e-control-wrapper.e-warning:not(.e-float-icon-left),
+.e-input-group.e-control-wrapper.e-error:not(.e-float-icon-left) {
+  border: none;
+}
+
+/* Apply basic styling to the table */
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+  background-color: #fff;
+} */
+
+/* Style the table header */
+/* th {
+  background-color: #fff;
+  text-align: left;
+  padding: 8px;
+} */
+
+/* Style the table data cells */
+/* td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+} */
+
+/* Apply alternate row background color */
+/* tr:nth-child(even) {
+  background-color: #f2f2f2;
+} */
+
+/* Highlight the header row */
+/* thead {
+  font-weight: bold;
+  background-color: white;
+  color: black;
+} */
+
+/* .box {
+  background-color: #008000;
+  width: 200px;
+  min-height: 50px;
+  max-height: 80px;
+  overflow: auto;
+  border-radius: 10px;
+} */
+
+/* loader */
+
+.loader {
+  width: 15px;
+  height: 15px;
+  margin: 4px 10px;
+  display: inline-block;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: rot5 1s infinite;
+}
+
+@keyframes rot5 {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(180deg);
+    border-top-color: rgb(139, 46, 46);
+    border-bottom-color: rgb(243, 92, 33);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* loader */
+
+.loader-page {
+  /* background-color: #a2b0b9; */
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-wave {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loading-bar {
+  width: 20px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #3498db;
+  border-radius: 5px;
+  animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loading-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.loading-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes loading-wave-animation {
+  0% {
+    height: 10px;
+  }
+
+  50% {
+    height: 50px;
+  }
+
+  100% {
+    height: 10px;
+  }
+}
+
+/* graph loader */
+
+.loader-cont {
+  display: flex;
+  /* background-color: #008000; */
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  width: 100%;
+}
+
+.graph-loader {
+  position: relative;
+  width: 75px;
+  height: 100px;
+}
+
+.loader__bar {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 50%;
+  background: rgb(0, 0, 0);
+  transform-origin: center bottom;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.loader__bar:nth-child(1) {
+  left: 0px;
+  transform: scale(1, 0.2);
+  -webkit-animation: barUp1 4s infinite;
+  animation: barUp1 4s infinite;
+}
+
+.loader__bar:nth-child(2) {
+  left: 15px;
+  transform: scale(1, 0.4);
+  -webkit-animation: barUp2 4s infinite;
+  animation: barUp2 4s infinite;
+}
+
+.loader__bar:nth-child(3) {
+  left: 30px;
+  transform: scale(1, 0.6);
+  -webkit-animation: barUp3 4s infinite;
+  animation: barUp3 4s infinite;
+}
+
+.loader__bar:nth-child(4) {
+  left: 45px;
+  transform: scale(1, 0.8);
+  -webkit-animation: barUp4 4s infinite;
+  animation: barUp4 4s infinite;
+}
+
+.loader__bar:nth-child(5) {
+  left: 60px;
+  transform: scale(1, 1);
+  -webkit-animation: barUp5 4s infinite;
+  animation: barUp5 4s infinite;
+}
+
+.loader__ball {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: rgb(44, 143, 255);
+  border-radius: 50%;
+  -webkit-animation: ball624 4s infinite;
+  animation: ball624 4s infinite;
+}
+
+@keyframes ball624 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  5% {
+    transform: translate(8px, -14px);
+  }
+
+  10% {
+    transform: translate(15px, -10px);
+  }
+
+  17% {
+    transform: translate(23px, -24px);
+  }
+
+  20% {
+    transform: translate(30px, -20px);
+  }
+
+  27% {
+    transform: translate(38px, -34px);
+  }
+
+  30% {
+    transform: translate(45px, -30px);
+  }
+
+  37% {
+    transform: translate(53px, -44px);
+  }
+
+  40% {
+    transform: translate(60px, -40px);
+  }
+
+  50% {
+    transform: translate(60px, 0);
+  }
+
+  57% {
+    transform: translate(53px, -14px);
+  }
+
+  60% {
+    transform: translate(45px, -10px);
+  }
+
+  67% {
+    transform: translate(37px, -24px);
+  }
+
+  70% {
+    transform: translate(30px, -20px);
+  }
+
+  77% {
+    transform: translate(22px, -34px);
+  }
+
+  80% {
+    transform: translate(15px, -30px);
+  }
+
+  87% {
+    transform: translate(7px, -44px);
+  }
+
+  90% {
+    transform: translate(0, -40px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+
+  40% {
+    transform: scale(1, 0.2);
+  }
+
+  50% {
+    transform: scale(1, 1);
+  }
+
+  90% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+
+@keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+
+  40% {
+    transform: scale(1, 0.2);
+  }
+
+  50% {
+    transform: scale(1, 1);
+  }
+
+  90% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+
+@-webkit-keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+
+  40% {
+    transform: scale(1, 0.4);
+  }
+
+  50% {
+    transform: scale(1, 0.8);
+  }
+
+  90% {
+    transform: scale(1, 0.8);
+  }
+
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+
+@keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+
+  40% {
+    transform: scale(1, 0.4);
+  }
+
+  50% {
+    transform: scale(1, 0.8);
+  }
+
+  90% {
+    transform: scale(1, 0.8);
+  }
+
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+
+@-webkit-keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+
+@keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+
+@-webkit-keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+
+  40% {
+    transform: scale(1, 0.8);
+  }
+
+  50% {
+    transform: scale(1, 0.4);
+  }
+
+  90% {
+    transform: scale(1, 0.4);
+  }
+
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+
+@keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+
+  40% {
+    transform: scale(1, 0.8);
+  }
+
+  50% {
+    transform: scale(1, 0.4);
+  }
+
+  90% {
+    transform: scale(1, 0.4);
+  }
+
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+
+@-webkit-keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  40% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1, 0.2);
+  }
+
+  90% {
+    transform: scale(1, 0.2);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  40% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1, 0.2);
+  }
+
+  90% {
+    transform: scale(1, 0.2);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* Apply basic styling to the table */
+table {
+  /* width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+  background-color: #fff; */
+}
+
+/* Style the table header */
+th {
+  /* background-color: #fff;
+  text-align: left;
+  padding: 8px;
+  color: rgb(111, 102, 102); */
+}
+
+/* Style the table data cells */
+td {
+  /* border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px; */
+}
+
+/* Apply alternate row background color */
+tr:nth-child(even) {
+  /* background-color: #f2f2f2; */
+}
+
+/* Highlight the header row */
+thead {
+  /* font-weight: bold;
+  background-color: white;
+  color: black; */
+}
+
+/* 22 */
+
+.cs_asset_bg_div {
+  background-color: #f1f3f6;
+  /* padding: 1rem; */
+  width: 100%;
+}
+.cs_aaset_add_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0.8rem 1rem;
+}
+.cs_asset_head_main {
+  font-size: 1.2rem;
+  color: rgb(79, 74, 74);
+  font-weight: 600;
+}
+.cs_asset_add_asset_button {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: rgb(172, 172, 220);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cs_asset_add_asset_button:hover {
+  background-color: rgb(135, 135, 211);
+}
+.cs_asset_add_symbol {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* .cs_asset_table_div {
+  overflow-x: auto;
+  max-width: 90%;
+  
+} */
+.cs_asset_date_formate {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(54, 49, 49);
+}
+.cs_edit_icon {
+  font-size: 1rem;
+  /* fill: rgba(96, 96, 181, 0.736); */
+}
+
+/* Add this CSS to your stylesheet */
+.cs_asset_table {
+  /* Set a fixed width for the table or use max-width as needed */
+  max-width: 100%;
+  min-height: 25rem;
+  /* overflow: auto; */
+  font-size: 1rem;
+  overflow-x: auto !important;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.cs_edit_drop_down_right_input {
+  width: 50rem;
+}
+
+.cs_input_formik_date_picker {
+  border: none;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cs_div_formik_date_picker {
+  display: flex;
+  gap: 0.5rem;
+
+  margin: 1rem 0rem 0rem 0rem;
+  padding: 0.8rem 0.5rem;
+  /* width: 63%; */
+  /* flex: 1; */
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.cs_input_formik_date_picker:focus {
+  outline: none;
+}
+
+.cs_search_input_profile_div {
+  display: flex;
+  gap: 0.5rem;
+
+  padding: 0.8rem 1.2rem;
+  /* width: 63%; */
+  /* flex: 1; */
+  background-color: #f8f8f8;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.cs_search_input_profile {
+  border: none;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cs_search_input_profile {
+  outline: none;
+}
+.cs_search_input_icon {
+  fill: rgba(65, 60, 60, 0.526);
+}
+.cs_all_edit_icons_project {
+  height: 1rem;
+  width: 1rem;
+  fill: rgba(42, 39, 39, 0.689);
+}
+
+.cs_div_edit_icons_all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cs_table_head_bg_create {
+  background-color: rgb(82, 131, 173);
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cs_table_head_Assets_head {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.cs_table_add_asset_button {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+
+  background-color: #fff;
+  color: black;
+  box-shadow: 1px 2px 4px rgba(6, 6, 6, 1);
+}
+
+.cs_table_add_asset_button:hover {
+  background-color: #f1ecec;
+}
+
+.cs_table_search_by_div {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cs_table_select_search {
+  width: 7rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.cs_table_select_search option {
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.cs_table_select_search:focus {
+  border-color: #4caf50;
+}
+
+.cs_table_search_input_div {
+  display: flex;
+  gap: 0.6rem;
+  width: 15rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.cs_table_search_input {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+.cs_table_search_input option {
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.cs_table_search_input:focus {
+  border-color: #4caf50;
+}
+
+.table_img {
+  width: 35px !important;
+  height: 35px !important;
+}

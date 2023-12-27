@@ -1,0 +1,142 @@
+.kl_titles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: aliceblue;
+  min-height: 100vh;
+  padding: 21px;
+}
+
+.kl_top-cont {
+  background-color: rgb(59, 157, 243);
+  display: flex;
+}
+
+.kl_staff {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 20px;
+  color: white;
+}
+
+.kl_headings {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 80px;
+  font-size: 18px;
+  padding: 20px;
+  padding-left: 50%;
+  color: white;
+}
+
+.kl_headings span {
+  font-size: 15pxpx;
+  color: azure;
+  padding-left: 13px;
+}
+
+.kl_btn {
+  width: 150px;
+  height: 33px;
+  margin-top: 20px;
+  margin-left: 90px;
+  font-size: 16px;
+  border-radius: 5px;
+  border-width: 0px;
+  background-color: palevioletred;
+  color: white;
+  padding: 8px;
+}
+
+.kl_card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-left: 16px;
+  padding-bottom: 15px;
+}
+
+.kl_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 275px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  box-shadow: 0 12px 14px rgba(0, 0, 0, 0kl_1);
+}
+
+.kl_img {
+  width: 90px;
+  padding-left: 20px;
+  padding-top: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.kl_img-cont {
+  border-radius: 50%;
+}
+
+.kl_card-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  background-position: top;
+  border-radius: 50%;
+}
+
+.kl_main-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.kl_main-heading span {
+  font-size: 16px;
+  color: gray;
+}
+
+.kl_side-title {
+  /* display: flex; */
+  /* flex-direction: row; */
+  justify-content: flex-start;
+  font-size: 14px;
+  padding-bottom: 6px;
+}
+
+.kl_side-title div {
+  display: flex;
+  padding-top: 6px;
+  gap: 16px;
+}
+
+.kl_side-title div span {
+  padding-top: 6px;
+}
+
+.kl_button {
+  font-size: 18px;
+  background-color: rgb(72, 154, 181);
+  padding: 8px;
+  align-items: center;
+  color: white;
+  border-radius: 4px;
+  border-width: 0px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.kl_bottom {
+  margin-top: 5px;
+  padding-bottom: 7px;
+}

@@ -1,0 +1,107 @@
+.cs_card_auth_main_div {
+  background-color: #f5f7fb;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.cs_card_auth_div {
+  background-color: #ffffff;
+  /* height: 20rem; */
+  width: 20rem;
+  /* width: 20rem; */
+  padding: 2rem 3rem 2rem 2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+.cs_card_heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: red;
+}
+
+.cs_card_input {
+  background-color: #f8f8f8;
+  /* background-color: red; */
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.cs_card_input:focus {
+  /* width: 90%; */
+  border-bottom: 1px solid rgb(58, 58, 168);
+  outline: none;
+}
+
+.cs_card_submit_button {
+  background-color: #007bff; /* Change to your preferred background color */
+  color: #fff; /* Change to your preferred text color */
+  padding: 0.8rem;
+  /* Adjust padding as needed */
+  border: none; /* Remove the default button border */
+  border-radius: 5px; /* Add rounded corners if desired */
+  cursor: pointer; /* Change the cursor on hover */
+  font-size: 1rem; /* Change to your preferred font size */
+  font-weight: bold;
+  width: 100%;
+}
+
+/* Style the submit button on hover */
+.cs_card_submit_button:hover {
+  background-color: #0056b3; /* Change to a different color on hover if desired */
+}
+
+.cs_card_extra_links_div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+}
+
+.cs_card_extra_link {
+  font-size: 1rem;
+  color: #2563eb;
+  font-weight: 600;
+  /* text-decoration: none; */
+}
+
+/* utilities */
+
+.cs_card_margin_top {
+  margin-top: 1.6rem;
+}
+.cs_card_padding_all {
+  padding: 0 0.4rem;
+}
+.cs_card_width_full {
+  width: 100%;
+  /* background-color: red; */
+}
+
+.cs_card_text_center {
+  text-align: center;
+}
+
+.cs_card_margin_bottom {
+  margin-bottom: 2rem;
+}
+.cs_card_icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #517ad3;
+}
+
+.cs_card_password {
+  position: relative;
+}
+
+.cs_card_password_icon {
+  position: absolute;
+  top: 2.2rem;
+  right: 0rem;
+  cursor: pointer;
+}

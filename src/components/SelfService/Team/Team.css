@@ -1,0 +1,114 @@
+.cs_team_div {
+  background-color: #edf1f4;
+  min-height: 100vh;
+  padding: 1rem;
+}
+.cs_team_top_div {
+  display: flex;
+  background-color: #fff;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.224);
+}
+.cs_team_department {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.cs_team_members_div {
+}
+.cs_team_head_top {
+  font-size: 1rem;
+  /* font-weight: 400; */
+  margin: 0;
+  padding: 0;
+  color: rgba(75, 68, 68, 0.851);
+}
+.cs_width_all_div {
+  width: 100%;
+}
+.cs_team_all_data_div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* background-color: red; */
+  gap: 1rem;
+}
+
+.cs_team_bottom_div {
+  margin-top: 1rem;
+  width: 30%;
+}
+
+.cs_team_card_div {
+  background-color: #fff;
+  /* padding: 1.5rem 2rem; */
+  width: 100%;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.224);
+}
+.cs_team_count_div {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(119, 134, 150);
+  align-items: center;
+  /* padding: 1rem 1rem 0 1rem; */
+  padding: 0.6rem;
+}
+.cs_team_count_head {
+  /* color: rgb(81, 73, 73); */
+  color: #fff;
+  font-size: 1rem;
+}
+.cs_team_count_head_number_div {
+  background-color: rgb(219, 186, 125);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cs_team_count_head_number {
+  color: #fff;
+  font-size: 1rem;
+}
+.cs_team_prof_details_div {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 1rem 1rem 1rem 0;
+  border-bottom: 1px solid rgba(79, 146, 177, 0.397);
+  text-decoration: none;
+}
+
+.cs_team_profile_left_half_circle {
+  height: 1rem;
+  width: 1.2rem;
+  /* background-color: rgb(194, 113, 205); */
+  /* background-color: rgb(183, 174, 157); */
+  background-color: rgba(29, 29, 212, 0.412);
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+  /* margin-left: 0px; */
+}
+
+.cs_team_profile_photo {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+}
+.cs_team_profile_name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+}
+
+.cs_team_profile_number_code {
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+}

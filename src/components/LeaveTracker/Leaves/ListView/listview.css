@@ -1,0 +1,140 @@
+.bl_leave_list-view-cont {
+  background-color: aliceblue;
+  min-height: 92vh;
+}
+
+/* //header  */
+
+.bl_leave-header-cont {
+  position: sticky;
+  /* top: 0; */
+  z-index: 15;
+}
+.bl-list-view-header {
+  height: 60px;
+  width: 100%;
+  background-color: rgb(82, 131, 173);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  /* z-index: -1; */
+  /* top: 0; */
+}
+.bl_avatar {
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+.bl-list-view-header_left-part {
+  display: flex;
+  align-items: center;
+}
+.bl-list-view-header_left-part select {
+  height: 30px;
+  min-width: 200px;
+  outline: 0;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+}
+
+.bl_leave_type-category {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.bl_leave_type {
+  width: 160px;
+  height: 220px;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.bl_leave_type h2 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.bl_leave_type img {
+  width: 100px;
+}
+
+.bl_leave_type .bl_icon {
+  font-size: 4rem;
+}
+
+.bl_leave_and_holiday {
+  padding: 0 2rem;
+}
+
+.bl_no-leaves {
+  width: 100%;
+  height: 300px;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bl_no-leaves img {
+  height: 250px;
+}
+.bl_no-leaves p {
+  font-size: 32px;
+  margin-left: 15px;
+  color: #e0dddd;
+}
+
+.bl_leave-tabel {
+  width: 100%;
+  background-color: #fff;
+  min-height: 300px;
+  border-radius: 4px;
+  /* padding: 10px; */
+  /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2); */
+  /* box-shadow: 0px 4px 39px -5px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.bl_leave-tabel table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+.bl_leave-tabel th {
+  /* background-color: aquamarine; */
+  text-align: start;
+}
+
+.bl_leave-tabel th,
+.bl_leave-tabel td {
+  width: 25%;
+  padding: 8px;
+  text-align: flex-start;
+  border-bottom: 1px solid #e0dddd;
+}
+
+.bl_leave-tabel thead th,
+.bl_leave-tabel tr {
+  height: 50px;
+  text-align: flex-start;
+  /* background-color: aqua; */
+}
+
+/*  */
+
+.bl_leave_approved-text {
+  color: green;
+}
+.bl_leave_not_approved-text {
+  color: red;
+}
