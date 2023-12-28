@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./Benefit.css";
 // import DateFormatter from "../../utils/DateFormatter";
 import { allFetchbenefitAction } from "../../../redux/slices/benefitSlice/benefitSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import { dateTimeFormate } from "../../../utils/DateFun/DateModify";
 import TableReusable from "../../../utils/TableReusable/TableReusable";
 import { Avatar, Box, IconButton } from "@mui/material";
@@ -55,7 +52,7 @@ const Benefit = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

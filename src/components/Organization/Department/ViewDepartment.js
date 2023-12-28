@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchSingleDepartmentAction } from "../../../redux/slices/department/departmentSlice";
 import Loader from "../../../utils/Loader/Loader";
 
-const ViewDepartment = (props) => {
+const ViewDepartment = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -24,6 +24,11 @@ const ViewDepartment = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

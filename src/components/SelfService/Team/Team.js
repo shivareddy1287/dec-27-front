@@ -3,10 +3,7 @@ import "./Team.css";
 import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
 const Team = () => {
@@ -19,7 +16,7 @@ const Team = () => {
 
   const profile = useSelector((state) => state?.profile);
   const { profilesList, loading, appErr, serverErr } = profile;
-  const { _id, Access, ProjectTeam } = profile?.userAuth;
+  const { Access, ProjectTeam } = profile?.userAuth;
 
   const categorizedData = {};
 
@@ -40,6 +37,11 @@ const Team = () => {
         <Loader />
       ) : (
         <div>
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_div_profile">
             <div className="cs_content_img_div_profile">
               {normalAdminAccessGivenFun(Access) && (
@@ -84,6 +86,7 @@ const Team = () => {
                                         <img
                                           className="cs_team_profile_photo"
                                           src={`${item?.profilePhoto}`}
+                                          alt="profile-pic"
                                         />
                                       </div>
                                       <div>
@@ -149,6 +152,7 @@ const Team = () => {
                                         <img
                                           className="cs_team_profile_photo"
                                           src={`${item?.profilePhoto}`}
+                                          alt="profile-pic-2"
                                         />
                                       </div>
                                       <div>

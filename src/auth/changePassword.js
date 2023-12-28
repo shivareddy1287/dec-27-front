@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -9,7 +9,6 @@ import {
   logout,
 } from "../redux/slices/profileSlice/profileSlice";
 import { sendAutomatedEmail } from "../redux/email/emailSlice";
-import Loader from "../utils/Loader/Loader";
 
 const initialState = {
   oldPassword: "",
@@ -23,7 +22,7 @@ const ChangePassword = () => {
   const { oldPassword, password, password2 } = formData;
 
   const profile = useSelector((state) => state?.profile);
-  const { userAuth, isSuccess, message, isLoading } = profile ? profile : "";
+  const { userAuth, isSuccess, message } = profile ? profile : "";
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

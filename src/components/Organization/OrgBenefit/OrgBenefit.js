@@ -4,11 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { allFetchbenefitAction } from "../../../redux/slices/benefitSlice/benefitSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import { dateTimeFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -23,7 +20,7 @@ const OrgBenefit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access, profilePhoto } = profile?.userAuth;
+  const { Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchbenefitAction());
   }, [dispatch]);
@@ -53,7 +50,7 @@ const OrgBenefit = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

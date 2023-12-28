@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   fetchAllManagersData,
-  fetchAllProfileAction,
   registerUserAction,
 } from "../../../redux/slices/profileSlice/profileSlice";
 import { allFetchDesignationAction } from "../../../redux/slices/designation/designationSlice";
 import { allFetchDepartmentAction } from "../../../redux/slices/department/departmentSlice";
 import { allFetchTeamAction } from "../../../redux/slices/team/teamSlice";
-import {
-  proAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { proAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import { validateEmail } from "../../../utils/emailValidation";
 import { toast } from "react-toastify";

@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchAllProfileAction,
-  fetchDetailsProfileAction,
-} from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  adminHrRolesAccessGivenFun,
-  normalAdminAccessGivenFun,
-  proAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import {
   dateOnlyFormate,
   dateTimeFormate,
@@ -96,7 +88,7 @@ const OrgProfile = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },
@@ -355,7 +347,6 @@ const OrgProfile = () => {
                     uan: false,
                     pan: false,
                     adhaar: false,
-                    updatedAt: false,
                     emailAddress: false,
                     permanentAddress: false,
                     presentAddress: false,

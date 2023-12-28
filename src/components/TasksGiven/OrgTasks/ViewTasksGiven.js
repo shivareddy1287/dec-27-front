@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 
-import {
-  allFetchTasksGivenAction,
-  fetchSingleTasksGivenAction,
-} from "../../../redux/slices/TasksGiven/TasksGivenSlice";
+import { fetchSingleTasksGivenAction } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loader from "../../../utils/Loader/Loader";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 
 const ViewTasksGiven = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchSingleTasksGivenAction(id));
@@ -39,6 +35,11 @@ const ViewTasksGiven = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

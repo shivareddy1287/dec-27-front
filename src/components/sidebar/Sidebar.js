@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 
 import { HiOutlineHome, HiDocumentText } from "react-icons/hi";
+
 import { RxAvatar } from "react-icons/rx";
 import { BsCalendar2Date } from "react-icons/bs";
+
 import { BiTask } from "react-icons/bi";
 import { VscOrganization } from "react-icons/vsc";
 
@@ -98,7 +100,7 @@ const Sidebar = () => {
             subPath: "leave-tracker/overview",
           },
           {
-            name: "MY Calender",
+            name: "My Calender",
             subPath: "leave-tracker/my-calender",
           },
 
@@ -394,6 +396,7 @@ const Sidebar = () => {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.activeMenu);
+
   const activeRightSidebar = state.showSideBar;
 
   const location = window.location.pathname;

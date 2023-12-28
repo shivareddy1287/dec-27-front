@@ -7,10 +7,7 @@ import {
   deleteexitDetailsAction,
   fetchSingleexitDetailsAction,
 } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -23,7 +20,7 @@ const OrgDeleteExitDetails = () => {
   }, [dispatch, id]);
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   const exitDetails = useSelector((state) => state?.exitDetails);
   const { singleexitDetails, isDeleted, loading, appErr, serverErr } =
@@ -56,6 +53,11 @@ const OrgDeleteExitDetails = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

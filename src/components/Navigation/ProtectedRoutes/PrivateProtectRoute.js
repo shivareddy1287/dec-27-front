@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { loginStatus } from "../../../redux/slices/profileSlice/profileSlice";
 const PrivateProtectRoute = ({ children }) => {
   const user = useSelector((state) => state?.profile);
-  const { userAuth, isLoggedIn } = user;
+  const { userAuth } = user;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loginStatus());

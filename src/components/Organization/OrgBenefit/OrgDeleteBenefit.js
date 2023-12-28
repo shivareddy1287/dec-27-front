@@ -7,12 +7,9 @@ import {
   deletebenefitAction,
   fetchSinglebenefitAction,
 } from "../../../redux/slices/benefitSlice/benefitSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
-const OrgDeleteBenefit = (props) => {
+const OrgDeleteBenefit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {

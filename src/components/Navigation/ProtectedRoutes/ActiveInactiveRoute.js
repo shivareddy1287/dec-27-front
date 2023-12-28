@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { loginStatus } from "../../../redux/slices/profileSlice/profileSlice";
 const ActiveInactiveRoute = ({ children }) => {
   const user = useSelector((state) => state?.profile);
-  const { userAuth, isLoggedIn } = user;
+  const { userAuth } = user;
   console.log(userAuth?.workInformation?.employeeStatus);
   const dispatch = useDispatch();
   useEffect(() => {

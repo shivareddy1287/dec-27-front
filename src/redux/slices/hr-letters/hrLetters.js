@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import baseUrl from "../../../utils/baseUrl";
-import axios from "axios";
+
 import axiosInstance from "../axiosInstance";
 
 //action to intimate

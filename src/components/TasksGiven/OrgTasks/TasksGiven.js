@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allFetchTasksGivenAction } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
@@ -141,6 +141,11 @@ const TasksGiven = () => {
         <Loader />
       ) : (
         <div>
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_table_head_bg_create">
             <h2 className="cs_table_head_Assets_head">Employees Tasks</h2>
             <Link

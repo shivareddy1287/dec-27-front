@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import { assetCreateAction } from "../../../redux/slices/assetSlice/assetSlice";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import DatePickFun from "../../../utils/DatePickFun/DatePickFun";
+
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -38,7 +35,6 @@ const AddAsset = () => {
     },
     onSubmit: (values) => {
       dispatch(assetCreateAction(values));
-      console.log(values);
     },
   });
 
@@ -48,7 +44,7 @@ const AddAsset = () => {
   return (
     <div>
       <div className="cs_div_profile">
-        {profileLoading ? (
+        {profileLoading || loading ? (
           <Loader />
         ) : (
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">

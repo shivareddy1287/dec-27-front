@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import {
   fetchSingleDesignationAction,
   updateDesignationAction,
 } from "../../../redux/slices/designation/designationSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
 const UpdateDesignation = () => {
@@ -44,7 +40,6 @@ const UpdateDesignation = () => {
     },
     onSubmit: (values) => {
       dispatch(updateDesignationAction({ id, values }));
-      console.log(values, "values");
     },
   });
 
@@ -57,6 +52,11 @@ const UpdateDesignation = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
             <div>
               <Link

@@ -7,10 +7,7 @@ import {
   deletebenefitAction,
   fetchSinglebenefitAction,
 } from "../../../redux/slices/benefitSlice/benefitSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 const DeleteBenefit = () => {
   const { id } = useParams();
@@ -40,6 +37,11 @@ const DeleteBenefit = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

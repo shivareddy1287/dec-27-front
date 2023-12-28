@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleAssetAction } from "../../../redux/slices/assetSlice/assetSlice";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgViewAsset = (props) => {
+const OrgViewAsset = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -17,13 +17,13 @@ const OrgViewAsset = (props) => {
 
   const asset = useSelector((state) => state?.asset);
   const { singleAsset, loading, appErr, serverErr } = asset;
-  const { user, assetDetails, givenDate, returnDate, typeOfAsset, ModifiedBy } =
-    singleAsset ? singleAsset : "";
+  const { user, assetDetails, givenDate, returnDate, typeOfAsset } = singleAsset
+    ? singleAsset
+    : "";
 
   return (
     <div>
       <div className="cs_div_profile">
-        <div className="cs_left_back"></div>
         {loading ? (
           <Loader />
         ) : (

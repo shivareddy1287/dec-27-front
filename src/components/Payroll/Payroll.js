@@ -2,15 +2,9 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { allFetchAssetAction } from "../../redux/slices/assetSlice/assetSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
 
-import {
-  dateOnlyFormate,
-  dateTimeFormate,
-} from "../../utils/DateFun/DateModify";
+import { dateTimeFormate } from "../../utils/DateFun/DateModify";
 import Loader from "../../utils/Loader/Loader";
 
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,14 +19,14 @@ const Payroll = () => {
   const navigate = useNavigate();
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access, profilePhoto } = profile?.userAuth;
+  const { Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchAssetAction());
     dispatch(allFetchpayrollAction());
   }, [dispatch]);
 
   const payroll = useSelector((state) => state?.payroll);
-  console.log(payroll, "payroll");
+
   const { payrollList, loading, appErr, serverErr } = payroll;
 
   const columns = [
