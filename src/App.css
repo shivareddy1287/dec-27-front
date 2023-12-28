@@ -856,6 +856,10 @@ thead {
   border-color: #4caf50;
 }
 
+.cs_profile_edit_request_Dialog {
+  padding: 2rem;
+}
+
 .table_img {
   width: 35px !important;
   height: 35px !important;
