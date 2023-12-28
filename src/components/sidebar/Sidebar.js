@@ -1,32 +1,18 @@
 import React, { useEffect } from "react";
-import {
-  AiOutlineCalendar,
-  AiOutlineShoppingCart,
-  AiOutlineStock,
-} from "react-icons/ai";
+
 import { HiOutlineHome, HiDocumentText } from "react-icons/hi";
-import { FcDocument } from "react-icons/fc";
 import { RxAvatar } from "react-icons/rx";
 import { BsCalendar2Date } from "react-icons/bs";
-import { AiOutlineStar } from "react-icons/ai";
 import { BiTask } from "react-icons/bi";
 import { VscOrganization } from "react-icons/vsc";
-import { TfiFiles } from "react-icons/tfi";
-import { PiSlidersHorizontal } from "react-icons/pi";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setActiveMenu,
-  setShowSideBar,
-} from "../../redux/slices/Navbar/navbarSlices";
+import { setActiveMenu } from "../../redux/slices/Navbar/navbarSlices";
 
 import "./sidebar.css";
-import { Navigate, useNavigate, useNavigation } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { loginStatus } from "../../redux/slices/profileSlice/profileSlice";
-import {
-  normalAdminAccessGivenFun,
-  proAdminAccessGivenFun,
-} from "../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
 
 const SidebarLink = ({ to, onClick, icon, title, isActive }) => (
   <div
@@ -408,14 +394,13 @@ const Sidebar = () => {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.activeMenu);
-  const titleRoute = state.menu;
   const activeRightSidebar = state.showSideBar;
 
   const location = window.location.pathname;
 
   const navigate = useNavigate();
 
-  const { userAuth, isLoggedIn } = user;
+  const { userAuth } = user;
 
   useEffect(() => {
     dispatch(loginStatus());

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+
+import "./leaveApplication.css";
 
 import {
   deleteLeaveAction,
@@ -23,17 +25,17 @@ const Teamm = () => {
   //access state
 
   const userProfile = useSelector((state) => state.profile);
-  const { userAuth, profilesList, profileData, userProfloading } = userProfile;
+  const { userAuth } = userProfile;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllLeaves());
     dispatch(fetchNotificationsAction(userAuth?._id));
-  }, [userAuth]);
+  }, [userAuth, dispatch]);
 
   const leaves = useSelector((state) => state?.leave);
   console.log(leaves);
-  const { allLeaves, loading, appErr, serverErr } = leaves;
+  const { allLeaves, loading } = leaves;
   console.log(allLeaves);
 
   let pendingSortedList = [];

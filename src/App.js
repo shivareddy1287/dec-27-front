@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FiSettings } from "react-icons/fi";
 
 import "./App.css";
 
@@ -12,9 +11,9 @@ import Navbar from "./components/navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import ListView from "./components/LeaveTracker/Leaves/ListView/ListView";
 import ApplyLeave from "./components/LeaveTracker/Leaves/ApplyLeave/ApplyLeave";
-import Holidays from "./components/LeaveTracker/Holidays/holidays";
+// import Holidays from "./components/LeaveTracker/Holidays/holidays";
 import AddHolidays from "./components/LeaveTracker/Holidays/addHolidays";
-import LeaveApplications from "./components/LeaveTracker/Leaves/LeaveApplications/LeaveApplications";
+// import LeaveApplications from "./components/LeaveTracker/Leaves/LeaveApplications/LeaveApplications";
 import LeaveRecord from "./components/LeaveTracker/Leaves/LeaveRecord/LeaveRecord";
 import UpdateLeave from "./components/LeaveTracker/Leaves/updateLeave/UpdateLeave";
 
@@ -31,7 +30,7 @@ import CheckInOut from "./components/Attendence/checkInOut";
 import Attendences from "./components/Attendence/Attendences";
 
 //test protected
-import Layout from "./components/layout/layout";
+// import Layout from "./components/layout/layout";
 
 // imports 2
 import LoginPage from "./components/LoginPage/LoginPage";

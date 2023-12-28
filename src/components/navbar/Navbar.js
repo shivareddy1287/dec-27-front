@@ -1,16 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-import { AiOutlineMenu } from "react-icons/ai";
-import { FiShoppingCart } from "react-icons/fi";
 import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
-import { FcLeave } from "react-icons/fc";
 import { AiOutlineClose } from "react-icons/ai";
 
 // import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import "./navbar.css";
-import DateFormatter from "../../utils/dateFormatter";
 import {
   fetchNotificationsAction,
   updateNoticationsSeen,
@@ -18,15 +14,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 // Images
-import logo1 from "../../Assets/logos/logo.png";
-import logo2 from "../../Assets/logos/logo2.png";
+
 import logo3 from "../../Assets/logos/logo3.png";
-import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 import { useOnClickOutside } from "../../utils/onClickOutSide";
 import { useNavigate } from "react-router-dom";
 
 const NavButton = ({
-  title,
   customFunc,
   icon,
   color,
@@ -67,10 +60,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(fetchNotificationsAction(userAuth?._id));
-  }, [userAuth]);
-
-  const notifications = useSelector((state) => state.notification);
-  const { allNotifications, serverErr, appErr, loading } = notifications;
+  }, [userAuth, dispatch]);
 
   const showNotificationBar = () => {
     dispatch(updateNoticationsSeen());

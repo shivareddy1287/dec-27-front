@@ -9,6 +9,7 @@ class WorkingFormatDonut extends Component {
       options: {
         chart: {
           id: "donut-chart",
+          margin: 0,
         },
         labels: ["WFH", "WFO"],
         colors: ["#008FFB", "#00E396"],
@@ -49,9 +50,9 @@ class WorkingFormatDonut extends Component {
         legend: {
           show: false, // Set to false to hide legend labels
         },
-        chart: {
-          margin: 0,
-        },
+        // chart: {
+        //   margin: 0,
+        // },
       },
       series: [44, 55],
     };

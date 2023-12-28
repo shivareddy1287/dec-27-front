@@ -31,17 +31,17 @@ const LeaveApplication = () => {
   //access state
   const leaves = useSelector((state) => state?.leave);
   console.log(leaves);
-  const { allLeaves, loading, appErr, serverErr } = leaves;
+  const { allLeaves, loading } = leaves;
   console.log(allLeaves);
 
   const userProfile = useSelector((state) => state.profile);
-  const { userAuth, profilesList, profileData, userProfloading } = userProfile;
+  const { userAuth, profilesList } = userProfile;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllLeaves());
     dispatch(fetchNotificationsAction(userAuth?._id));
-  }, []);
+  }, [dispatch, userAuth]);
   return (
     <div>
       <div className="bl_leave-applications_header">

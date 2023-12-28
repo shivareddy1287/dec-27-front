@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./listview.css";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllProfileAction,
@@ -15,7 +14,6 @@ const formSchema = Yup.object({
 });
 
 const ListViewHeader = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,11 +21,11 @@ const ListViewHeader = () => {
   }, [dispatch]);
 
   const userProfile = useSelector((state) => state.profile);
-  const { userAuth, profilesList, profileData } = userProfile;
+  const { userAuth, profilesList } = userProfile;
 
   useEffect(() => {
     dispatch(fetchDetailsProfileAction(userAuth?._id));
-  }, []);
+  }, [dispatch, userAuth]);
 
   const formik = useFormik({
     initialValues: {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import "./applyleave.css";
 import { useFormik } from "formik";
-import { Redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateLeaveAction,
@@ -35,7 +35,7 @@ const UpdateLeave = () => {
   const { id } = useParams();
 
   const userProfile = useSelector((state) => state.profile);
-  const { profileData, profilesList, userAuth } = userProfile;
+  const { profilesList, userAuth } = userProfile;
 
   const today = new Date();
 
@@ -46,13 +46,13 @@ const UpdateLeave = () => {
     dispatch(fetchLeaveAction(id));
     dispatch(fetchHolidaysAction());
     dispatch(fetchAllProfileAction());
-  }, []);
+  }, [dispatch, id]);
 
   const leaves = useSelector((state) => state.leave);
   const { leave, isUpdatedLeave, loading, allLeaves } = leaves;
 
   const holidays = useSelector((state) => state.holidays);
-  const { holiday, isHolidayAdded, allHolidays } = holidays;
+  const { allHolidays } = holidays;
 
   const fromdate = new Date(leave?.fromDate);
   const formattedFromDate = `${fromdate.getFullYear()}-${(

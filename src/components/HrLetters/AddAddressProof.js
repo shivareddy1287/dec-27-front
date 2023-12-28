@@ -20,7 +20,6 @@ import {
 // Images
 import pdfIcon from "../../Assets/documents/pdf-file.png";
 import deleteIcon from "../../Assets/documents/delete.png";
-import viewIcon from "../../Assets/documents/show-password.png";
 
 //Form Schema
 const formSchema = Yup.object({
@@ -279,7 +278,11 @@ const AddressProof = () => {
                     return (
                       <div className="bl_documents">
                         <div className="bl_document-r_cont">
-                          <img className="bl_document_pdf_icon" src={pdfIcon} />
+                          <img
+                            alt="pdf Icon"
+                            className="bl_document_pdf_icon"
+                            src={pdfIcon}
+                          />
                           <div>
                             <span>
                               {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./holidays.css";
 import { useFormik } from "formik";
-import { Redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addHolidayAction,
@@ -44,12 +44,10 @@ const ApplyLeave = () => {
 
   useEffect(() => {
     dispatch(fetchHolidaysAction());
-  }, []);
+  }, [dispatch]);
 
   const holidays = useSelector((state) => state.holidays);
-  const { holiday, isHolidayAdded, loading, allHolidays } = holidays;
-
-  const loading2 = false;
+  const { isHolidayAdded, loading, allHolidays } = holidays;
 
   //show card
   const showCard = () => {

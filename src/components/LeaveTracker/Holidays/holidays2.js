@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 import {
   deleteHolidayAction,
   fetchHolidaysAction,
 } from "../../../redux/slices/leaves/holidaySlices";
-import { fetchNotificationsAction } from "../../../redux/slices/notifications/notificationSlices";
 import { useDispatch, useSelector } from "react-redux";
 // import UserActions from "./UserAction";
 
@@ -22,16 +21,12 @@ const Holidays2 = () => {
 
   //access state
 
-  const userProfile = useSelector((state) => state.profile);
-  const { userAuth, profilesList, profileData, userProfloading } = userProfile;
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchHolidaysAction());
     // dispatch(fetchNotificationsAction(userAuth?._id));
-  }, [userAuth]);
+  }, [dispatch]);
 
-  const leaves = useSelector((state) => state?.leave);
   const holidays = useSelector((state) => state.holidays);
   const { allHolidays, loading } = holidays;
 

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const red = "#f54e4e";
-const green = "#4aec8c";
+// const red = "#f54e4e";
+// const green = "#4aec8c";
 
 const AttendenceTimer = (props) => {
   const { seconds } = props;

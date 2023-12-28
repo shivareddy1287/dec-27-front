@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  Schedule,
-  ViewDirective,
-  ViewsDirective,
   Day,
   Month,
   Inject,
@@ -11,20 +8,19 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 import "./calenderView.css";
 
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHolidaysAction } from "../../../../redux/slices/leaves/holidaySlices";
 
-const sampleCalenderData = [
-  {
-    Id: 2,
-    Subject: "May Day",
-    Location: "",
-    StartTime: "2023-05-01T00:00:00.000+00:00",
-    EndTime: "2023-05-01T00:00:00.000+00:00",
-    CategoryColor: "#357cd2",
-  },
-];
+// const sampleCalenderData = [
+//   {
+//     Id: 2,
+//     Subject: "May Day",
+//     Location: "",
+//     StartTime: "2023-05-01T00:00:00.000+00:00",
+//     EndTime: "2023-05-01T00:00:00.000+00:00",
+//     CategoryColor: "#357cd2",
+//   },
+// ];
 
 const CalenderView = () => {
   const dispatch = useDispatch();

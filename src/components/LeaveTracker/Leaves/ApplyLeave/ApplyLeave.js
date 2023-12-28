@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./applyleave.css";
 import { useFormik } from "formik";
-import { Redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   applyLeaveAction,
@@ -20,7 +20,7 @@ import { RxCross2 } from "react-icons/rx";
 import { fetchHolidaysAction } from "../../../../redux/slices/leaves/holidaySlices";
 
 // toast
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Form Schema
@@ -78,15 +78,15 @@ const ApplyLeave = () => {
   });
   console.log(formik.values);
   const today = new Date();
-  const getCurrentDate = () => {
-    const today = new Date();
+  // const getCurrentDate = () => {
+  //   const today = new Date();
 
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
+  //   const year = today.getFullYear();
+  //   const month = String(today.getMonth() + 1).padStart(2, "0");
+  //   const day = String(today.getDate()).padStart(2, "0");
 
-    return `${year}-${month}-${day}`;
-  };
+  //   return `${year}-${month}-${day}`;
+  // };
 
   // console.log(formik.values);
 
@@ -97,13 +97,13 @@ const ApplyLeave = () => {
     if (!profileData) {
       dispatch(fetchDetailsProfileAction(userAuth?._id));
     }
-  }, []);
+  }, [dispatch, userAuth, profileData]);
 
   const leaves = useSelector((state) => state.leave);
-  const { leave, isApplied, loading, allLeaves } = leaves;
+  const { isApplied, loading, allLeaves } = leaves;
 
   const holidays = useSelector((state) => state.holidays);
-  const { holiday, isHolidayAdded, allHolidays } = holidays;
+  const { allHolidays } = holidays;
 
   //show card
   const showCard = () => {

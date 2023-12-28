@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Timer from "./timer";
+import React, { useEffect, useMemo, useState } from "react";
+// import Timer from "./timer";
 import "./attendence.css";
 
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
@@ -15,7 +15,6 @@ import {
 } from "../../redux/slices/attendence/attendenceSlices";
 import { fetchDetailsProfileAction } from "../../redux/slices/profileSlice/profileSlice";
 import AttendenceTimer from "./timer";
-import Loader from "../../utils/Loader/Loader";
 
 // form schema
 
@@ -32,7 +31,7 @@ const CheckInOut = () => {
 
   useEffect(() => {
     dispatch(fetchDetailsProfileAction(userProfile?.userAuth?._id));
-  }, []);
+  }, [dispatch, userProfile?.userAuth?._id]);
 
   const profile = useSelector((state) => state.profile);
   const { profileData, loading } = profile;
@@ -41,7 +40,6 @@ const CheckInOut = () => {
   const { isPunChedIn, loading: punchInLoading, isPunChedOut } = attendance;
 
   if (isPunChedIn) {
-    console.log("isPunChedIn");
     dispatch(fetchDetailsProfileAction(userProfile?.userAuth?._id));
   }
 
@@ -49,19 +47,32 @@ const CheckInOut = () => {
     initialValues: {
       workFrom: "Work from Office",
     },
-    onSubmit: (values) => {
-      // console
-    },
+    onSubmit: (values) => {},
     validationSchema: formSchema,
   });
 
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setCurrentTime(new Date());
+  //   }, 1000);
+
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
+  // Memoize the setCurrentTime function
+  const setCurrentTimeMemoized = useMemo(() => {
+    return (newTime) => {
+      setCurrentTime(newTime);
+    };
+  }, []);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
+      setCurrentTimeMemoized(new Date());
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [setCurrentTimeMemoized]); // Include setCurrentTimeMemoized as a dependency
 
   const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",
@@ -86,9 +97,6 @@ const CheckInOut = () => {
     attendanceDate.setHours(0, 0, 0, 0);
     todaysDate.setHours(0, 0, 0, 0);
 
-    // console.log("Attendance Date:", attendanceDate);
-    // console.log("Today's Date:", attendanceDate.getTime());
-
     return attendanceDate.getTime() === todaysDate.getTime();
   });
 
@@ -100,9 +108,6 @@ const CheckInOut = () => {
     attendanceDate.setHours(0, 0, 0, 0);
     todaysDate.setHours(0, 0, 0, 0);
 
-    // console.log("Attendance Date:", attendanceDate);
-    // console.log("Today's Date:", attendanceDate.getTime());
-
     return attendanceDate.getTime() === todaysDate.getTime();
   });
 
@@ -111,13 +116,10 @@ const CheckInOut = () => {
     const startTime = new Date(time);
     const currentTime = new Date();
     const secondsElapsed = Math.floor((currentTime - startTime) / 1000);
-    // console.log(secondsElapsed);
     setDuration(secondsElapsed);
   }, [punchInTime]);
 
-  // console.log("loading", isPunchIn === undefined);
   if (isPunChedOut) {
-    console.log("isPunChedOut", punchInTime[0]?.isPunchOut);
     dispatch(fetchDetailsProfileAction(userProfile?.userAuth?._id));
   }
 

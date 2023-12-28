@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import "./holidays.css";
-import { useFormik } from "formik";
-import { Redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHolidayAction } from "../../../redux/slices/leaves/holidaySlices";
-import * as Yup from "yup";
 
 import { AiOutlineLeft } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
@@ -18,10 +16,10 @@ const HolidayRecord = () => {
 
   useEffect(() => {
     dispatch(fetchHolidayAction(id));
-  }, []);
+  }, [dispatch, id]);
 
   const holidays = useSelector((state) => state.holidays);
-  const { holiday, isHolidayAdded, loading } = holidays;
+  const { holiday, isHolidayAdded } = holidays;
   console.log("holiday", holiday);
 
   const fromdate = new Date(holiday?.fromDate);

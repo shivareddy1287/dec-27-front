@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import ListViewHeader from "./ListViewHeader";
 import { fetchAllLeaves } from "../../../../redux/slices/leaves/leaveSlices";
 import { useDispatch, useSelector } from "react-redux";
-import { BsCalendar2Date } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { fetchNotificationsAction } from "../../../../redux/slices/notifications/notificationSlices";
 
@@ -23,7 +22,7 @@ const LeaveType = ({
   return (
     <div className="bl_leave_type" onClick={customFunc}>
       <h2>{title}</h2>
-      <img src={icon} />
+      <img alt="icon" src={icon} />
       <div>
         <p>Available: {availableLeaves}</p>
         <p>Applied : {bookedLeaves}</p>
@@ -39,11 +38,11 @@ const ListView = () => {
   //access state
   const leaves = useSelector((state) => state?.leave);
   console.log(leaves);
-  const { allLeaves, appErr, serverErr } = leaves;
+  const { allLeaves } = leaves;
   console.log(allLeaves);
 
   const userProfile = useSelector((state) => state.profile);
-  const { userAuth, profilesList, profileData, loading } = userProfile;
+  const { userAuth, profileData, loading } = userProfile;
 
   const isLeavesApplied = profileData?.leaves.length > 0;
   console.log(isLeavesApplied);
@@ -63,7 +62,7 @@ const ListView = () => {
   useEffect(() => {
     dispatch(fetchAllLeaves());
     dispatch(fetchNotificationsAction(userAuth?._id));
-  }, []);
+  }, [dispatch, userAuth]);
   return (
     <div className="bl_leave_list-view-cont">
       <div className="bl_leave-header-cont">
@@ -195,7 +194,7 @@ const ListView = () => {
                 </table>
               ) : (
                 <div className="bl_no-leaves">
-                  <img src={noLeavesImg} />
+                  <img alt="no leaves" src={noLeavesImg} />
                   <p>No Leaves Applied</p>
                 </div>
               )}

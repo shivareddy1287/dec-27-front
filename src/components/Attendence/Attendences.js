@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-import { fetchNotificationsAction } from "../../redux/slices/notifications/notificationSlices";
 import { useDispatch, useSelector } from "react-redux";
 // import UserActions from "./UserAction";
-
-import DialogDemo from "../../utils/popup/uiPopup.js";
 
 import Select from "react-select";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // icons
-import DeleteIcon from "@mui/icons-material/Delete";
-import CreateIcon from "@mui/icons-material/Create";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useNavigate } from "react-router-dom";
-import {
-  deleteHolidayAction,
-  fetchHolidaysAction,
-} from "../../redux/slices/leaves/holidaySlices";
 
 import {
   fetchAllProfileAction,
@@ -33,7 +22,6 @@ const formSchema = Yup.object({
 
 const Attendences = () => {
   const [pageSize, setPageSize] = useState(5);
-  const navigate = useNavigate();
 
   //access state
 
@@ -44,7 +32,7 @@ const Attendences = () => {
   useEffect(() => {
     dispatch(fetchAllProfileAction());
     dispatch(fetchDetailsProfileAction(userAuth?._id));
-  }, [userAuth]);
+  }, [userAuth, dispatch]);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -131,25 +119,25 @@ const Attendences = () => {
         <>
           <div className="bl_leave-applications_header">
             <h2 className="bl_headings">Attendance</h2>
-            <div className="bl_att-select">
-              <Select
-                value={formik.values.userId}
-                onChange={(selectedOption) => {
-                  console.log(selectedOption);
-                  formik.setFieldValue("userId", selectedOption);
-                  return dispatch(
-                    fetchDetailsProfileAction(selectedOption?.value)
-                  );
-                }}
-                options={profilesList?.map((user) => ({
-                  value: `${user._id}`,
-                  label: `${user.basicInformation.firstName} ${user.basicInformation.lastName}`,
-                }))}
-              />
-            </div>
+            {userAuth?.isAdmin ? (
+              <div className="bl_att-select">
+                <Select
+                  value={formik.values.userId}
+                  onChange={(selectedOption) => {
+                    console.log(selectedOption);
+                    formik.setFieldValue("userId", selectedOption);
+                    return dispatch(
+                      fetchDetailsProfileAction(selectedOption?.value)
+                    );
+                  }}
+                  options={profilesList?.map((user) => ({
+                    value: `${user._id}`,
+                    label: `${user.basicInformation.firstName} ${user.basicInformation.lastName}`,
+                  }))}
+                />
+              </div>
+            ) : null}
           </div>
-          <DialogDemo />
-          <h1 className="text-3xl font-bold underline">Hello world!</h1>{" "}
           <Box
             // m={1}
             height="85.5vh"

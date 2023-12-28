@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./holidays.css";
 import { useFormik } from "formik";
-import { Redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateHolidayAction,
@@ -31,7 +31,7 @@ const UpdateHoliday = () => {
   useEffect(() => {
     dispatch(fetchHolidaysAction());
     dispatch(fetchHolidayAction(id));
-  }, []);
+  }, [dispatch, id]);
 
   const holidays = useSelector((state) => state.holidays);
   const { holiday, isHolidayUpdated, loading, allHolidays } = holidays;

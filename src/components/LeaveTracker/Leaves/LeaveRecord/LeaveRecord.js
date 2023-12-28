@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./leaveRecord.css";
 import { useFormik } from "formik";
-import { Redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -39,13 +39,13 @@ const LeaveRecord = (props) => {
 
   useEffect(() => {
     dispatch(fetchLeaveAction(id));
-  }, []);
+  }, [dispatch, id]);
 
   const user = useSelector((state) => state.profile);
   const { userAuth } = user;
 
   const leaves = useSelector((state) => state?.leave);
-  const { leave, isApproved, loading, appErr, serverErr } = leaves;
+  const { leave, isApproved, loading } = leaves;
   console.log(leave);
 
   const fromdate = new Date(leave?.fromDate);
