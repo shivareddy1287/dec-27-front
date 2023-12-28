@@ -57,7 +57,7 @@ const OrgViewExitDetails = () => {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="cs_edit_employee_head"> View Exit Details</h2>
+                  <h2 className="cs_edit_employee_head"> View Separation</h2>
                 </div>
               </Link>
             </div>
@@ -70,18 +70,18 @@ const OrgViewExitDetails = () => {
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Employee ID:</h1>
                       <h1 className="cs_view_right_input">
+                        {user?.basicInformation?.employerId}-
                         {user?.basicInformation?.firstName}{" "}
                         {user?.basicInformation?.lastName}{" "}
-                        {user?.basicInformation?.employerId}
                       </h1>
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Interviewer:</h1>
 
                       <h1 className="cs_view_right_input">
+                        {Interviewer?.basicInformation?.employerId}-
                         {Interviewer?.basicInformation?.firstName}{" "}
                         {Interviewer?.basicInformation?.lastName}{" "}
-                        {Interviewer?.basicInformation?.employerId}
                       </h1>
                     </div>
                   </div>

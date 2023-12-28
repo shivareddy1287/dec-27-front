@@ -9,6 +9,7 @@ import {
   fetchSingleTasksGivenAction,
 } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
 import Loader from "../../../utils/Loader/Loader";
+import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 
 const DeleteTasksGiven = () => {
   const { id } = useParams();
@@ -76,9 +77,9 @@ const DeleteTasksGiven = () => {
                       <div className="cs_edit_input_div">
                         <h2 className="cs_edit_left_input"> Task From :</h2>
                         <h2 className="cs_view_right_input">
+                          {taskGivenUser?.basicInformation?.employerId}-
                           {taskGivenUser?.basicInformation?.firstName}{" "}
                           {taskGivenUser?.basicInformation?.lastName}{" "}
-                          {taskGivenUser?.basicInformation?.employerId}
                         </h2>
                       </div>
                       <div className="cs_edit_input_div">
@@ -87,9 +88,9 @@ const DeleteTasksGiven = () => {
                           Task Assign to :
                         </h2>
                         <h2 className="cs_view_right_input">
+                          {taskAssignedUser?.basicInformation?.employerId}-
                           {taskAssignedUser?.basicInformation?.firstName}{" "}
                           {taskAssignedUser?.basicInformation?.lastName}{" "}
-                          {taskAssignedUser?.basicInformation?.employerId}
                         </h2>
                       </div>{" "}
                       <div className="cs_edit_input_div">
@@ -108,11 +109,15 @@ const DeleteTasksGiven = () => {
                       </div>
                       <div className="cs_edit_input_div">
                         <h2 className="cs_edit_left_input">Start Date :</h2>
-                        <h2 className="cs_view_right_input">{startDate}</h2>
+                        <h2 className="cs_view_right_input">
+                          {dateOnlyFormate(startDate)}
+                        </h2>
                       </div>
                       <div className="cs_edit_input_div">
                         <h2 className="cs_edit_left_input">Due Date :</h2>
-                        <h2 className="cs_view_right_input">{dueDate}</h2>
+                        <h2 className="cs_view_right_input">
+                          {dateOnlyFormate(dueDate)}
+                        </h2>
                       </div>
                       <div className="cs_edit_input_div">
                         <h2 className="cs_edit_left_input">Importance :</h2>

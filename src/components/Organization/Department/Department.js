@@ -33,9 +33,13 @@ const Department = () => {
   const newDepartmentList = DepartmentList?.map((department) => ({
     id: department?.id,
     departmentName: department?.DepartmentName,
-    addedBy: `${department?.addedBy?.basicInformation?.firstName} ${department?.addedBy?.basicInformation?.lastName} ${department?.addedBy?.basicInformation?.employerId}`,
+    addedBy: department?.addedBy
+      ? `${department?.addedBy?.basicInformation?.employerId}-${department?.addedBy?.basicInformation?.firstName} ${department?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(department?.createdAt),
-    modifiedBy: `${department?.ModifiedBy?.basicInformation?.firstName} ${department?.ModifiedBy?.basicInformation?.lastName} ${department?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: department?.ModifiedBy
+      ? `${department?.ModifiedBy?.basicInformation?.employerId}-${department?.ModifiedBy?.basicInformation?.firstName} ${department?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(department?.updatedAt),
   }));
 

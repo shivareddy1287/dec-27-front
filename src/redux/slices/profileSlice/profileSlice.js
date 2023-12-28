@@ -8,10 +8,7 @@ import axiosInstance from "../axiosInstance";
 const resetRegisterProfile = createAction("registerprofile/reset");
 const resetUpdateProfile = createAction("updateprofile/reset");
 const resetDeleteProfile = createAction("deleteprofile/reset");
-
-// profile reset
-const resetProfilePhoto = createAction("profileUpload/reset");
-
+const resetActiveProfile = createAction("updateActive/reset");
 //----------------------------------------------------------------
 // register action
 //----------------------------------------------------------------
@@ -219,34 +216,6 @@ export const updateUserAction = createAsyncThunk(
   }
 );
 
-// update user profile v
-export const updateProfilePhotoAction = createAsyncThunk(
-  "user/photoUpload",
-  async (profileData, { rejectWithValue, getState, dispatch }) => {
-    const { userId, profileImg } = profileData;
-    console.log(profileImg?.profilePhoto);
-
-    try {
-      const formData = new FormData();
-      formData.append("new", 5);
-      formData.append("image", profileImg?.profilePhoto);
-
-      console.log(formData);
-
-      const { data } = await axiosInstance.put(
-        `${baseurl}/api/users/updateProfile/${userId}`,
-        formData
-      );
-      dispatch(resetProfilePhoto());
-      return data;
-    } catch (error) {
-      console.log(error);
-      if (!error?.response) throw error;
-      return rejectWithValue(error?.response?.data);
-    }
-  }
-);
-
 //----------------------------------------------------------------
 // delete Profile
 //----------------------------------------------------------------
@@ -364,6 +333,50 @@ export const fetchAllManagersData = createAsyncThunk(
   }
 );
 
+// export const updateTheUserActiveOrInctivej = createAsyncThunk(
+//   "users/active-inactive",
+//   async (id, { rejectWithValue, getState, dispatch }) => {
+//     try {
+//       const { data } = await axiosInstance.post(
+//         `${baseurl}/api/users/change/active-inactive/${id}`
+//       );
+//       return data;
+//     } catch (error) {
+//       if (!error.response) {
+//         throw error;
+//       }
+//       return rejectWithValue(error?.response?.data);
+//     }
+//   }
+// );
+
+export const updateTheUserActiveOrInctive = createAsyncThunk(
+  "users/active-inactive",
+  async (userDet, { rejectWithValue, getState, dispatch }) => {
+    const { id, values } = userDet;
+
+    try {
+      const { data } = await axiosInstance.post(
+        `${baseurl}/api/users/change/active-inactive/${id}`,
+        {
+          ...values,
+        }
+      );
+
+      if (!data?.name) {
+        dispatch(resetActiveProfile());
+      }
+
+      return data;
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 const userLoginFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
@@ -428,7 +441,7 @@ const profileSlices = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(loginUserAction.fulfilled, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.userAuth = action?.payload;
       state.isLoggedIn = true;
       state.appErr = undefined;
@@ -461,7 +474,7 @@ const profileSlices = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(localStorageUserSetData.fulfilled, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.userAuth = action?.payload;
       state.isLoggedIn = true;
       state.appErr = undefined;
@@ -502,13 +515,13 @@ const profileSlices = createSlice({
     });
 
     // Get Login Status
-    builder.addCase(loginStatus.pending, (state) => {
+    builder.addCase(loginStatus?.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(loginStatus.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.isLoggedIn = action.payload;
+      state.isLoggedIn = action?.payload;
       if (!action.payload) {
         state.userAuth = null;
       }
@@ -516,8 +529,8 @@ const profileSlices = createSlice({
     builder.addCase(loginStatus.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      state.messageTokenExpires = action.payload;
-      if (action.payload.message === "jwt expired") {
+      state.messageTokenExpires = action?.payload;
+      if (action?.payload?.message === "jwt expired") {
         // toast.error(action?.payload.message);
         state.userAuth = null;
       }
@@ -699,29 +712,6 @@ const profileSlices = createSlice({
       state.serverErr = action?.error?.message;
     });
 
-    // updateProfilePhotoAction
-
-    builder.addCase(updateProfilePhotoAction.pending, (state, action) => {
-      state.profilePhotoloading = true;
-    });
-
-    builder.addCase(resetProfilePhoto, (state, action) => {
-      state.isProfilePhotoUploaded = true;
-    });
-
-    builder.addCase(updateProfilePhotoAction.fulfilled, (state, action) => {
-      state.profilePhotoloading = false;
-      state.profilePhoto = action?.payload;
-      state.appErr = undefined;
-      state.serverErr = undefined;
-      state.isProfilePhotoUploaded = false;
-    });
-    builder.addCase(updateProfilePhotoAction.rejected, (state, action) => {
-      state.profilePhotoloading = false;
-      state.appErr = action?.payload?.message;
-      state.serverErr = action?.error?.message;
-    });
-
     //----------------------------------------------------------------
     // delete Profile
     //----------------------------------------------------------------
@@ -759,6 +749,29 @@ const profileSlices = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(fetchAllManagersData.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+
+    // update the user active or inactive
+
+    builder.addCase(updateTheUserActiveOrInctive.pending, (state, action) => {
+      state.loading = true;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(resetActiveProfile, (state, action) => {
+      state.isUserActiveUpdated = true;
+    });
+    builder.addCase(updateTheUserActiveOrInctive.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isUserActiveUpdated = false;
+      state.userUpdatedMessage = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(updateTheUserActiveOrInctive.rejected, (state, action) => {
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;

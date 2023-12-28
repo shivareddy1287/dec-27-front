@@ -75,9 +75,9 @@ const AddBenefit = () => {
                   <div className="cs_edit_input_div">
                     <h1 className="cs_edit_left_input">Employee ID:</h1>
                     <h2 className="cs_edit_right_input">
+                      {userAuth?.basicInformation?.employerId}-
                       {userAuth?.basicInformation?.firstName}{" "}
                       {userAuth?.basicInformation?.lastName}{" "}
-                      {userAuth?.basicInformation?.employerId}
                     </h2>
                   </div>
                   <div className="cs_edit_input_div">

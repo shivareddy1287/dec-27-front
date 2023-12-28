@@ -33,9 +33,13 @@ const OrgProjectTeam = () => {
   const newTeamList = TeamList?.map((team) => ({
     id: team?.id,
     teamName: team?.TeamName,
-    addedBy: `${team?.addedBy?.basicInformation?.firstName} ${team?.addedBy?.basicInformation?.lastName} ${team?.addedBy?.basicInformation?.employerId}`,
+    addedBy: team?.addedBy
+      ? `${team?.addedBy?.basicInformation?.employerId}-${team?.addedBy?.basicInformation?.firstName} ${team?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(team?.createdAt),
-    modifiedBy: `${team?.ModifiedBy?.basicInformation?.firstName} ${team?.ModifiedBy?.basicInformation?.lastName} ${team?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: team?.ModifiedBy
+      ? `${team?.ModifiedBy?.basicInformation?.employerId}-${team?.ModifiedBy?.basicInformation?.firstName} ${team?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(team?.updatedAt),
   }));
 

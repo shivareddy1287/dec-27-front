@@ -60,20 +60,19 @@ const OrgAddProfile = () => {
       password: "",
       Access: "Employee",
       ProfileEditAccess: "Deny",
-      managerDataId: managersList?.[0]?.id,
+      managerDataId: managersList?.[0]?.id ? managersList?.[0]?.id : null,
       ProjectTeam: TeamList?.[0]?.TeamName,
       basicInformation: {
         firstName: "",
         lastName: "",
-        employerId: "",
-        email: "",
+        employerId: "BSS",
       },
       personalDetails: {
         dateOfBirth: "",
         gender: "",
         age: "",
         maritalStatus: "",
-        aboutMe: "",
+        bloodGroup: "",
       },
       workInformation: {
         Department: DepartmentList?.[0]?.DepartmentName,
@@ -81,7 +80,7 @@ const OrgAddProfile = () => {
         designation: DesignationList?.[0]?.DesignationName,
         appRole: "",
         employmentType: "",
-        employeeStatus: "",
+        employeeStatus: "Active",
         sourceOfHire: "",
         dateOfJoining: "",
         currentExperience: "",
@@ -108,7 +107,7 @@ const OrgAddProfile = () => {
       }
       // validateEmail(values.email);
       dispatch(registerUserAction(values));
-      console.log(values.email, "ProjectTeam values");
+      console.log(values, "bloodGroup values");
     },
   });
 
@@ -232,9 +231,9 @@ const OrgAddProfile = () => {
                       >
                         {managersList?.map((each) => (
                           <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
                             {each?.basicInformation?.firstName}{" "}
                             {each?.basicInformation?.lastName}{" "}
-                            {each?.basicInformation?.employerId}
                           </option>
                         ))}
                       </select>
@@ -271,11 +270,9 @@ const OrgAddProfile = () => {
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Email address:</h1>
-                      <input
-                        value={formik.values.basicInformation.email}
-                        onChange={formik.handleChange("basicInformation.email")}
-                        className="cs_edit_right_input"
-                      />
+                      <h1 className="cs_edit_right_input">
+                        {formik.values.email}
+                      </h1>
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Last Name:</h1>
@@ -395,14 +392,19 @@ const OrgAddProfile = () => {
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Employment Status:</h1>
-                      <input
+
+                      <select
+                        className="cs_select_option_all"
                         value={formik.values.workInformation.employeeStatus}
                         onChange={formik.handleChange(
                           "workInformation.employeeStatus"
                         )}
-                        className="cs_edit_right_input"
-                      />
+                      >
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
                     </div>
+
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Date of Joining:</h1>
 
@@ -459,16 +461,6 @@ const OrgAddProfile = () => {
                   </div>
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input">About Me:</h1>
-                      <input
-                        value={formik.values.personalDetails.aboutMe}
-                        onChange={formik.handleChange(
-                          "personalDetails.aboutMe"
-                        )}
-                        className="cs_edit_right_input"
-                      />
-                    </div>
-                    <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Marital Status:</h1>
                       <input
                         value={formik.values.personalDetails.maritalStatus}
@@ -477,6 +469,29 @@ const OrgAddProfile = () => {
                         )}
                         className="cs_edit_right_input"
                       />
+                    </div>
+
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Blood Group:</h1>
+                      <select
+                        className="cs_select_option_all"
+                        value={formik.values.personalDetails.bloodGroup}
+                        onChange={formik.handleChange(
+                          "personalDetails.bloodGroup"
+                        )}
+                      >
+                        <option value="" selected>
+                          --- Select Blood Group ---
+                        </option>
+                        <option value="O -ve">O -ve</option>
+                        <option value="O +ve">O +ve</option>
+                        <option value="A -ve">A -ve</option>
+                        <option value="A +ve">A +ve</option>
+                        <option value="B -ve">B -ve</option>
+                        <option value="B +ve">B +ve</option>
+                        <option value="AB -ve">AB -ve</option>
+                        <option value="AB +">AB +</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -544,7 +559,9 @@ const OrgAddProfile = () => {
                       />
                     </div>
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input">Email address:</h1>
+                      <h1 className="cs_edit_left_input">
+                        Personal Email address:
+                      </h1>
                       <input
                         value={formik.values.contactDetails.emailAddress}
                         onChange={formik.handleChange(

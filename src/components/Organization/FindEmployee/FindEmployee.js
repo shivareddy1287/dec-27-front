@@ -40,7 +40,7 @@ const FindEmployee = () => {
 
   const profile = useSelector((state) => state?.profile);
   const { userAuth } = profile ? profile : "";
-  const { _id, Access } = userAuth ? userAuth : "";
+  const { _id, Access, profilePhoto } = userAuth ? userAuth : "";
 
   const { profilesList, loading, appErr, serverErr } = profile;
 
@@ -54,7 +54,7 @@ const FindEmployee = () => {
     projectTeam: profileEach?.ProjectTeam,
     firstName: profileEach?.basicInformation?.firstName,
     lastName: profileEach?.basicInformation?.lastName,
-    managerDetails: `${profileEach?.managerDataId?.basicInformation?.firstName} ${profileEach?.managerDataId?.basicInformation?.lastName} ${profileEach?.managerDataId?.basicInformation?.employerId}`,
+    managerDetails: `${profileEach?.managerDataId?.basicInformation?.employerId}-${profileEach?.managerDataId?.basicInformation?.firstName} ${profileEach?.managerDataId?.basicInformation?.lastName}`,
     basicInfoEmail: profileEach?.basicInformation?.email,
     profileEditAccess: profileEach?.ProfileEditAccess,
     department: profileEach?.workInformation?.Department,
@@ -79,9 +79,9 @@ const FindEmployee = () => {
     uan: profileEach?.identityInfo?.uan,
     pan: profileEach?.identityInfo?.pan,
     adhaar: profileEach?.identityInfo?.adhaar,
-    addedBy: `${profileEach?.addedBy?.basicInformation?.firstName} ${profileEach?.addedBy?.basicInformation?.lastName} ${profileEach?.addedBy?.basicInformation?.employerId}`,
+    addedBy: `${profileEach?.addedBy?.basicInformation?.employerId}-${profileEach?.addedBy?.basicInformation?.firstName} ${profileEach?.addedBy?.basicInformation?.lastName}`,
     createdAt: dateTimeFormate(profileEach?.createdAt),
-    modifiedBy: `${profileEach?.ModifiedBy?.basicInformation?.firstName} ${profileEach?.ModifiedBy?.basicInformation?.lastName} ${profileEach?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: `${profileEach?.ModifiedBy?.basicInformation?.employerId}-${profileEach?.ModifiedBy?.basicInformation?.firstName} ${profileEach?.ModifiedBy?.basicInformation?.lastName}`,
     updatedAt: dateTimeFormate(profileEach?.updatedAt),
   }));
 
@@ -90,9 +90,7 @@ const FindEmployee = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => (
-        <Avatar src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" />
-      ),
+      renderCell: (params) => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

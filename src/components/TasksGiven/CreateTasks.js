@@ -1,68 +1,54 @@
 import React, { useEffect, useState } from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { fetchAllProfileAction } from "../../redux/slices/profileSlice/profileSlice";
 
-import {
-  allFetchTasksGivenAction,
-  fetchSingleTasksGivenAction,
-  updateTasksGivenAction,
-} from "../../../redux/slices/TasksGiven/TasksGivenSlice";
-import FormikDateYour from "../../../utils/DateFun/FormDateComp";
-import Loader from "../../../utils/Loader/Loader";
+import { TasksGivenCreateAction } from "../../redux/slices/TasksGiven/TasksGivenSlice";
+import FormikDateYour from "../../utils/DateFun/FormDateComp";
+import Loader from "../../utils/Loader/Loader";
 
-const MyTaskUpdate = () => {
+const CreateTasks = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchSingleTasksGivenAction(id));
-  }, [dispatch, id]);
-
-  const user = useSelector((state) => state?.profile);
+    dispatch(fetchAllProfileAction());
+  }, [dispatch]);
 
   const tasks = useSelector((state) => state?.tasks);
-  const { singleTasksGiven, isTasksGiveneUpdated, loading, appErr, serverErr } =
-    tasks;
 
-  const {
-    taskType,
-    taskGivenUser,
-    taskName,
-    taskDescription,
-    startDate,
-    dueDate,
-    Importance,
-    Status,
-    taskAssignedUser,
-  } = singleTasksGiven ? singleTasksGiven : "";
+  const { isTasksGivenAdded } = tasks;
+  const user = useSelector((state) => state?.profile);
+  const { profilesList, loading, appErr, serverErr } = user;
 
+  const { _id } = user?.userAuth;
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      taskGivenUser,
-      taskName,
-      taskDescription,
-      startDate,
-      dueDate,
-      Importance,
-      Status,
-      taskAssignedUser,
+      taskGivenUser: _id,
+      taskName: "",
+      taskDescription: "",
+      startDate: "",
+      dueDate: "",
+      Importance: "",
+      Status: "Open",
+      taskAssignedUser: _id,
     },
     onSubmit: (values) => {
-      dispatch(updateTasksGivenAction({ id, values }));
+      dispatch(TasksGivenCreateAction(values));
       console.log(values);
     },
   });
 
-  if (isTasksGiveneUpdated) {
-    navigate("/tasks/my-tasks");
-  }
+  if (isTasksGivenAdded && formik.values.taskAssignedUser === _id)
+    return <Navigate to={`/tasks/my-tasks`} />;
+
+  if (isTasksGivenAdded && formik.values.taskAssignedUser !== _id)
+    return <Navigate to={`/tasks/tasks-given`} />;
 
   return (
     <div>
@@ -71,50 +57,34 @@ const MyTaskUpdate = () => {
       ) : (
         <div className="cs_div_profile">
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
-            <div>
-              <Link
-                to={`/tasks/my-tasks`}
-                className="cs_edit_employee_head_div"
-              >
-                <div>
-                  <svg
-                    className="cs_font_icons"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1em"
-                    viewBox="0 0 320 512"
-                  >
-                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="cs_edit_employee_head"> Edit Task</h2>
-                </div>
-              </Link>
-            </div>
             <div className="cs_edit_form_div">
               <div>
                 <h1 className="cs_edit_side_head">Task Details</h1>
                 <div className="cs_edit_left_right_div">
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input"> Task From:</h1>
-                      <h2 className="cs_edit_right_input">
-                        {taskGivenUser?.basicInformation?.employerId}-
-                        {taskGivenUser?.basicInformation?.firstName}{" "}
-                        {taskGivenUser?.basicInformation?.lastName}{" "}
-                      </h2>
-                    </div>
-                    <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input"> Task Assign to:</h1>
-                      <h2 className="cs_edit_right_input">
-                        {user?.userAuth?.basicInformation?.employerId}-
-                        {user?.userAuth?.basicInformation?.firstName}{" "}
-                        {user?.userAuth?.basicInformation?.lastName}{" "}
-                      </h2>
+                      <h1 className="cs_edit_left_input"> Task Assign to :</h1>
+                      <select
+                        className="cs_select_option_all"
+                        value={formik.values.taskAssignedUser}
+                        onChange={formik.handleChange("taskAssignedUser")}
+                      >
+                        {profilesList?.map((each) => (
+                          <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
+                            {each?.basicInformation?.firstName}{" "}
+                            {each?.basicInformation?.lastName}{" "}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Task Type:</h1>
-                      <h2 className="cs_edit_right_input">{taskType}</h2>
+                      <h2 className="cs_edit_right_input">
+                        {formik.values.taskAssignedUser === _id
+                          ? "Self"
+                          : "Others"}
+                      </h2>
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Task Name :</h1>
@@ -143,6 +113,7 @@ const MyTaskUpdate = () => {
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Due Date :</h1>
+
                       <FormikDateYour
                         name="dueDate"
                         onChange={formik.setFieldValue}
@@ -160,6 +131,7 @@ const MyTaskUpdate = () => {
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Status :</h1>
+
                       <select
                         className="cs_select_option_all"
                         value={formik.values.Status}
@@ -179,12 +151,6 @@ const MyTaskUpdate = () => {
                   Submit
                 </button>
               </div>
-
-              <div>
-                <Link to={`/tasks/my-tasks`}>
-                  <button className="cs_view_button_close">Close</button>
-                </Link>
-              </div>
             </div>
           </form>
         </div>
@@ -193,4 +159,4 @@ const MyTaskUpdate = () => {
   );
 };
 
-export default MyTaskUpdate;
+export default CreateTasks;

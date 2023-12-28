@@ -108,9 +108,9 @@ const UpdateTasksGiven = () => {
                       >
                         {profilesList?.map((each) => (
                           <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
                             {each?.basicInformation?.firstName}{" "}
                             {each?.basicInformation?.lastName}{" "}
-                            {each?.basicInformation?.employerId}
                           </option>
                         ))}
                       </select>

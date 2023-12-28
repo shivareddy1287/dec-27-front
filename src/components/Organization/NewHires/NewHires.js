@@ -15,7 +15,7 @@ const NewHires = () => {
   const profile = useSelector((state) => state?.profile);
   const { newHiresList, loading, appErr, serverErr } = profile;
   const { newHires } = newHiresList ? newHiresList : "";
-
+  console.log(newHiresList, "newHiresList");
   return (
     <div>
       {loading ? (
@@ -44,6 +44,7 @@ const NewHires = () => {
                   <div className="kl_main-heading">
                     <div>
                       <div>
+                        {each?.basicInformation?.employerId}-
                         {each?.basicInformation?.firstName}{" "}
                         {each?.basicInformation?.lastName}
                       </div>

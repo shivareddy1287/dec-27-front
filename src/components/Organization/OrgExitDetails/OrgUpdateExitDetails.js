@@ -121,7 +121,7 @@ const OrgUpdateExitDetails = () => {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="cs_edit_employee_head"> Edit Exit Details</h2>
+                  <h2 className="cs_edit_employee_head"> Edit Separation</h2>
                 </div>
               </Link>
             </div>
@@ -140,9 +140,9 @@ const OrgUpdateExitDetails = () => {
                       >
                         {profilesList?.map((each) => (
                           <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
                             {each?.basicInformation?.firstName}{" "}
                             {each?.basicInformation?.lastName}{" "}
-                            {each?.basicInformation?.employerId}
                           </option>
                         ))}
                       </select>
@@ -156,9 +156,9 @@ const OrgUpdateExitDetails = () => {
                       >
                         {profilesList?.map((each) => (
                           <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
                             {each?.basicInformation?.firstName}{" "}
                             {each?.basicInformation?.lastName}{" "}
-                            {each?.basicInformation?.employerId}
                           </option>
                         ))}
                       </select>

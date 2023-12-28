@@ -27,7 +27,7 @@ const OrgExitDetails = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state?.profile);
 
-  const { _id, Access } = profile?.userAuth;
+  const { _id, Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchexitDetailsAction());
   }, [dispatch]);
@@ -38,8 +38,8 @@ const OrgExitDetails = () => {
   const newExitDetailsList = exitDetailsList?.map((exitDetailsEach) => ({
     id: exitDetailsEach?.id,
     Access: accessMain,
-    userNames: `${exitDetailsEach?.user?.basicInformation?.firstName} ${exitDetailsEach?.user?.basicInformation?.lastName} ${exitDetailsEach?.user?.basicInformation?.employerId}`,
-    interviewerNames: `${exitDetailsEach?.Interviewer?.basicInformation?.firstName} ${exitDetailsEach?.Interviewer?.basicInformation?.lastName} ${exitDetailsEach?.Interviewer?.basicInformation?.employerId}`,
+    userNames: `${exitDetailsEach?.user?.basicInformation?.employerId}-${exitDetailsEach?.user?.basicInformation?.firstName} ${exitDetailsEach?.user?.basicInformation?.lastName}`,
+    interviewerNames: `${exitDetailsEach?.Interviewer?.basicInformation?.employerId}-${exitDetailsEach?.Interviewer?.basicInformation?.firstName} ${exitDetailsEach?.Interviewer?.basicInformation?.lastName}`,
     separationDate: dateOnlyFormate(exitDetailsEach?.separationDate),
     reasonForLeaving: exitDetailsEach?.ReasonForLeaving,
     workingForOrganizationAgain:
@@ -57,10 +57,15 @@ const OrgExitDetails = () => {
     security: exitDetailsEach?.Security,
     noticePeriodFollowed: exitDetailsEach?.Noticeperiodfollowed,
     managerSupervisorClearance: exitDetailsEach?.ManagerSupervisorclearance,
-    addedBy: `${exitDetailsEach?.addedBy?.basicInformation?.firstName} ${exitDetailsEach?.addedBy?.basicInformation?.lastName} ${exitDetailsEach?.addedBy?.basicInformation?.employerId}`,
+    addedBy: exitDetailsEach?.addedBy
+      ? `${exitDetailsEach?.addedBy?.basicInformation?.employerId}-${exitDetailsEach?.addedBy?.basicInformation?.firstName} ${exitDetailsEach?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(exitDetailsEach?.createdAt),
-    modifiedBy: `${exitDetailsEach?.ModifiedBy?.basicInformation?.firstName} ${exitDetailsEach?.ModifiedBy?.basicInformation?.lastName} ${exitDetailsEach?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: exitDetailsEach?.ModifiedBy
+      ? `${exitDetailsEach?.ModifiedBy?.basicInformation?.employerId}-${exitDetailsEach?.ModifiedBy?.basicInformation?.firstName} ${exitDetailsEach?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(exitDetailsEach?.updatedAt),
+    separationStatus: exitDetailsEach?.separationStatus,
   }));
 
   const columns = [
@@ -68,9 +73,7 @@ const OrgExitDetails = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => (
-        <Avatar src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" />
-      ),
+      renderCell: (params) => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },
@@ -78,6 +81,84 @@ const OrgExitDetails = () => {
       field: "userNames",
       headerName: "Name",
       width: 180,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      type: "actions",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <Box sx={{ m: 1, p: 2, postition: "relative" }}>
+            {/* <IconButton
+              type="button"
+              sx={{ p: 1 }}
+              // onClick={() => console.log("view", params.row.id)}
+              onClick={() =>
+                navigate(`/organization/exitdetails/view/${params.row.id}`)
+              }
+            >
+              {" "}
+              <VisibilityIcon />
+            </IconButton> */}
+            {params.row.Access && (
+              <>
+                <IconButton
+                  type="button"
+                  sx={{ p: 1 }}
+                  onClick={() =>
+                    navigate(
+                      `/organization/exitdetails/update/${params.row.id}`
+                    )
+                  }
+                >
+                  {" "}
+                  <CreateIcon />
+                </IconButton>
+                {/* <IconButton
+                  type="button"
+                  sx={{ p: 1 }}
+                  onClick={() =>
+                    navigate(
+                      `/organization/exitdetails/delete/${params.row.id}`
+                    )
+                  }
+                >
+                  {" "}
+                  <DeleteIcon />
+                </IconButton>{" "} */}
+                <IconButton
+                  type="button"
+                  sx={{ p: 1 }}
+                  onClick={() =>
+                    navigate(
+                      `/organization/exitdetails/withdraw/${params.row.id}`
+                    )
+                  }
+                >
+                  W
+                </IconButton>
+                <IconButton
+                  type="button"
+                  sx={{ p: 1 }}
+                  onClick={() =>
+                    navigate(
+                      `/organization/exitdetails/approve/${params.row.id}`
+                    )
+                  }
+                >
+                  A
+                </IconButton>
+              </>
+            )}
+          </Box>
+        );
+      },
+    },
+    {
+      field: "separationStatus",
+      headerName: "Separation Status",
+      width: 130,
     },
 
     {
@@ -176,57 +257,6 @@ const OrgExitDetails = () => {
       headerName: "Modified Time",
       width: 150,
     },
-    {
-      field: "actions",
-      headerName: "Actions",
-      type: "actions",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <Box sx={{ m: 1, p: 2, postition: "relative" }}>
-            <IconButton
-              type="button"
-              sx={{ p: 1 }}
-              // onClick={() => console.log("view", params.row.id)}
-              onClick={() =>
-                navigate(`/organization/exitdetails/view/${params.row.id}`)
-              }
-            >
-              {" "}
-              <VisibilityIcon />
-            </IconButton>
-            {params.row.Access && (
-              <>
-                <IconButton
-                  type="button"
-                  sx={{ p: 1 }}
-                  onClick={() =>
-                    navigate(
-                      `/organization/exitdetails/update/${params.row.id}`
-                    )
-                  }
-                >
-                  {" "}
-                  <CreateIcon />
-                </IconButton>
-                <IconButton
-                  type="button"
-                  sx={{ p: 1 }}
-                  onClick={() =>
-                    navigate(
-                      `/organization/exitdetails/delete/${params.row.id}`
-                    )
-                  }
-                >
-                  {" "}
-                  <DeleteIcon />
-                </IconButton>
-              </>
-            )}
-          </Box>
-        );
-      },
-    },
   ];
 
   return (
@@ -242,14 +272,13 @@ const OrgExitDetails = () => {
           ) : null}
           <div>
             <div className="cs_table_head_bg_create">
-              <h2 className="cs_table_head_Assets_head">Exit Details</h2>
+              <h2 className="cs_table_head_Assets_head">Separation</h2>
               {normalAdminAccessGivenFun(Access) && (
                 <Link
                   className="cs_table_add_asset_button"
                   to={`/organization/exitdetails/create`}
                 >
-                  <span className="cs_asset_add_symbol">+</span> Add Exit
-                  Details
+                  <span className="cs_asset_add_symbol">+</span> Add Separation
                 </Link>
               )}
             </div>

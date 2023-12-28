@@ -16,7 +16,7 @@ import departmentSlice from "../slices/department/departmentSlice";
 import TasksGivenSlice from "../slices/TasksGiven/TasksGivenSlice";
 import teamSlice from "../slices/team/teamSlice";
 import emailSlice from "../email/emailSlice";
-
+import payrollSlice from "../slices/payrollSlice/payrollSlice";
 const store = configureStore({
   reducer: {
     activeMenu: activeMenuReducer,
@@ -35,6 +35,7 @@ const store = configureStore({
     tasks: TasksGivenSlice,
     team: teamSlice,
     emailData: emailSlice,
+    payroll: payrollSlice,
   },
 });
 

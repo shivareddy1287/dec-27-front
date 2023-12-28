@@ -64,9 +64,9 @@ const MyTaskAdd = () => {
                 <div className="cs_edit_input_div">
                   <h1 className="cs_edit_left_input"> Task Assign to :</h1>
                   <h2 className="cs_edit_right_input">
+                    {user?.userAuth?.basicInformation?.employerId}-
                     {user?.userAuth?.basicInformation?.firstName}{" "}
                     {user?.userAuth?.basicInformation?.lastName}{" "}
-                    {user?.userAuth?.basicInformation?.employerId}
                   </h2>
                 </div>
                 <div className="cs_edit_input_div">

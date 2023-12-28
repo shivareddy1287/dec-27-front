@@ -36,9 +36,9 @@ const TasksGiven = () => {
     startDate: dateOnlyFormate(task?.startDate),
     dueDate: dateOnlyFormate(task?.dueDate),
     importance: task?.Importance,
-    taskGivenUser: `${task?.taskGivenUser?.basicInformation?.firstName} ${task?.taskGivenUser?.basicInformation?.lastName} ${task?.taskGivenUser?.basicInformation?.employerId}`,
-    taskAssignedUser: `${task?.taskAssignedUser?.basicInformation?.firstName} ${task?.taskAssignedUser?.basicInformation?.lastName} ${task?.taskAssignedUser?.basicInformation?.employerId}`,
-    taskType: task?.taskType,
+    taskGivenUser: `${task?.taskGivenUser?.basicInformation?.employerId}-${task?.taskGivenUser?.basicInformation?.firstName} ${task?.taskGivenUser?.basicInformation?.lastName}`,
+    taskAssignedUser: `${task?.taskAssignedUser?.basicInformation?.employerId}-${task?.taskAssignedUser?.basicInformation?.firstName} ${task?.taskAssignedUser?.basicInformation?.lastName}`,
+    taskType: "Others",
   }));
 
   const columns = [
