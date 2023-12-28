@@ -23,7 +23,7 @@ const OrgBenefit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { _id, Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchbenefitAction());
   }, [dispatch]);
@@ -34,13 +34,17 @@ const OrgBenefit = () => {
   const newBenefitList = benefitList?.map((eachBenefit) => ({
     id: eachBenefit?.id,
     Access: accessMain,
-    userNames: `${eachBenefit?.user?.basicInformation?.firstName} ${eachBenefit?.user?.basicInformation?.lastName} ${eachBenefit?.user?.basicInformation?.employerId}`,
+    userNames: `${eachBenefit?.user?.basicInformation?.employerId}-${eachBenefit?.user?.basicInformation?.firstName} ${eachBenefit?.user?.basicInformation?.lastName}`,
     educationAllowance: eachBenefit?.educationAllowance,
     lunchBenefit: eachBenefit?.lunchBenfit,
     housingAllowance: eachBenefit?.housingAllowance,
-    addedBy: `${eachBenefit?.addedBy?.basicInformation?.firstName} ${eachBenefit?.addedBy?.basicInformation?.lastName} ${eachBenefit?.addedBy?.basicInformation?.employerId}`,
+    addedBy: eachBenefit?.addedBy
+      ? `${eachBenefit?.addedBy?.basicInformation?.employerId}-${eachBenefit?.addedBy?.basicInformation?.firstName} ${eachBenefit?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(eachBenefit?.createdAt),
-    modifiedBy: `${eachBenefit?.ModifiedBy?.basicInformation?.firstName} ${eachBenefit?.ModifiedBy?.basicInformation?.lastName} ${eachBenefit?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: eachBenefit?.ModifiedBy
+      ? `${eachBenefit?.ModifiedBy?.basicInformation?.employerId}-${eachBenefit?.ModifiedBy?.basicInformation?.firstName} ${eachBenefit?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(eachBenefit?.updatedAt),
   }));
 
@@ -49,9 +53,7 @@ const OrgBenefit = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => (
-        <Avatar src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" />
-      ),
+      renderCell: (params) => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

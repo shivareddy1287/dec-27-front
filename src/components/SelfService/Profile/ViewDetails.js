@@ -19,10 +19,11 @@ const ViewDetails = () => {
 
   const { loading, appErr, serverErr, profileData } = profileMain;
 
-  const { firstName, lastName, employerId, email } =
-    profileData?.basicInformation ? profileData?.basicInformation : "";
+  const { firstName, lastName, employerId } = profileData?.basicInformation
+    ? profileData?.basicInformation
+    : "";
 
-  const { dateOfBirth, gender, age, maritalStatus, aboutMe } =
+  const { dateOfBirth, gender, age, maritalStatus, bloodGroup } =
     profileData?.personalDetails ? profileData?.personalDetails : "";
 
   const {
@@ -48,7 +49,7 @@ const ViewDetails = () => {
     presentAddress,
     permanentAddress,
   } = profileData?.contactDetails ? profileData?.contactDetails : "";
-  const { managerDataId } = profileData ? profileData : "";
+  const { managerDataId, email } = profileData ? profileData : "";
   return (
     <div>
       <div className="cs_div_profile">
@@ -193,12 +194,12 @@ const ViewDetails = () => {
                   </div>
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input">About Me:</h1>
-                      <h1 className="cs_view_right_input">{aboutMe}</h1>
-                    </div>
-                    <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Marital Status:</h1>
                       <h1 className="cs_view_right_input">{maritalStatus}</h1>
+                    </div>
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Blood Group:</h1>
+                      <h1 className="cs_view_right_input">{bloodGroup}</h1>
                     </div>
                   </div>
                 </div>

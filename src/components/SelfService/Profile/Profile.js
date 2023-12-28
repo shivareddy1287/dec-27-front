@@ -3,7 +3,6 @@ import "./Profile.css";
 import {
   fetchAllProfileAction,
   fetchDetailsProfileAction,
-  updateProfilePhotoAction,
   loginStatus,
   logout,
 } from "../../../redux/slices/profileSlice/profileSlice";
@@ -12,9 +11,7 @@ import { Link, useParams } from "react-router-dom";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 import { proAdminAccessGivenFun } from "../../../utils/restrictedAccess";
-
-// icons
-import { FaCamera } from "react-icons/fa";
+import DialogOpen from "../../../utils/Dialog/DialogOpen";
 
 const Profile = () => {
   let { id } = useParams();
@@ -26,27 +23,22 @@ const Profile = () => {
   }, [dispatch, id]);
 
   const profile = useSelector((state) => state?.profile);
-  const {
-    loading,
-    appErr,
-    serverErr,
-    userAuth,
-    profileData,
-    profilePhotoloading,
-    isProfilePhotoUploaded,
-  } = profile;
+  const { loading, appErr, serverErr, userAuth, profileData } = profile;
 
   if (!id) {
     id = userAuth?._id;
   }
   const isSelfUser = id === userAuth?._id;
 
-  const { ProfileEditAccess, managerDataId } = profileData ? profileData : "";
+  const { ProfileEditAccess, managerDataId, email } = profileData
+    ? profileData
+    : "";
 
-  const { firstName, lastName, employerId, email } =
-    profileData?.basicInformation ? profileData?.basicInformation : "";
+  const { firstName, lastName, employerId } = profileData?.basicInformation
+    ? profileData?.basicInformation
+    : "";
 
-  const { dateOfBirth, gender, age, maritalStatus, aboutMe } =
+  const { dateOfBirth, gender, age, maritalStatus, bloodGroup } =
     profileData?.personalDetails ? profileData?.personalDetails : "";
 
   const {
@@ -73,10 +65,11 @@ const Profile = () => {
     permanentAddress,
   } = profileData?.contactDetails ? profileData?.contactDetails : "";
 
-  if (isProfilePhotoUploaded) {
-    dispatch(fetchDetailsProfileAction(id));
-  }
+  const EditRequestFun = () => {
+    // alert("Edit Request");
 
+    console.log("Edit Request");
+  };
   return (
     <div>
       <div className="cs_div_profile">
@@ -85,62 +78,34 @@ const Profile = () => {
             <Loader />
           ) : (
             <div>
-              {/* <div className="cs_profile_photo_main_div">
-                <div className="cs_profile_photo_div"></div>
-                <h2 className="cs_profile_photo_bottom_name">
-                  {firstName} {lastName}
-                </h2>
-              </div> */}
               <div className="cs_profile_photo_main_div">
-                <div className="cs_profile_photo_div">
-                  <img
-                    className=""
-                    alt="user profile"
-                    src={profileData?.profilePhoto}
-                  />
-                  <input
-                    id="userProfileId"
-                    accept="image/jpeg, image/png"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      const userId = userAuth?._id;
-                      const profileImg = { profilePhoto: file };
-                      dispatch(
-                        updateProfilePhotoAction({ userId, profileImg })
-                      );
-                    }}
-                    style={{ display: "none" }}
-                    type="file"
-                  />
-                  {isSelfUser && (
-                    <span>
-                      {profilePhotoloading ? (
-                        <div className="loader"></div>
-                      ) : (
-                        <label htmlFor="userProfileId">
-                          <FaCamera
-                            for="userProfileId"
-                            className="cs_cam_icon"
-                          />
-                        </label>
-                      )}
-                    </span>
-                  )}
-                </div>
+                <div className="cs_profile_photo_div"></div>
                 <h2 className="cs_profile_photo_bottom_name">
                   {firstName} {lastName}
                 </h2>
               </div>
               {isSelfUser && (
                 <div className="cs_profile_edit_view_top_div">
-                  {ProfileEditAccess === "Approve" && (
+                  {ProfileEditAccess === "Approve" &&
+                    employeeStatus === "Active" && (
+                      <div>
+                        <Link
+                          to={`/self-service/profile/update/${id}`}
+                          className="cs_profile_edit_view_top_heading"
+                        >
+                          Edit
+                        </Link>
+                      </div>
+                    )}
+
+                  {ProfileEditAccess !== "Approve" && (
                     <div>
-                      <Link
-                        to={`/self-service/profile/update/${id}`}
+                      <h2
                         className="cs_profile_edit_view_top_heading"
+                        onClick={() => EditRequestFun()}
                       >
-                        Edit
-                      </Link>
+                        <DialogOpen />
+                      </h2>
                     </div>
                   )}
 
@@ -152,6 +117,7 @@ const Profile = () => {
                       View Profile
                     </Link>
                   </div>
+
                   <div>
                     <h2
                       className="cs_profile_edit_view_top_heading"
@@ -250,10 +216,10 @@ const Profile = () => {
                       </div>
                       <div className="cs_card_each_data_div_profile">
                         <h2 className="cs_card_data_each_head_profile">
-                          Aboute Me
+                          Blood Group
                         </h2>{" "}
                         <h2 className="cs_card_data_each_head_profile">
-                          {aboutMe}
+                          {bloodGroup}
                         </h2>
                       </div>
                     </div>

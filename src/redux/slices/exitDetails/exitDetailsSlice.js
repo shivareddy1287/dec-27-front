@@ -2,10 +2,13 @@ import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseurl from "../../../utils/baseUrl";
 import axiosInstance from "../axiosInstance";
+import { toast } from "react-toastify";
 
 const resetAddexitDetails = createAction("addexitDetails/reset");
 const resetUpdateexitDetails = createAction("updateexitDetails/reset");
 const resetDeleteexitDetails = createAction("deleteexitDetails/reset");
+const resetWithdrawExitDetails = createAction("withdrawExitDetails/reset");
+const resetApproveExitDetails = createAction("approveExitDetails/reset");
 //----------------------------------------------------------------
 // create action
 //----------------------------------------------------------------
@@ -100,6 +103,49 @@ export const updateexitDetailsAction = createAsyncThunk(
 );
 
 //----------------------------------------------------------------
+// withdrawExitDetailsAction User Details
+//----------------------------------------------------------------
+
+export const withdrawExitDetailsAction = createAsyncThunk(
+  "exitDetails/withdraw",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const { data } = await axiosInstance.put(
+        `${baseurl}/api/exitDetails/withdraw/${id}`
+      );
+      dispatch(resetWithdrawExitDetails());
+      return data;
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//----------------------------------------------------------------
+// approve User Details
+//----------------------------------------------------------------
+
+export const approveExitDetailsAction = createAsyncThunk(
+  "exitDetails/approve",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const { data } = await axiosInstance.put(
+        `${baseurl}/api/exitDetails/approve/${id}`
+      );
+      dispatch(resetApproveExitDetails());
+      return data;
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+//----------------------------------------------------------------
 // delete exitDetails
 //----------------------------------------------------------------
 export const deleteexitDetailsAction = createAsyncThunk(
@@ -137,12 +183,14 @@ const exitDetailsSlices = createSlice({
       state.exitDetails = action?.payload;
       state.appErr = undefined;
       state.serverErr = undefined;
+      toast.success(action?.payload?.message);
     });
     builder.addCase(exitDetailsCreateAction.rejected, (state, action) => {
       console.log(action.payload);
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
+      toast.error(action?.payload?.message);
     });
 
     //----------------------------------------------------------------
@@ -209,6 +257,76 @@ const exitDetailsSlices = createSlice({
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
+    });
+
+    //----------------------------------------------------------------
+    // withdraw exit details
+    //----------------------------------------------------------------
+
+    builder.addCase(withdrawExitDetailsAction.pending, (state, action) => {
+      state.loading = true;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(resetWithdrawExitDetails, (state, action) => {
+      state.isWithdrawSeparation = true;
+    });
+    builder.addCase(withdrawExitDetailsAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isWithdrawSeparation = false;
+      state.separationStatusWithdraw = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+      toast.success(action?.payload?.message);
+    });
+    builder.addCase(withdrawExitDetailsAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+      if (action?.payload) {
+        if (action?.payload?.message) {
+          toast.info(action?.payload?.message);
+        } else {
+          toast.error(action?.payload);
+        }
+      } else {
+        toast.error(action?.error?.message);
+      }
+    });
+
+    //----------------------------------------------------------------
+    // approve separation
+    //----------------------------------------------------------------
+
+    builder.addCase(approveExitDetailsAction.pending, (state, action) => {
+      state.loading = true;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(resetApproveExitDetails, (state, action) => {
+      state.isApproveSeparation = true;
+    });
+    builder.addCase(approveExitDetailsAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isApproveSeparation = false;
+      state.separationStatusApprove = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+      toast.success(action?.payload?.message);
+    });
+    builder.addCase(approveExitDetailsAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+      if (action?.payload) {
+        if (action?.payload?.message) {
+          toast.info(action?.payload?.message);
+        } else {
+          toast.error(action?.payload);
+        }
+      } else {
+        toast.error(action?.error?.message);
+      }
     });
 
     //----------------------------------------------------------------

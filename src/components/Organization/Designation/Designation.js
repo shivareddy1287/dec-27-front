@@ -33,9 +33,13 @@ const Designation = () => {
   const newDesignationList = DesignationList?.map((designation) => ({
     id: designation?.id,
     designationName: designation?.DesignationName,
-    addedBy: `${designation?.addedBy?.basicInformation?.firstName} ${designation?.addedBy?.basicInformation?.lastName} ${designation?.addedBy?.basicInformation?.employerId}`,
+    addedBy: designation?.addedBy
+      ? `${designation?.addedBy?.basicInformation?.employerId}-${designation?.addedBy?.basicInformation?.firstName} ${designation?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(designation?.createdAt),
-    modifiedBy: `${designation?.ModifiedBy?.basicInformation?.firstName} ${designation?.ModifiedBy?.basicInformation?.lastName} ${designation?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: designation?.ModifiedBy
+      ? `${designation?.ModifiedBy?.basicInformation?.employerId}-${designation?.ModifiedBy?.basicInformation?.firstName} ${designation?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(designation?.updatedAt),
   }));
 

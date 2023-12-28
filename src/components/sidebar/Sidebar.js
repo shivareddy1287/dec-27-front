@@ -52,7 +52,8 @@ const RightSidebarLink = ({ to, onClick, icon, title, isActive }) => {
 
 const Sidebar = () => {
   const user = useSelector((state) => state?.profile);
-  const { Access } = user?.userAuth ? user?.userAuth : "";
+  const { Access, workInformation } = user?.userAuth ? user?.userAuth : "";
+  const { employeeStatus } = workInformation ? workInformation : "";
   let links = [];
 
   if (normalAdminAccessGivenFun(Access) && Access) {
@@ -68,7 +69,7 @@ const Sidebar = () => {
           },
           {
             name: "Updates",
-            subPath: "home/updates",
+            subPath: "home/Updates",
           },
         ],
       },
@@ -96,7 +97,7 @@ const Sidebar = () => {
             subPath: "self-service/benefit",
           },
           {
-            name: "Exit Details",
+            name: "Separation",
             subPath: "self-service/exitdetails",
           },
         ],
@@ -111,8 +112,8 @@ const Sidebar = () => {
             subPath: "leave-tracker/overview",
           },
           {
-            name: "My Calender",
-            subPath: "leave-tracker/my-calender",
+            name: "Calender",
+            subPath: "leave-tracker/calender",
           },
 
           {
@@ -135,7 +136,6 @@ const Sidebar = () => {
           },
         ],
       },
-
       {
         title: "Attandence",
         icon: <BsCalendar2Date />,
@@ -198,11 +198,11 @@ const Sidebar = () => {
             subPath: "organization/team",
           },
           {
-            name: "Exit Details",
+            name: "Separation",
             subPath: "organization/exitdetails",
           },
           {
-            name: "New Hires",
+            name: "New Joinees",
             subPath: "organization/new-hires",
           },
           {
@@ -217,6 +217,10 @@ const Sidebar = () => {
         icon: <BiTask />,
         links: [
           {
+            name: "Create Task",
+            subPath: "tasks/create-tasks",
+          },
+          {
             name: "My Tasks",
             subPath: "tasks/my-tasks",
           },
@@ -227,13 +231,58 @@ const Sidebar = () => {
           },
         ],
       },
+      {
+        title: "Payroll",
+        path: "payroll/employees",
+        icon: <BiTask />,
+        links: [
+          {
+            name: "All Employees",
+            subPath: "payroll/employees",
+          },
+          {
+            name: "Payslips",
+            subPath: "payroll/payslips",
+          },
+        ],
+      },
+    ];
+  } else if (employeeStatus !== "Active") {
+    links = [
+      {
+        title: "Self Service",
+        icon: <RxAvatar />,
+        path: "self-service/profile",
+        links: [
+          {
+            name: "Profile",
+            subPath: `self-service/profile`,
+          },
+        ],
+      },
+
+      {
+        title: "Documents",
+        path: "documents/adress-proof",
+        icon: <HiDocumentText />,
+        links: [
+          {
+            name: "Adress Proof",
+            subPath: "documents/adress-proof",
+          },
+          {
+            name: "Bonafide Letter",
+            subPath: "documents/bonafide-letter",
+          },
+        ],
+      },
     ];
   } else {
     links = [
       {
         title: "Home",
         icon: <HiOutlineHome />,
-        path: "home/Dashboard",
+        path: "home/dashboard",
         links: [
           {
             name: "Dashboard",
@@ -241,7 +290,7 @@ const Sidebar = () => {
           },
           {
             name: "Updates",
-            subPath: "home/updates",
+            subPath: "home/Updates",
           },
         ],
       },
@@ -269,8 +318,12 @@ const Sidebar = () => {
             subPath: "self-service/benefit",
           },
           {
-            name: "Exit Details",
+            name: "Separation",
             subPath: "self-service/exitdetails",
+          },
+          {
+            name: "Find Employee",
+            subPath: "self-service/find-employee",
           },
         ],
       },
@@ -284,8 +337,8 @@ const Sidebar = () => {
             subPath: "leave-tracker/overview",
           },
           {
-            name: "MY Calender",
-            subPath: "leave-tracker/my-calender",
+            name: "Calender",
+            subPath: "leave-tracker/calender",
           },
 
           {
@@ -301,9 +354,13 @@ const Sidebar = () => {
             name: "Holidays",
             subPath: "leave-tracker/holidays",
           },
+
+          {
+            name: "Add holiday",
+            subPath: "leave-tracker/add-holiday",
+          },
         ],
       },
-
       {
         title: "Attandence",
         icon: <BsCalendar2Date />,
@@ -332,37 +389,6 @@ const Sidebar = () => {
           {
             name: "Bonafide Letter",
             subPath: "documents/bonafide-letter",
-          },
-        ],
-      },
-
-      {
-        title: "Organization",
-        path: "organization/profile",
-        icon: <VscOrganization />,
-        links: [
-          {
-            name: "Employee",
-            subPath: "organization/profile",
-          },
-
-          {
-            name: "Assets",
-            subPath: "organization/asset",
-          },
-
-          {
-            name: "Benefits",
-            subPath: "organization/benefit",
-          },
-
-          {
-            name: "Exit Details",
-            subPath: "organization/exitdetails",
-          },
-          {
-            name: "Find Employee",
-            subPath: "organization/find-employee",
           },
         ],
       },

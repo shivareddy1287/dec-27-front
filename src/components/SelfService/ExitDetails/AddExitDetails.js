@@ -62,8 +62,7 @@ const AddExitDetails = () => {
     },
   });
 
-  if (isexitDetailsAdded || (!normalAdminAccessGivenFun(Access) && Access))
-    return <Navigate to={`/self-service/exitdetails`} />;
+  if (isexitDetailsAdded) return <Navigate to={`/self-service/exitdetails`} />;
 
   return (
     <div>
@@ -85,7 +84,7 @@ const AddExitDetails = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="cs_edit_employee_head"> Add Exit Details</h2>
+                <h2 className="cs_edit_employee_head"> Add Separation</h2>
               </div>
             </Link>
           </div>
@@ -97,23 +96,10 @@ const AddExitDetails = () => {
                   {" "}
                   <div className="cs_edit_input_div">
                     <h1 className="cs_edit_left_input">Employee ID:</h1>
-                    {/* <select
-                      className="cs_select_option_all"
-                      value={formik.values.user}
-                      onChange={formik.handleChange("user")}
-                    >
-                      {profilesList?.map((each) => (
-                        <option value={`${each?._id}`}>
-                          {each?.basicInformation?.firstName}{" "}
-                          {each?.basicInformation?.lastName}{" "}
-                          {each?.basicInformation?.employerId}
-                        </option>
-                      ))}
-                    </select> */}
                     <h2 className="cs_edit_right_input">
+                      {user?.userAuth?.basicInformation?.employerId}-
                       {user?.userAuth?.basicInformation?.firstName}{" "}
                       {user?.userAuth?.basicInformation?.lastName}{" "}
-                      {user?.userAuth?.basicInformation?.employerId}
                     </h2>
                   </div>
                   <div className="cs_edit_input_div">
@@ -125,9 +111,9 @@ const AddExitDetails = () => {
                     >
                       {profilesList?.map((each) => (
                         <option value={`${each?._id}`}>
+                          {each?.basicInformation?.employerId}-
                           {each?.basicInformation?.firstName}{" "}
                           {each?.basicInformation?.lastName}{" "}
-                          {each?.basicInformation?.employerId}
                         </option>
                       ))}
                     </select>

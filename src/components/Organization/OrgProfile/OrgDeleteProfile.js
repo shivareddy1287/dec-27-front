@@ -27,15 +27,13 @@ const OrgDeleteProfile = () => {
 
   const { profileData } = profile ? profile : "";
 
-  const {
-    email: emailMain,
-    Access,
-    ProjectTeam,
-  } = profileData ? profileData : "";
-  const { firstName, lastName, employerId, email } =
-    profileData?.basicInformation ? profileData?.basicInformation : "";
+  const { email, Access, ProjectTeam, ProfileEditAccess, managerDataId } =
+    profileData ? profileData : "";
+  const { firstName, lastName, employerId } = profileData?.basicInformation
+    ? profileData?.basicInformation
+    : "";
 
-  const { dateOfBirth, gender, age, maritalStatus, aboutMe } =
+  const { dateOfBirth, gender, age, maritalStatus, bloodGroup } =
     profileData?.personalDetails ? profileData?.personalDetails : "";
 
   const {
@@ -112,7 +110,7 @@ const OrgDeleteProfile = () => {
                     {" "}
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Email:</h1>
-                      <h1 className="cs_view_right_input">{emailMain}</h1>
+                      <h1 className="cs_view_right_input">{email}</h1>
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Access:</h1>
@@ -121,6 +119,23 @@ const OrgDeleteProfile = () => {
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Project Team Name:</h1>
                       <h1 className="cs_view_right_input">{ProjectTeam}</h1>
+                    </div>
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">
+                        Profile Edit Access:
+                      </h1>
+                      <h1 className="cs_view_right_input">
+                        {ProfileEditAccess}
+                      </h1>
+                    </div>
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Manager:</h1>
+                      <h1 className="cs_view_right_input">
+                        {" "}
+                        {managerDataId?.basicInformation?.employerId}-
+                        {managerDataId?.basicInformation?.firstName}{" "}
+                        {managerDataId?.basicInformation?.lastName}{" "}
+                      </h1>
                     </div>
                   </div>
                 </div>
@@ -227,12 +242,12 @@ const OrgDeleteProfile = () => {
                   </div>
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input">About Me:</h1>
-                      <h1 className="cs_view_right_input">{aboutMe}</h1>
-                    </div>
-                    <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Marital Status:</h1>
                       <h1 className="cs_view_right_input">{maritalStatus}</h1>
+                    </div>
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Blood Group:</h1>
+                      <h1 className="cs_view_right_input">{bloodGroup}</h1>
                     </div>
                   </div>
                 </div>
@@ -276,7 +291,9 @@ const OrgDeleteProfile = () => {
                       <h1 className="cs_view_right_input">{personalNumber}</h1>
                     </div>
                     <div className="cs_edit_input_div">
-                      <h1 className="cs_edit_left_input">Email address:</h1>
+                      <h1 className="cs_edit_left_input">
+                        Personal Email address:
+                      </h1>
                       <h1 className="cs_view_right_input">{emailAddress}</h1>
                     </div>
                   </div>

@@ -33,11 +33,6 @@ import Attendences from "./components/Attendence/Attendences";
 //test protected
 import Layout from "./components/layout/layout";
 
-//imports 2
-
-//test protected
-// import Layout from "./components/layout/layout";
-
 // imports 2
 import LoginPage from "./components/LoginPage/LoginPage";
 import PrivateProtectRoute from "./components/Navigation/ProtectedRoutes/PrivateProtectRoute";
@@ -124,6 +119,7 @@ import ViewTasksGiven from "./components/TasksGiven/OrgTasks/ViewTasksGiven";
 import DeleteTasksGiven from "./components/TasksGiven/OrgTasks/DeleteTasksGiven";
 import UpdateTasksGiven from "./components/TasksGiven/OrgTasks/UpdateTasksGiven";
 import TasksGiven from "./components/TasksGiven/OrgTasks/TasksGiven";
+import CreateTasks from "./components/TasksGiven/CreateTasks";
 
 // my tasks
 import MyTasks from "./components/TasksGiven/MyTasks/MyTasks";
@@ -144,6 +140,14 @@ import MyTaskView from "./components/TasksGiven/MyTasks/ViewMyTask";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FindEmployee from "./components/Organization/FindEmployee/FindEmployee";
+import WithdrawSeparation from "./components/SelfService/ExitDetails/WithdrawSeparation";
+import OrgApproveSeparation from "./components/Organization/OrgExitDetails/OrgApproveSeparation";
+import ActiveInactiveRoute from "./components/Navigation/ProtectedRoutes/ActiveInactiveRoute.js";
+import Payroll from "./components/Payroll/Payroll.js";
+import PayrollAdd from "./components/Payroll/PayrollAdd.js";
+import PayrollUpdate from "./components/Payroll/PayrollUpdate.js";
+import PayrollView from "./components/Payroll/PayrollView.js";
+import PayrollDelete from "./components/Payroll/PayrollDelete.js";
 
 // kalyani
 import HomePage from "./components/HomePage/MainFile/mainFile";
@@ -356,6 +360,7 @@ const App = () => {
           }
         />
 
+        {/* 22 */}
         {/* Routes  2 */}
         <Route path="/login" element={<LoginPage />} />
 
@@ -386,21 +391,23 @@ const App = () => {
         />
 
         {/* <Route
-              path="/self-service/profile/:id"
-              element={
-                <PrivateProtectRoute>
-                  <Profile />
-                </PrivateProtectRoute>
-              }
-            /> */}
+      path="/self-service/profile/:id"
+      element={
+        <PrivateProtectRoute>
+          <Profile />
+        </PrivateProtectRoute>
+      }
+    /> */}
 
         <Route
           path="/self-service/profile/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateProfile />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateProfile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -418,9 +425,11 @@ const App = () => {
           path="/self-service/team"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Team />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Team />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -429,10 +438,11 @@ const App = () => {
           path="/self-service/team/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Profile />
-              </SideBarLayout>
-              s
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Profile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -440,9 +450,11 @@ const App = () => {
           path="/self-service/asset"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Asset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Asset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -450,9 +462,11 @@ const App = () => {
           path="/self-service/asset/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -460,9 +474,11 @@ const App = () => {
           path="/self-service/asset/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -470,9 +486,11 @@ const App = () => {
           path="/self-service/asset/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -480,9 +498,11 @@ const App = () => {
           path="/self-service/asset/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -492,9 +512,11 @@ const App = () => {
           path="/self-service/benefit"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Benefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Benefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -503,9 +525,11 @@ const App = () => {
           path="/self-service/benefit/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -514,9 +538,11 @@ const App = () => {
           path="/self-service/benefit/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -525,9 +551,11 @@ const App = () => {
           path="/self-service/benefit/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -536,9 +564,11 @@ const App = () => {
           path="/self-service/benefit/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -549,9 +579,11 @@ const App = () => {
           path="/self-service/exitdetails"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -560,9 +592,11 @@ const App = () => {
           path="/self-service/exitdetails/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -571,9 +605,11 @@ const App = () => {
           path="/self-service/exitdetails/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -582,9 +618,11 @@ const App = () => {
           path="/self-service/exitdetails/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -593,9 +631,11 @@ const App = () => {
           path="/self-service/exitdetails/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -605,9 +645,11 @@ const App = () => {
           path="/organization/designation"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Designation />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Designation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -616,9 +658,11 @@ const App = () => {
           path="/organization/designation/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddDesignation />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddDesignation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -627,9 +671,11 @@ const App = () => {
           path="/organization/designation/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateDesignation />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateDesignation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -638,9 +684,11 @@ const App = () => {
           path="/organization/designation/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteDesignation />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteDesignation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -649,9 +697,11 @@ const App = () => {
           path="/organization/designation/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewDesignation />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewDesignation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -662,9 +712,11 @@ const App = () => {
           path="/organization/department"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <Department />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Department />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -673,9 +725,11 @@ const App = () => {
           path="/organization/department/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddDepartment />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddDepartment />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -684,9 +738,11 @@ const App = () => {
           path="/organization/department/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateDepartment />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateDepartment />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -695,9 +751,11 @@ const App = () => {
           path="/organization/department/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteDepartment />{" "}
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteDepartment />{" "}
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -706,9 +764,11 @@ const App = () => {
           path="/organization/department/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewDepartment />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewDepartment />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -720,9 +780,11 @@ const App = () => {
           path="/organization/profile"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgProfile />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgProfile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -731,9 +793,11 @@ const App = () => {
           path="/organization/profile/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAddProfile />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAddProfile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -742,9 +806,11 @@ const App = () => {
           path="/organization/profile/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgUpdateProfile />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgUpdateProfile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -753,9 +819,11 @@ const App = () => {
           path="/organization/profile/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgViewDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgViewDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -764,9 +832,11 @@ const App = () => {
           path="/organization/profile/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgDeleteProfile />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgDeleteProfile />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -777,9 +847,11 @@ const App = () => {
           path="/organization/exitdetails"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -788,9 +860,11 @@ const App = () => {
           path="/organization/exitdetails/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAddExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAddExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -799,9 +873,11 @@ const App = () => {
           path="/organization/exitdetails/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgUpdateExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgUpdateExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -810,9 +886,11 @@ const App = () => {
           path="/organization/exitdetails/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgViewExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgViewExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -821,9 +899,50 @@ const App = () => {
           path="/organization/exitdetails/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgDeleteExitDetails />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgDeleteExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/organization/exitdetails/delete/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteExitDetails />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/organization/exitdetails/withdraw/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <WithdrawSeparation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/organization/exitdetails/approve/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgApproveSeparation />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -834,9 +953,11 @@ const App = () => {
           path="/organization/asset"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -845,9 +966,11 @@ const App = () => {
           path="/organization/asset/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAddAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAddAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -856,9 +979,11 @@ const App = () => {
           path="/organization/asset/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgUpdateAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgUpdateAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -867,9 +992,11 @@ const App = () => {
           path="/organization/asset/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgViewAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgViewAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -878,9 +1005,11 @@ const App = () => {
           path="/organization/asset/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgDeleteAsset />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgDeleteAsset />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -889,9 +1018,11 @@ const App = () => {
           path="/organization/benefit"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -900,9 +1031,11 @@ const App = () => {
           path="/organization/benefit/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAddBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAddBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -911,9 +1044,11 @@ const App = () => {
           path="/organization/benefit/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgUpdateBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgUpdateBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -922,9 +1057,11 @@ const App = () => {
           path="/organization/benefit/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgViewBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgViewBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -933,9 +1070,11 @@ const App = () => {
           path="/organization/benefit/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgDeleteBenefit />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgDeleteBenefit />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -946,9 +1085,11 @@ const App = () => {
           path="/tasks/tasks-given"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <TasksGiven />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <TasksGiven />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -957,9 +1098,11 @@ const App = () => {
           path="/tasks/tasks-given/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <AddTasksGiven />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <AddTasksGiven />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -968,9 +1111,11 @@ const App = () => {
           path="/tasks/tasks-given/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <UpdateTasksGiven />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <UpdateTasksGiven />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -979,9 +1124,11 @@ const App = () => {
           path="/tasks/tasks-given/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <ViewTasksGiven />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <ViewTasksGiven />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -990,9 +1137,11 @@ const App = () => {
           path="/tasks/tasks-given/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <DeleteTasksGiven />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DeleteTasksGiven />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1003,9 +1152,11 @@ const App = () => {
           path="/tasks/my-tasks"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <MyTasks />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <MyTasks />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1014,9 +1165,11 @@ const App = () => {
           path="/tasks/my-tasks/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <MyTaskAdd />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <MyTaskAdd />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1025,9 +1178,11 @@ const App = () => {
           path="/tasks/my-tasks/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <MyTaskUpdate />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <MyTaskUpdate />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1036,9 +1191,11 @@ const App = () => {
           path="/tasks/my-tasks/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <MyTaskView />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <MyTaskView />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1047,9 +1204,24 @@ const App = () => {
           path="/tasks/my-tasks/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <MyTaskDelete />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <MyTaskDelete />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/tasks/create-tasks"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <CreateTasks />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1060,9 +1232,11 @@ const App = () => {
           path="/organization/team"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgProjectTeam />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgProjectTeam />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1071,9 +1245,11 @@ const App = () => {
           path="/organization/team/create"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgAddProjectTeam />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgAddProjectTeam />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1082,9 +1258,11 @@ const App = () => {
           path="/organization/team/update/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgUpdateProjectTeam />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgUpdateProjectTeam />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1093,9 +1271,11 @@ const App = () => {
           path="/organization/team/view/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgViewProjectTeam />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgViewProjectTeam />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
@@ -1104,37 +1284,122 @@ const App = () => {
           path="/organization/team/delete/:id"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <OrgDeleteProjectTeam />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <OrgDeleteProjectTeam />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
 
         {/* NewHires
-          NewHires */}
+  NewHires */}
 
         <Route
           path="/organization/new-hires"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <NewHires />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <NewHires />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />
 
         {/* NewHires
-          NewHires */}
+  NewHires */}
 
         <Route
           path="/organization/find-employee"
           element={
             <PrivateProtectRoute>
-              <SideBarLayout>
-                <FindEmployee />
-              </SideBarLayout>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <FindEmployee />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/self-service/find-employee"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <FindEmployee />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+        {/* Payroll Payroll Payroll */}
+
+        <Route
+          path="/payroll/employees"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <Payroll />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/employees/create"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PayrollAdd />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/employees/update/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PayrollUpdate />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/employees/view/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PayrollView />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/employees/delete/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PayrollDelete />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
             </PrivateProtectRoute>
           }
         />

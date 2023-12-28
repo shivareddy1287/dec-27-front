@@ -13,36 +13,14 @@
 }
 .cs_profile_photo_div {
   background-color: #fff;
-  height: 8rem;
-  width: 8rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
-  position: relative;
-  /* background-image: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"); */
+  background-image: url("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  background-size: cover; /* Adjust to "contain" or other values as needed */
+  background-position: center; /* Adjust the position as needed */
+  background-repeat: no-repeat; /* Prevent image repetition */
 }
-
-.cs_profile_photo_div img {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 50%;
-  caret-color: transparent;
-}
-
-.cs_profile_photo_div span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.cs_cam_icon {
-  font-size: 30px;
-  color: transparent;
-  cursor: pointer;
-}
-
-.cs_profile_photo_div:hover .cs_cam_icon {
-  color: black;
-}
-
 .cs_profile_photo_bottom_name {
   color: #ffffff;
   font-size: 1rem;

@@ -36,12 +36,11 @@ const OrgProfile = () => {
 
   const profile = useSelector((state) => state?.profile);
   const { userAuth } = profile ? profile : "";
-  const { _id, Access } = userAuth ? userAuth : "";
+  const { _id, Access, profilePhoto } = userAuth ? userAuth : "";
 
   const { profilesList, loading, appErr, serverErr } = profile;
 
   const accessMain = normalAdminAccessGivenFun(Access);
-
   let filteredProfileList = profilesList;
   if (!accessMain) {
     filteredProfileList = profilesList?.filter((each) => each.id === _id);
@@ -56,8 +55,9 @@ const OrgProfile = () => {
     projectTeam: profileEach?.ProjectTeam,
     firstName: profileEach?.basicInformation?.firstName,
     lastName: profileEach?.basicInformation?.lastName,
-    managerDetails: `${profileEach?.managerDataId?.basicInformation?.firstName} ${profileEach?.managerDataId?.basicInformation?.lastName} ${profileEach?.managerDataId?.basicInformation?.employerId}`,
-    basicInfoEmail: profileEach?.basicInformation?.email,
+    managerDetails: profileEach?.managerDataId
+      ? `${profileEach?.managerDataId?.basicInformation?.employerId}-${profileEach?.managerDataId?.basicInformation?.firstName} ${profileEach?.managerDataId?.basicInformation?.lastName}`
+      : "",
     profileEditAccess: profileEach?.ProfileEditAccess,
     department: profileEach?.workInformation?.Department,
     designation: profileEach?.workInformation?.designation,
@@ -72,7 +72,7 @@ const OrgProfile = () => {
     age: profileEach?.personalDetails?.age,
     gender: profileEach?.personalDetails?.gender,
     maritalStatus: profileEach?.personalDetails?.maritalStatus,
-    aboutMe: profileEach?.personalDetails?.aboutMe,
+    bloodGroup: profileEach?.personalDetails?.bloodGroup,
     workNumber: profileEach?.contactDetails?.workNumber,
     personalNumber: profileEach?.contactDetails?.personalNumber,
     presentAddress: profileEach?.contactDetails?.presentAddress,
@@ -81,9 +81,13 @@ const OrgProfile = () => {
     uan: profileEach?.identityInfo?.uan,
     pan: profileEach?.identityInfo?.pan,
     adhaar: profileEach?.identityInfo?.adhaar,
-    addedBy: `${profileEach?.addedBy?.basicInformation?.firstName} ${profileEach?.addedBy?.basicInformation?.lastName} ${profileEach?.addedBy?.basicInformation?.employerId}`,
+    addedBy: profileEach?.addedBy
+      ? `${profileEach?.addedBy?.basicInformation?.employerId}-${profileEach?.addedBy?.basicInformation?.firstName} ${profileEach?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdAt: dateTimeFormate(profileEach?.createdAt),
-    modifiedBy: `${profileEach?.ModifiedBy?.basicInformation?.firstName} ${profileEach?.ModifiedBy?.basicInformation?.lastName} ${profileEach?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: profileEach?.ModifiedBy
+      ? `${profileEach?.ModifiedBy?.basicInformation?.employerId}-${profileEach?.ModifiedBy?.basicInformation?.firstName} ${profileEach?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedAt: dateTimeFormate(profileEach?.updatedAt),
   }));
 
@@ -92,9 +96,7 @@ const OrgProfile = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => (
-        <Avatar src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" />
-      ),
+      renderCell: (params) => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },
@@ -151,6 +153,11 @@ const OrgProfile = () => {
       width: 130,
     },
     {
+      field: "employeeStatus",
+      headerName: "Employee Status",
+      width: 130,
+    },
+    {
       field: "firstName",
       headerName: "First Name",
       width: 130,
@@ -186,11 +193,7 @@ const OrgProfile = () => {
       headerName: "Access",
       width: 130,
     },
-    {
-      field: "basicInfoEmail",
-      headerName: "Email address",
-      width: 130,
-    },
+
     {
       field: "profileEditAccess",
       headerName: "Profile Edit Access",
@@ -212,11 +215,7 @@ const OrgProfile = () => {
       headerName: "Employment Type",
       width: 130,
     },
-    {
-      field: "employeeStatus",
-      headerName: "Employee Status",
-      width: 130,
-    },
+
     {
       field: "sourceOfHire",
       headerName: "Source of Hire",
@@ -258,8 +257,8 @@ const OrgProfile = () => {
       width: 130,
     },
     {
-      field: "aboutMe",
-      headerName: "About Me",
+      field: "bloodGroup",
+      headerName: "Blood Group",
       width: 130,
     },
     {
@@ -361,25 +360,22 @@ const OrgProfile = () => {
                     permanentAddress: false,
                     presentAddress: false,
                     personalNumber: false,
-                    aboutMe: false,
                     currentExperience: false,
                     totalExperience: false,
                     age: false,
                     gender: false,
                     maritalStatus: false,
+                    bloodGroup: false,
                     sourceOfHire: false,
                     appRole: false,
                     employmentType: false,
-                    basicInfoEmail: false,
                     workNumber: false,
-                    employeeStatus: false,
+                    employeeStatus: true,
                     department: false,
                     profileEditAccess: false,
                     addedBy: false,
                     createdAt: false,
                     modifiedBy: false,
-                    updatedAt: false,
-                    updatedAt: false,
                     updatedAt: false,
                   },
                 },

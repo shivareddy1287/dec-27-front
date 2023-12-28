@@ -24,7 +24,7 @@ const OrgAsset = () => {
   const navigate = useNavigate();
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { _id, Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchAssetAction());
   }, [dispatch]);
@@ -37,9 +37,7 @@ const OrgAsset = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => (
-        <Avatar src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" />
-      ),
+      renderCell: (params) => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },
@@ -48,10 +46,9 @@ const OrgAsset = () => {
       headerName: "Name",
       width: 180,
     },
-
     {
-      field: "givenDates",
-      headerName: "Given Date",
+      field: "assetTypes",
+      headerName: "Type of Asset",
       width: 150,
     },
     {
@@ -61,10 +58,11 @@ const OrgAsset = () => {
       flex: 1,
     },
     {
-      field: "assetTypes",
-      headerName: "Type of Asset",
+      field: "givenDates",
+      headerName: "Given Date",
       width: 150,
     },
+
     {
       field: "returnDates",
       headerName: "Return Date",
@@ -144,14 +142,18 @@ const OrgAsset = () => {
   const newAssetList = assetList?.map((assetEach) => ({
     id: assetEach?._id,
     Access: accessMain,
-    userNames: `${assetEach?.user?.basicInformation?.firstName} ${assetEach?.user?.basicInformation?.lastName} ${assetEach?.user?.basicInformation?.employerId}`,
+    userNames: `${assetEach?.user?.basicInformation?.employerId}-${assetEach?.user?.basicInformation?.firstName} ${assetEach?.user?.basicInformation?.lastName}`,
     givenDates: dateOnlyFormate(assetEach?.givenDate),
     assetDetails: assetEach?.assetDetails,
     assetTypes: assetEach?.typeOfAsset,
     returnDates: dateOnlyFormate(assetEach?.returnDate),
-    addedBy: `${assetEach?.addedBy?.basicInformation?.firstName} ${assetEach?.addedBy?.basicInformation?.lastName} ${assetEach?.addedBy?.basicInformation?.employerId}`,
+    addedBy: assetEach?.addedBy
+      ? `${assetEach?.addedBy?.basicInformation?.employerId}-${assetEach?.addedBy?.basicInformation?.firstName} ${assetEach?.addedBy?.basicInformation?.lastName}`
+      : "",
     createdDates: dateTimeFormate(assetEach?.createdAt),
-    modifiedBy: `${assetEach?.ModifiedBy?.basicInformation?.firstName} ${assetEach?.ModifiedBy?.basicInformation?.lastName} ${assetEach?.ModifiedBy?.basicInformation?.employerId}`,
+    modifiedBy: assetEach?.ModifiedBy
+      ? `${assetEach?.ModifiedBy?.basicInformation?.employerId}-${assetEach?.ModifiedBy?.basicInformation?.firstName} ${assetEach?.ModifiedBy?.basicInformation?.lastName}`
+      : "",
     updatedDates: dateTimeFormate(assetEach?.updatedAt),
   }));
 

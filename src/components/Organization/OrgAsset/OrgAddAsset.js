@@ -103,22 +103,12 @@ const OrgAddAsset = () => {
                       >
                         {profilesList?.map((each) => (
                           <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
                             {each?.basicInformation?.firstName}{" "}
                             {each?.basicInformation?.lastName}{" "}
-                            {each?.basicInformation?.employerId}
                           </option>
                         ))}
                       </select>
-                      {/* <UserDropDown
-                      className="cs_edit_drop_down_right_input"
-                      onChange={formik.setFieldValue}
-                      value={formik.values.user}
-                    /> */}
-                      {/* <input
-                      className="cs_edit_right_input"
-                      value={formik.values.user}
-                      onChange={formik.handleChange("user")}
-                    /> */}
                     </div>
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Given date:</h1>

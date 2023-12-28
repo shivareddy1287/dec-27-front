@@ -26,12 +26,12 @@ const MyTasks = () => {
   const { TasksGivenList, loading, appErr, serverErr } = tasks;
   const profile = useSelector((state) => state?.profile);
 
-  const taskTrue = TasksGivenList?.filter(
+  const slefTasksList = TasksGivenList?.filter(
     (each) => each.taskAssignedUser?._id === profile?.userAuth?._id
   );
   // console.log(taskTrue);
 
-  const newTaskList = taskTrue?.map((task) => ({
+  const newTaskList = slefTasksList?.map((task) => ({
     id: task?.id,
     status: task?.Status,
     taskName: task?.taskName,
@@ -39,8 +39,8 @@ const MyTasks = () => {
     startDate: dateOnlyFormate(task?.startDate),
     dueDate: dateOnlyFormate(task?.dueDate),
     importance: task?.Importance,
-    givenUser: `${task?.taskGivenUser?.basicInformation?.firstName} ${task?.taskGivenUser?.basicInformation?.lastName} ${task?.taskGivenUser?.basicInformation?.employerId}`,
-    taskType: task?.taskType,
+    givenUser: `${task?.taskGivenUser?.basicInformation?.employerId}-${task?.taskGivenUser?.basicInformation?.firstName} ${task?.taskGivenUser?.basicInformation?.lastName}`,
+    taskType: "Self",
   }));
 
   const columns = [

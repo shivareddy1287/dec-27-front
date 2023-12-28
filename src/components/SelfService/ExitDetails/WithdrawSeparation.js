@@ -1,11 +1,21 @@
 import React, { useEffect } from "react";
+
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleexitDetailsAction } from "../../../redux/slices/exitDetails/exitDetailsSlice";
+
+import {
+  deleteexitDetailsAction,
+  fetchSingleexitDetailsAction,
+  withdrawExitDetailsAction,
+} from "../../../redux/slices/exitDetails/exitDetailsSlice";
+import {
+  normalAdminAccessGivenFun,
+  restrictedAccessFun,
+} from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
-const ViewExitDetails = (props) => {
+const WithdrawSeparation = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -14,7 +24,13 @@ const ViewExitDetails = (props) => {
   }, [dispatch, id]);
 
   const exitDetails = useSelector((state) => state?.exitDetails);
-  const { singleexitDetails, loading, appErr, serverErr } = exitDetails;
+  const {
+    singleexitDetails,
+    isWithdrawSeparation,
+    loading,
+    appErr,
+    serverErr,
+  } = exitDetails;
   const {
     user,
     separationDate,
@@ -34,6 +50,11 @@ const ViewExitDetails = (props) => {
     ManagerSupervisorclearance,
   } = singleexitDetails ? singleexitDetails : "";
 
+  const profile = useSelector((state) => state?.profile);
+  const { _id, Access } = profile?.userAuth;
+
+  if (isWithdrawSeparation || (!normalAdminAccessGivenFun(Access) && Access))
+    return <Navigate to={`/self-service/exitdetails`} />;
   return (
     <div>
       {loading ? (
@@ -57,7 +78,10 @@ const ViewExitDetails = (props) => {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="cs_edit_employee_head"> View Separation</h2>
+                  <h2 className="cs_edit_employee_head">
+                    {" "}
+                    Withdraw Separation
+                  </h2>
                 </div>
               </Link>
             </div>
@@ -234,6 +258,14 @@ const ViewExitDetails = (props) => {
 
             <div className="cs_edit_submit_cancel_div">
               <div>
+                <button
+                  className="cs_delete_button_delete"
+                  onClick={() => dispatch(withdrawExitDetailsAction(id))}
+                >
+                  Confirm Withdraw
+                </button>
+              </div>
+              <div>
                 <Link to={`/self-service/exitdetails`}>
                   <button className="cs_view_button_close">Close</button>
                 </Link>
@@ -246,4 +278,4 @@ const ViewExitDetails = (props) => {
   );
 };
 
-export default ViewExitDetails;
+export default WithdrawSeparation;

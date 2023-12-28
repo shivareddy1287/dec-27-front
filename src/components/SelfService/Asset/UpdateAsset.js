@@ -112,9 +112,9 @@ const UpdateAsset = () => {
                         onChange={formik.handleChange("user")}
                       >
                         <option value={`${user?._id}`}>
+                          {user?.basicInformation?.employerId}-
                           {user?.basicInformation?.firstName}{" "}
                           {user?.basicInformation?.lastName}{" "}
-                          {user?.basicInformation?.employerId}
                         </option>
                       </select>
                       {/* <UserDropDown
