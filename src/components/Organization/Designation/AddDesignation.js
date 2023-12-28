@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
-
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 
 import { DesignationCreateAction } from "../../../redux/slices/designation/designationSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 
 const AddDesignation = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
   const designation = useSelector((state) => state?.designation);
@@ -31,7 +24,6 @@ const AddDesignation = () => {
     },
     onSubmit: (values) => {
       dispatch(DesignationCreateAction(values));
-      console.log(values);
     },
   });
 

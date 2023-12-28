@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   fetchAllManagersData,
   fetchDetailsProfileAction,
-  loginStatus,
   updateUserAction,
 } from "../../../redux/slices/profileSlice/profileSlice";
 
 import { allFetchDesignationAction } from "../../../redux/slices/designation/designationSlice";
 import { allFetchDepartmentAction } from "../../../redux/slices/department/departmentSlice";
-import { DateModify } from "../../../utils/DateFun/DateModify";
+
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import Loader from "../../../utils/Loader/Loader";
 

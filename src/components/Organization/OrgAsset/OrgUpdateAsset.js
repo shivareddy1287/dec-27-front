@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   fetchSingleAssetAction,
   updateAssetAction,
 } from "../../../redux/slices/assetSlice/assetSlice";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { DateModify } from "../../../utils/DateFun/DateModify";
+
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgUpdateAsset = (props) => {
+const OrgUpdateAsset = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();

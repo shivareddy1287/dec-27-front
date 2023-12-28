@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+
 import baseUrl from "../../../utils/baseUrl";
 import axiosInstance from "../axiosInstance";
 
@@ -7,10 +7,6 @@ export const fetchNotificationsAction = createAsyncThunk(
   "notification/fetch",
 
   async (id, { rejectWithValue, getState, dispatch }) => {
-    const userId = {
-      id: id,
-    };
-
     try {
       const { data } = await axiosInstance.get(
         `${baseUrl}/api/notification?userId=${id}`

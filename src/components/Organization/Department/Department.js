@@ -5,14 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./Department.css";
 
 import { allFetchDepartmentAction } from "../../../redux/slices/department/departmentSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 import { dateTimeFormate } from "../../../utils/DateFun/DateModify";
 
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";

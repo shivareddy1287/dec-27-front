@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import "./Profile.css";
 import {
-  fetchAllProfileAction,
   fetchDetailsProfileAction,
-  loginStatus,
   logout,
 } from "../../../redux/slices/profileSlice/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
-import { proAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import DialogOpen from "../../../utils/Dialog/DialogOpen";
 
 const Profile = () => {
@@ -65,11 +63,6 @@ const Profile = () => {
     permanentAddress,
   } = profileData?.contactDetails ? profileData?.contactDetails : "";
 
-  const EditRequestFun = () => {
-    // alert("Edit Request");
-
-    console.log("Edit Request");
-  };
   return (
     <div>
       <div className="cs_div_profile">
@@ -100,10 +93,7 @@ const Profile = () => {
 
                   {ProfileEditAccess !== "Approve" && (
                     <div>
-                      <h2
-                        className="cs_profile_edit_view_top_heading"
-                        onClick={() => EditRequestFun()}
-                      >
+                      <h2 className="cs_profile_edit_view_top_heading">
                         <DialogOpen />
                       </h2>
                     </div>

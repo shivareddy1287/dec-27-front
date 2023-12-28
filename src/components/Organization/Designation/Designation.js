@@ -5,14 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./Designation.css";
 
 import { allFetchDesignationAction } from "../../../redux/slices/designation/designationSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+
 import { dateTimeFormate } from "../../../utils/DateFun/DateModify";
 
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";

@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { allFetchAssetAction } from "../../../redux/slices/assetSlice/assetSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import {
   dateOnlyFormate,
   dateTimeFormate,
@@ -24,7 +20,7 @@ const OrgAsset = () => {
   const navigate = useNavigate();
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access, profilePhoto } = profile?.userAuth;
+  const { Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchAssetAction());
   }, [dispatch]);
@@ -37,7 +33,7 @@ const OrgAsset = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

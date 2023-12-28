@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TasksGivenCreateAction } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 
 const MyTaskAdd = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state?.tasks);
 
@@ -30,7 +29,6 @@ const MyTaskAdd = () => {
     },
     onSubmit: (values) => {
       dispatch(TasksGivenCreateAction(values));
-      console.log(values);
     },
   });
 

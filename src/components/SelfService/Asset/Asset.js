@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { allFetchAssetAction } from "../../../redux/slices/assetSlice/assetSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 
 import {
   dateOnlyFormate,
@@ -13,7 +10,7 @@ import {
 } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 import TableReusable from "../../../utils/TableReusable/TableReusable";
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";

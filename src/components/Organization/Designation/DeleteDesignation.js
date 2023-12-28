@@ -7,15 +7,12 @@ import {
   deleteDesignationAction,
   fetchSingleDesignationAction,
 } from "../../../redux/slices/designation/designationSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
 const DeleteDesignation = () => {
   const { id } = useParams();
-  console.log(id);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +24,7 @@ const DeleteDesignation = () => {
     designation;
   const { DesignationName } = singleDesignation ? singleDesignation : "";
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   if (isDeleted || (!normalAdminAccessGivenFun(Access) && Access))
     return <Navigate to={`/organization/designation`} />;
@@ -37,6 +34,11 @@ const DeleteDesignation = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

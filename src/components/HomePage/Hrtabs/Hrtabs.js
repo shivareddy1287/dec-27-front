@@ -11,6 +11,7 @@ const Hrtabs = () => {
             <img
               className="kl_hrimages-sm"
               src="https://www.bamboohr.com/hr-solutions/media_1e1f2eb0aec30903baa84f64f2aa1ddda0e62cd9a.png?width=2000&format=webply&optimize=medium"
+              alt="kl-img-1"
             />
           </div>
           <p>
@@ -29,6 +30,7 @@ const Hrtabs = () => {
         </div>
         <div>
           <img
+            alt="kl-img-1"
             className="kl_hrimages"
             src="https://www.bamboohr.com/hr-solutions/media_1e1f2eb0aec30903baa84f64f2aa1ddda0e62cd9a.png?width=2000&format=webply&optimize=medium"
           />

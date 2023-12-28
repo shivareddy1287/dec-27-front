@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   fetchSingleTeamAction,
   updateTeamAction,
 } from "../../../redux/slices/team/teamSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgUpdateProjectTeam = (props) => {
+const OrgUpdateProjectTeam = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -50,6 +47,11 @@ const OrgUpdateProjectTeam = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
             <div>
               <Link

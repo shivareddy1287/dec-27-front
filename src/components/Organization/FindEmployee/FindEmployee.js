@@ -1,30 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchAllProfileAction,
-  fetchDetailsProfileAction,
-} from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  adminHrRolesAccessGivenFun,
-  normalAdminAccessGivenFun,
-  proAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import {
   dateOnlyFormate,
   dateTimeFormate,
 } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import CreateIcon from "@mui/icons-material/Create";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import TableReusable from "../../../utils/TableReusable/TableReusable";
 import { DataGrid } from "@mui/x-data-grid";
 
 const FindEmployee = () => {
@@ -32,7 +19,6 @@ const FindEmployee = () => {
   const [searchInputVal, setSearchInputVal] = useState("");
   const [profilesListSearch, setProfilesListSearch] = useState([]);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAllProfileAction());
@@ -40,7 +26,7 @@ const FindEmployee = () => {
 
   const profile = useSelector((state) => state?.profile);
   const { userAuth } = profile ? profile : "";
-  const { _id, Access, profilePhoto } = userAuth ? userAuth : "";
+  const { Access, profilePhoto } = userAuth ? userAuth : "";
 
   const { profilesList, loading, appErr, serverErr } = profile;
 
@@ -90,7 +76,7 @@ const FindEmployee = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },
@@ -139,12 +125,6 @@ const FindEmployee = () => {
   const handleChangeSelectSearch = (event) => {
     setSearchSelectedValue(event.target.value);
   };
-  console.log(
-    selectedSearchValue,
-    profilesListSearch,
-    searchInputVal,
-    "selectedSearchValue"
-  );
 
   const searchHandleChangeFun = (e) => {
     const newSearchInputVal = e.target.value;
@@ -171,6 +151,7 @@ const FindEmployee = () => {
           ?.toLowerCase()
           .includes(newSearchInputVal?.toLowerCase());
       }
+      return false;
     });
     setProfilesListSearch(filteredProfiles);
   };

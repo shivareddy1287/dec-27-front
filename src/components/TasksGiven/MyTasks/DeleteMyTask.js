@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 
-import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  allFetchTasksGivenAction,
   deleteTasksGivenAction,
   fetchSingleTasksGivenAction,
 } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
@@ -46,6 +45,11 @@ const MyTaskDelete = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

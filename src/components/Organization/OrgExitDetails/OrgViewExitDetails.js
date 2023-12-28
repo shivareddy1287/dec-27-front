@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleexitDetailsAction } from "../../../redux/slices/exitDetails/exitDetailsSlice";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
@@ -40,6 +40,11 @@ const OrgViewExitDetails = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

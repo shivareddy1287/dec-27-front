@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import { fetchDetailsProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgViewDetails = (props) => {
+const OrgViewDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 

@@ -18,6 +18,7 @@ const Hrpages = () => {
         <div className="kl_hrcontainer1">
           <div className="kl_const1">
             <img
+              alt="kl-img-1"
               className="kl_hrimages1"
               src="https://images.businessnewsdaily.com/app/uploads/2022/04/04081432/1554239129.jpeg"
             />
@@ -29,21 +30,30 @@ const Hrpages = () => {
               }}
             >
               <div className="kl_images1">
-                <img src="https://www.orangehrm.com/assets/Uploads/hr-administration.png.webp" />
+                <img
+                  alt="kl-img-2"
+                  src="https://www.orangehrm.com/assets/Uploads/hr-administration.png.webp"
+                />
                 <p className="kl_hrtitle1" style={{ color: "chocolate" }}>
                   Hr <br />
                   Administration
                 </p>
               </div>
               <div className="kl_images1">
-                <img src="https://www.orangehrm.com/assets/Uploads/Employee-managment.png.webp" />
+                <img
+                  alt="kl-img-3"
+                  src="https://www.orangehrm.com/assets/Uploads/Employee-managment.png.webp"
+                />
                 <p className="kl_hrtitle1" style={{ color: "chocolate" }}>
                   Employee
                   <br /> Management
                 </p>
               </div>
               <div className="kl_images1">
-                <img src="https://www.orangehrm.com/assets/Uploads/Reporting.png.webp" />
+                <img
+                  alt="kl-img-4"
+                  src="https://www.orangehrm.com/assets/Uploads/Reporting.png.webp"
+                />
                 <p className="kl_hrtitle1" style={{ color: "chocolate" }}>
                   Reporting
                 </p>
@@ -85,6 +95,7 @@ const Hrpages = () => {
         </div>
         <div className="kl_const1">
           <img
+            alt="kl-img-5"
             className="kl_hrimages1"
             src="https://assets.entrepreneur.com/content/3x2/2000/1699568029-organization-structure-improve-culture-1123-g1441723672.jpg"
           />
@@ -96,20 +107,29 @@ const Hrpages = () => {
             }}
           >
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/performance-1.png.webp" />
+              <img
+                alt="kl-img-6"
+                src="https://www.orangehrm.com/assets/Uploads/performance-1.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "gold" }}>
                 Performance
               </p>
             </div>
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/Career-Developemet.png.webp" />
+              <img
+                alt="kl-img-7"
+                src="https://www.orangehrm.com/assets/Uploads/Career-Developemet.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "gold" }}>
                 Career <br />
                 Development
               </p>
             </div>
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/Traning.png.webp" />
+              <img
+                alt="kl-img-8"
+                src="https://www.orangehrm.com/assets/Uploads/Traning.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "gold" }}>
                 Training
               </p>
@@ -120,6 +140,7 @@ const Hrpages = () => {
       <div className="kl_hrcontainer1">
         <div className="kl_const1">
           <img
+            alt="kl-img-9"
             className="kl_hrimages1"
             src="https://testlify.com/wp-content/uploads/2023/09/talent-management-strategy-1024x683.jpeg"
           />
@@ -131,13 +152,19 @@ const Hrpages = () => {
             }}
           >
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/Recruitment.png.webp" />
+              <img
+                alt="kl-img-10"
+                src="https://www.orangehrm.com/assets/Uploads/Recruitment.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "chartreuse" }}>
                 Recruitment
               </p>
             </div>
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/onboarding.png.webp" />
+              <img
+                alt="kl-img-11"
+                src="https://www.orangehrm.com/assets/Uploads/onboarding.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "chartreuse" }}>
                 Onboarding
               </p>
@@ -180,6 +207,7 @@ const Hrpages = () => {
           <img
             className="kl_hrimages1"
             src="https://www.achievers.com/wp-content/uploads/2019/06/06_06_19-2.jpg"
+            alt="kl-img-12"
           />
           <div
             style={{
@@ -189,14 +217,20 @@ const Hrpages = () => {
             }}
           >
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/payroll.png.webp" />
+              <img
+                alt="kl-img-13"
+                src="https://www.orangehrm.com/assets/Uploads/payroll.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "dodgerblue" }}>
                 Payroll <br />
                 Connector
               </p>
             </div>
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/PTO-leave-mangement.png.webp" />
+              <img
+                alt="kl-img-14"
+                src="https://www.orangehrm.com/assets/Uploads/PTO-leave-mangement.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "dodgerblue" }}>
                 PTO/Leave
                 <br />
@@ -204,7 +238,10 @@ const Hrpages = () => {
               </p>
             </div>
             <div className="kl_images1">
-              <img src="https://www.orangehrm.com/assets/Uploads/Time-Tracking.png.webp" />
+              <img
+                alt="kl-img-15"
+                src="https://www.orangehrm.com/assets/Uploads/Time-Tracking.png.webp"
+              />
               <p className="kl_hrtitle1" style={{ color: "dodgerblue" }}>
                 Time <br />
                 Tracking

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   fetchAllManagersData,
   fetchDetailsProfileAction,
@@ -15,9 +15,8 @@ import { allFetchTeamAction } from "../../../redux/slices/team/teamSlice";
 import {
   normalAdminAccessGivenFun,
   proAdminAccessGivenFun,
-  restrictedAccessFun,
 } from "../../../utils/restrictedAccess";
-import { DateModify } from "../../../utils/DateFun/DateModify";
+
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import Loader from "../../../utils/Loader/Loader";
 

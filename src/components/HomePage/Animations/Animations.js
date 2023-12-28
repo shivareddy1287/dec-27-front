@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "./Animations.css";
 
-import { FaBeer } from "react-icons/fa";
 import { IoMdClipboard } from "react-icons/io";
 import { CiViewColumn } from "react-icons/ci";
 import { TiClipboard } from "react-icons/ti";
 import { FaPlug } from "react-icons/fa";
 import { TbBatteryAutomotive } from "react-icons/tb";
-import { GrAppsRounded } from "react-icons/gr";
-import { GrDocumentDownload } from "react-icons/gr";
 
 const Animations = () => {
   const [selectedTab, setSelectedTab] = useState("home");
