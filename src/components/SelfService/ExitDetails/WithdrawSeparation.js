@@ -4,18 +4,14 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  deleteexitDetailsAction,
   fetchSingleexitDetailsAction,
   withdrawExitDetailsAction,
 } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
-const WithdrawSeparation = (props) => {
+const WithdrawSeparation = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -51,7 +47,7 @@ const WithdrawSeparation = (props) => {
   } = singleexitDetails ? singleexitDetails : "";
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   if (isWithdrawSeparation || (!normalAdminAccessGivenFun(Access) && Access))
     return <Navigate to={`/self-service/exitdetails`} />;
@@ -61,6 +57,11 @@ const WithdrawSeparation = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

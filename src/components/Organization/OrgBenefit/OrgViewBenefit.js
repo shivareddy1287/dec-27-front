@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchSinglebenefitAction } from "../../../redux/slices/benefitSlice/benefitSlice";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgViewBenefit = (props) => {
+const OrgViewBenefit = () => {
   const { id } = useParams();
-  console.log(id);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

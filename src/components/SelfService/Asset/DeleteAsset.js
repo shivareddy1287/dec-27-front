@@ -5,10 +5,7 @@ import {
   deleteAssetAction,
   fetchSingleAssetAction,
 } from "../../../redux/slices/assetSlice/assetSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -23,8 +20,9 @@ const DeleteAsset = () => {
 
   const asset = useSelector((state) => state?.asset);
   const { singleAsset, isDeleted, loading, appErr, serverErr } = asset;
-  const { user, assetDetails, givenDate, returnDate, typeOfAsset, ModifiedBy } =
-    singleAsset ? singleAsset : "";
+  const { user, assetDetails, givenDate, returnDate, typeOfAsset } = singleAsset
+    ? singleAsset
+    : "";
   const profile = useSelector((state) => state?.profile);
 
   if (

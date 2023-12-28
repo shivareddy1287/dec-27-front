@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+
 import baseurl from "../../../utils/baseUrl";
 import axiosInstance from "../axiosInstance";
 

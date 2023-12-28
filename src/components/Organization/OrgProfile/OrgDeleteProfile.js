@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
-import { useFormik } from "formik";
+
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import {
   deleteProfileAction,
   fetchDetailsProfileAction,
 } from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  proAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { proAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 

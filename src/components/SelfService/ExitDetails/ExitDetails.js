@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./ExitDetails.css";
 // import DateFormatter from "../../utils/DateFormatter";
 import { allFetchexitDetailsAction } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import {
   dateOnlyFormate,
   dateTimeFormate,
@@ -73,7 +70,7 @@ const ExitDetails = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

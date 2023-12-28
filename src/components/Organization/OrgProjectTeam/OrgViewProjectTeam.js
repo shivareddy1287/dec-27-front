@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchSingleTeamAction } from "../../../redux/slices/team/teamSlice";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgViewProjectTeam = (props) => {
+const OrgViewProjectTeam = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -25,6 +25,11 @@ const OrgViewProjectTeam = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

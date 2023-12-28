@@ -2,19 +2,13 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import {
-  deleteProfileAction,
   fetchDetailsProfileAction,
   updateTheUserActiveOrInctive,
 } from "../../../redux/slices/profileSlice/profileSlice";
-import {
-  normalAdminAccessGivenFun,
-  proAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import Loader from "../../../utils/Loader/Loader";
 
 const OrgActiveProfile = () => {
@@ -28,11 +22,7 @@ const OrgActiveProfile = () => {
 
   const { profileData, isUserActiveUpdated } = profile ? profile : "";
 
-  const {
-    email: emailMain,
-    Access,
-    ProjectTeam,
-  } = profileData ? profileData : "";
+  const { email: emailMain } = profileData ? profileData : "";
   const { firstName, lastName, employerId } = profileData?.basicInformation
     ? profileData?.basicInformation
     : "";
@@ -41,7 +31,7 @@ const OrgActiveProfile = () => {
     ? profileData?.workInformation
     : "";
 
-  const { appErr, serverErr, loading, isDeleted } = profile;
+  const { appErr, serverErr, loading } = profile;
 
   const formik = useFormik({
     enableReinitialize: true,

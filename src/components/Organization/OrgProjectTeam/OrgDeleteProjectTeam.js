@@ -7,13 +7,10 @@ import {
   deleteTeamAction,
   fetchSingleTeamAction,
 } from "../../../redux/slices/team/teamSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
-const OrgDeleteProjectTeam = (props) => {
+const OrgDeleteProjectTeam = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -25,7 +22,7 @@ const OrgDeleteProjectTeam = (props) => {
   const { singleTeam, isDeleted, loading, appErr, serverErr } = Team;
   const { TeamName } = singleTeam ? singleTeam : "";
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   if (isDeleted || (!normalAdminAccessGivenFun(Access) && Access))
     return <Navigate to={`/organization/team`} />;
@@ -36,6 +33,11 @@ const OrgDeleteProjectTeam = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

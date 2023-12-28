@@ -6,15 +6,12 @@ import {
   deleteDepartmentAction,
   fetchSingleDepartmentAction,
 } from "../../../redux/slices/department/departmentSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
-const DeleteDepartment = (props) => {
+const DeleteDepartment = () => {
   const { id } = useParams();
-  console.log(id);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +23,7 @@ const DeleteDepartment = (props) => {
     department;
   const { DepartmentName } = singleDepartment ? singleDepartment : "";
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   if (isDeleted || (!normalAdminAccessGivenFun(Access) && Access))
     return <Navigate to={`/organization/department`} />;
@@ -37,6 +34,11 @@ const DeleteDepartment = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import {
   fetchSingleDepartmentAction,
   updateDepartmentAction,
 } from "../../../redux/slices/department/departmentSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import Loader from "../../../utils/Loader/Loader";
 
-const UpdateDepartment = (props) => {
+const UpdateDepartment = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -39,7 +35,6 @@ const UpdateDepartment = (props) => {
     },
     onSubmit: (values) => {
       dispatch(updateDepartmentAction({ id, values }));
-      console.log(values, "values");
     },
   });
 
@@ -52,6 +47,11 @@ const UpdateDepartment = (props) => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
             <div>
               <Link

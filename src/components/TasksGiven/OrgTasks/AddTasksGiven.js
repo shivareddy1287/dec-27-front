@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 
@@ -12,7 +11,6 @@ import FormikDateYour from "../../../utils/DateFun/FormDateComp";
 import Loader from "../../../utils/Loader/Loader";
 
 const AddTasksGiven = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,6 +56,11 @@ const AddTasksGiven = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
             <div>
               <Link

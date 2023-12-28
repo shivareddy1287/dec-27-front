@@ -5,20 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./OrgExitDetails.css";
 
 import { allFetchexitDetailsAction } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
 import {
   dateOnlyFormate,
   dateTimeFormate,
 } from "../../../utils/DateFun/DateModify";
 
 import { Avatar, Box, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import CreateIcon from "@mui/icons-material/Create";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import TableReusable from "../../../utils/TableReusable/TableReusable";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -27,7 +24,7 @@ const OrgExitDetails = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state?.profile);
 
-  const { _id, Access, profilePhoto } = profile?.userAuth;
+  const { Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
     dispatch(allFetchexitDetailsAction());
   }, [dispatch]);
@@ -73,7 +70,7 @@ const OrgExitDetails = () => {
       field: "photoURL",
       headerName: "",
       width: 60,
-      renderCell: (params) => <Avatar src={profilePhoto} />,
+      renderCell: () => <Avatar src={profilePhoto} />,
       sortable: false,
       filterable: false,
     },

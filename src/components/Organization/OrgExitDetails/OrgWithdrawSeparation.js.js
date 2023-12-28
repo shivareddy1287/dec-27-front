@@ -4,14 +4,10 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  deleteexitDetailsAction,
   fetchSingleexitDetailsAction,
   withdrawExitDetailsAction,
 } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -24,7 +20,7 @@ const OrgWithdrawSeparation = () => {
   }, [dispatch, id]);
 
   const profile = useSelector((state) => state?.profile);
-  const { _id, Access } = profile?.userAuth;
+  const { Access } = profile?.userAuth;
 
   const exitDetails = useSelector((state) => state?.exitDetails);
   const {
@@ -62,6 +58,11 @@ const OrgWithdrawSeparation = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <div className="cs_edit_div">
             <div>
               <Link

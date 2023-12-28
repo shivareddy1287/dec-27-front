@@ -1,6 +1,5 @@
 import React from "react";
 import "./mainFile.css";
-import { FaBeer } from "react-icons/fa";
 
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
@@ -12,17 +11,14 @@ import { FiPhone } from "react-icons/fi";
 import { LuAlarmClock } from "react-icons/lu";
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { Carousel } from "../Carousal/carousal";
-import AccordionMenu from "../SecondFile/SecondFile";
-import Animations from "../Animations/Animations";
+
 import Hrtabs from "../Hrtabs/Hrtabs";
 import Hrpages from "../Hrpages/Hrpages";
 import YourComponent from "../Scrollpage/Scrollpage";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
   const userProfile = useSelector((state) => state.profile);
   const { userAuth } = userProfile;
 
@@ -50,6 +46,7 @@ const HomePage = () => {
             </div>
             <div className="kl_right_container">
               <img
+                alt="kl-img-1"
                 src={
                   "https://www.bamboohr.com/media_1696a7c6e712d8189262ac2a9d4e0ba3ff0b737be.png?width=2000&format=webply&optimize=medium"
                 }
@@ -62,7 +59,10 @@ const HomePage = () => {
           <div className="kl_card_container">
             <div className="kl_cards">
               <h className="kl_heading">PRODUCT ANNOUNCEMENT</h>
-              <img src="https://connecteam.com/wp-content/uploads/2023/09/home-resources-4-1.jpg" />
+              <img
+                alt="kl-img-2"
+                src="https://connecteam.com/wp-content/uploads/2023/09/home-resources-4-1.jpg"
+              />
               <p className="kl_paragraph_p">
                 Say Hello to Benifits Administration.
               </p>
@@ -71,7 +71,10 @@ const HomePage = () => {
 
             <div className="kl_cards">
               <h className="kl_heading">WEEKLY DEMO WEBINAR</h>
-              <img src="https://connecteam.com/wp-content/uploads/2023/10/home-resources-1.jpg" />
+              <img
+                alt="kl-img-3"
+                src="https://connecteam.com/wp-content/uploads/2023/10/home-resources-1.jpg"
+              />
               <p className="kl_paragraph_p">
                 Join us for overview of Hr features.
               </p>
@@ -135,6 +138,7 @@ const HomePage = () => {
             <div class="md_card">
               <div className="md_imgs">
                 <img
+                  alt="kl-img-4"
                   className="md_image"
                   src="https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/review-cards/trust.png"
                 />
@@ -149,6 +153,7 @@ const HomePage = () => {
             <div class="md_card">
               <div className="md_imgs">
                 <img
+                  alt="kl-img-5"
                   className="md_image"
                   src="https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/review-cards/capterra.png"
                 />
@@ -163,6 +168,7 @@ const HomePage = () => {
             <div class="md_card">
               <div className="md_imgs">
                 <img
+                  alt="kl-img-1"
                   className="md_image"
                   src="https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/review-cards/g2.png"
                 />
@@ -176,7 +182,10 @@ const HomePage = () => {
             </div>
           </div>
           <div className="bt_container">
-            <img src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/customer-support/support_globe.png" />
+            <img
+              alt="kl-img-1"
+              src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/customer-support/support_globe.png"
+            />
             <div className="kl_bt_container">
               <h1 className="bt_heading">
                 Supporting your growth every step of the way
@@ -285,28 +294,28 @@ const HomePage = () => {
             </p>
             <ul className="sci" style={{ margin: "0", padding: "0" }}>
               <li>
-                <a href="#">
+                <a href="#1">
                   <i>
                     <AiFillFacebook />
                   </i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#1">
                   <i>
                     <AiFillTwitterCircle />
                   </i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#1">
                   <i>
                     <AiFillInstagram />
                   </i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="#1">
                   <i>
                     <GrYoutube />
                   </i>
@@ -318,16 +327,16 @@ const HomePage = () => {
             <h2>Support</h2>
             <ul style={{ margin: "0", padding: "0" }}>
               <li>
-                <a href="#">FAQ</a>
+                <a href="#1">FAQ</a>
               </li>
               <li>
-                <a href="#">Privacy policy</a>
+                <a href="#1">Privacy policy</a>
               </li>
               <li>
-                <a href="#">Help</a>
+                <a href="#1">Help</a>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <a href="#1">Contact</a>
               </li>
             </ul>
           </div>
@@ -335,16 +344,16 @@ const HomePage = () => {
             <h2>Shop</h2>
             <ul style={{ margin: "0", padding: "0" }}>
               <li>
-                <a href="#">Men</a>
+                <a href="#1">Men</a>
               </li>
               <li>
-                <a href="#">Women</a>
+                <a href="#1">Women</a>
               </li>
               <li>
-                <a href="#">Kids</a>
+                <a href="#1">Kids</a>
               </li>
               <li>
-                <a href="#">Shoes</a>
+                <a href="#1">Shoes</a>
               </li>
             </ul>
           </div>

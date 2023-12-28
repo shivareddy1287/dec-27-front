@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-
-import { useFormik } from "formik";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import {
   deleteAssetAction,
   fetchSingleAssetAction,
 } from "../../../redux/slices/assetSlice/assetSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
@@ -26,8 +21,9 @@ const OrgDeleteAsset = () => {
 
   const asset = useSelector((state) => state?.asset);
   const { singleAsset, isDeleted, loading, appErr, serverErr } = asset;
-  const { user, assetDetails, givenDate, returnDate, typeOfAsset, ModifiedBy } =
-    singleAsset ? singleAsset : "";
+  const { user, assetDetails, givenDate, returnDate, typeOfAsset } = singleAsset
+    ? singleAsset
+    : "";
 
   const profile = useSelector((state) => state?.profile);
 

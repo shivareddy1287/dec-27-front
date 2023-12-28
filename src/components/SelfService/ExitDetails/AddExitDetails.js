@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
 
 import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 import { exitDetailsCreateAction } from "../../../redux/slices/exitDetails/exitDetailsSlice";
-import {
-  normalAdminAccessGivenFun,
-  restrictedAccessFun,
-} from "../../../utils/restrictedAccess";
+
 import FormikDateYour from "../../../utils/DateFun/FormDateComp";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 
 const AddExitDetails = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +58,8 @@ const AddExitDetails = () => {
     },
   });
 
-  if (isexitDetailsAdded) return <Navigate to={`/self-service/exitdetails`} />;
+  if (isexitDetailsAdded || (!normalAdminAccessGivenFun(Access) && Access))
+    return <Navigate to={`/self-service/exitdetails`} />;
 
   return (
     <div>

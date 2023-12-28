@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
-
-import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
 
 import {
-  allFetchTasksGivenAction,
   fetchSingleTasksGivenAction,
   updateTasksGivenAction,
 } from "../../../redux/slices/TasksGiven/TasksGivenSlice";
@@ -70,6 +66,11 @@ const MyTaskUpdate = () => {
         <Loader />
       ) : (
         <div className="cs_div_profile">
+          {serverErr || appErr ? (
+            <p>
+              {serverErr} {appErr}
+            </p>
+          ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
             <div>
               <Link
