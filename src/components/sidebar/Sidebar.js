@@ -337,8 +337,8 @@ const Sidebar = () => {
             subPath: "leave-tracker/overview",
           },
           {
-            name: "Calender",
-            subPath: "leave-tracker/calender",
+            name: "My Calender",
+            subPath: "leave-tracker/my-calender",
           },
 
           {
