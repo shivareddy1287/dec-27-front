@@ -266,7 +266,8 @@ const Teamm = () => {
           </div>
           <Box
             // m={1}
-            height="86vh"
+            // height="86vh"
+            className="bl_table_box"
             sx={{
               //   "& .MuiDataGrid-root": {
               //     border: "none",

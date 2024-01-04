@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./Profile.css";
 import {
   fetchDetailsProfileAction,
+  updateProfilePhotoAction,
   logout,
 } from "../../../redux/slices/profileSlice/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +11,9 @@ import { dateOnlyFormate } from "../../../utils/DateFun/DateModify";
 import Loader from "../../../utils/Loader/Loader";
 
 import DialogOpen from "../../../utils/Dialog/DialogOpen";
+
+// cam icons
+import { FaCamera } from "react-icons/fa";
 
 const Profile = () => {
   let { id } = useParams();
@@ -21,7 +25,15 @@ const Profile = () => {
   }, [dispatch, id]);
 
   const profile = useSelector((state) => state?.profile);
-  const { loading, appErr, serverErr, userAuth, profileData } = profile;
+  const {
+    loading,
+    appErr,
+    serverErr,
+    userAuth,
+    profileData,
+    isProfilePhotoUploaded,
+    profilePhotoloading,
+  } = profile;
 
   if (!id) {
     id = userAuth?._id;
@@ -63,6 +75,10 @@ const Profile = () => {
     permanentAddress,
   } = profileData?.contactDetails ? profileData?.contactDetails : "";
 
+  if (isProfilePhotoUploaded) {
+    dispatch(fetchDetailsProfileAction(id));
+  }
+
   return (
     <div>
       <div className="cs_div_profile">
@@ -72,7 +88,41 @@ const Profile = () => {
           ) : (
             <div>
               <div className="cs_profile_photo_main_div">
-                <div className="cs_profile_photo_div"></div>
+                <div className="cs_profile_photo_div">
+                  <img
+                    className=""
+                    alt="user profile"
+                    src={profileData?.profilePhoto}
+                  />
+                  <input
+                    id="userProfileId"
+                    accept="image/jpeg, image/png"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      const userId = userAuth?._id;
+                      const profileImg = { profilePhoto: file };
+                      dispatch(
+                        updateProfilePhotoAction({ userId, profileImg })
+                      );
+                    }}
+                    style={{ display: "none" }}
+                    type="file"
+                  />
+                  {isSelfUser && (
+                    <span>
+                      {profilePhotoloading ? (
+                        <div className="loader"></div>
+                      ) : (
+                        <label htmlFor="userProfileId">
+                          <FaCamera
+                            for="userProfileId"
+                            className="cs_cam_icon"
+                          />
+                        </label>
+                      )}
+                    </span>
+                  )}
+                </div>
                 <h2 className="cs_profile_photo_bottom_name">
                   {firstName} {lastName}
                 </h2>

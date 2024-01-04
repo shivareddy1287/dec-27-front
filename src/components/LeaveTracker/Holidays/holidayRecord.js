@@ -186,13 +186,12 @@ const HolidayRecord = () => {
 
               <div className="inputfield">
                 <label>Description</label>
-                <div style={{ width: "100%" }}>
-                  <textarea
-                    disabled
-                    value={holiday?.description}
-                    className="textarea"
-                  ></textarea>
-                </div>
+
+                <textarea
+                  disabled
+                  value={holiday?.description}
+                  className="textarea"
+                ></textarea>
               </div>
             </div>
           </div>

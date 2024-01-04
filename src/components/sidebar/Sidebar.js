@@ -130,6 +130,10 @@ const Sidebar = () => {
         path: "attandence/checkin-out",
         links: [
           {
+            name: "Dashboard",
+            subPath: "attandence/dashboard",
+          },
+          {
             name: "CheckIn Out",
             subPath: "attandence/checkin-out",
           },
@@ -416,10 +420,10 @@ const Sidebar = () => {
 
   return (
     <div className="bl_sidebar">
+      {" "}
       <div className="bl_sidebar-left">
         <div>
           {links.map((item) => {
-            // console.log(item);
             return (
               <SidebarLink
                 key={item.title}
@@ -438,9 +442,7 @@ const Sidebar = () => {
           })}
         </div>
         <div>
-          <div className="bl_sidebar_bottom_icons">
-            {/* ... your other links */}
-          </div>
+          <div className="bl_sidebar_bottom_icons"></div>
         </div>
       </div>
       {activeRightSidebar && (

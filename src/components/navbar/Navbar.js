@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
+import { FcLeave } from "react-icons/fc";
 
 // import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
@@ -13,7 +14,10 @@ import {
 } from "../../redux/slices/notifications/notificationSlices";
 import { useDispatch, useSelector } from "react-redux";
 
+// logout
+
 // Images
+import { logout } from "../../redux/slices/profileSlice/profileSlice";
 
 import logo3 from "../../Assets/logos/logo3.png";
 import { useOnClickOutside } from "../../utils/onClickOutSide";
@@ -53,7 +57,12 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showProfileCard, setShowProfileCard] = useState(false);
+
   const userProfile = useSelector((state) => state.profile);
+
+  const notifications = useSelector((state) => state.notification);
+  const { allNotifications, serverErr, appErr, loading } = notifications;
 
   const { userAuth } = userProfile;
   // console.log(userAuth);
@@ -75,13 +84,13 @@ const Navbar = () => {
 
   // const notifiactionLength = 6;
 
-  let notifiactionLength = 0;
+  let notifiactionLength;
 
-  // if (allNotifications) {
-  //   notifiactionLength = allNotifications?.filter(
-  //     (notification) => notification.seen === false
-  //   ).length;
-  // }
+  if (allNotifications) {
+    notifiactionLength = allNotifications?.filter(
+      (notification) => notification.seen === false
+    ).length;
+  }
 
   const myRef = useRef(null);
 
@@ -116,30 +125,43 @@ const Navbar = () => {
               color="blue"
               icon={<FiShoppingCart />}
             /> */}
-              <NavButton
+              {/* <NavButton
                 title="Chat"
                 // dotColor="#03C9D7"
                 // customFunc={() => handleClick("chat")}
                 color="blue"
                 icon={<BsChatLeft />}
-              />
+              /> */}
+
               <div className="bl_profile_cont">
                 <img
                   alt="avatar"
                   className="bl_avatar"
                   style={{ cursor: "pointer" }}
+                  onClick={() => setShowProfileCard(!showProfileCard)}
                   src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
                 />
-                {/* <div className="bl_profile_card">
-                <img
-                  alt="avatar"
-                  // className="bl_avatar"
-                  src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
-                />
-                <p>User Name </p>
-                <p>Role</p>
-                <button className="button">Logout</button>
-              </div> */}
+                {showProfileCard && (
+                  <div className="bl_profile_card">
+                    <img
+                      alt="avatar"
+                      // className="bl_avatar"
+                      src={userAuth?.profilePhoto}
+                      // src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
+                    />
+                    <p>
+                      {userAuth?.basicInformation.firstName}{" "}
+                      {userAuth?.basicInformation.lastName}{" "}
+                    </p>
+                    <p>Role</p>
+                    <button
+                      className="button"
+                      onClick={() => dispatch(logout())}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
@@ -158,7 +180,7 @@ const Navbar = () => {
             </span>
           </div>
           <div className="bl_all-notifications_cont">
-            {/* {allNotifications?.map((eachNotification) => (
+            {allNotifications?.map((eachNotification) => (
               <div class="notification-card">
                 <div class="notification-icon">
                   <FcLeave />
@@ -172,10 +194,8 @@ const Navbar = () => {
                     {eachNotification.notificationDescription}
                   </div>
                 </div>
-                
-              </div> 
-
-            ))}   */}
+              </div>
+            ))}
             {/* <button type="button" class="notification-close">
                 <AiOutlineClose />
               </button> */}

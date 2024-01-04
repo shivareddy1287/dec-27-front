@@ -28,6 +28,7 @@ import Dashboard from "./components/Home/Dashboard/Dashboard";
 // Attendence
 import CheckInOut from "./components/Attendence/checkInOut";
 import Attendences from "./components/Attendence/Attendences";
+import AttendenceDashboard from "./components/Attendence/AttendenceDashboard.js";
 
 //test protected
 // import Layout from "./components/layout/layout";
@@ -172,8 +173,7 @@ import HomePage from "./components/HomePage/MainFile/mainFile";
 
 const SideBarLayout = ({ children }) => (
   <div>
-    <div style={{ height: "7vh" }}>
-      {/* Navbar component */}
+    <div style={{ height: "50px" }}>
       <Navbar />
     </div>
 
@@ -187,7 +187,7 @@ const SideBarLayout = ({ children }) => (
 
 const NoSidebarNoNavbarLayout = ({ children }) => (
   <>
-    <div style={{ height: "7vh" }}>
+    <div style={{ height: "50px" }}>
       {/* Navbar component */}
       <Navbar />
     </div>
@@ -355,6 +355,14 @@ const App = () => {
           element={
             <SideBarLayout>
               <Attendences />{" "}
+            </SideBarLayout>
+          }
+        />
+        <Route
+          path="/attandence/dashboard"
+          element={
+            <SideBarLayout>
+              <AttendenceDashboard />{" "}
             </SideBarLayout>
           }
         />

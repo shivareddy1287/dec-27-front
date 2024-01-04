@@ -9,6 +9,10 @@ const resetRegisterProfile = createAction("registerprofile/reset");
 const resetUpdateProfile = createAction("updateprofile/reset");
 const resetDeleteProfile = createAction("deleteprofile/reset");
 const resetActiveProfile = createAction("updateActive/reset");
+
+// profile reset
+const resetProfilePhoto = createAction("profileUpload/reset");
+
 //----------------------------------------------------------------
 // register action
 //----------------------------------------------------------------
@@ -211,6 +215,34 @@ export const updateUserAction = createAsyncThunk(
       if (!error.response) {
         throw error;
       }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+// update user profile v
+export const updateProfilePhotoAction = createAsyncThunk(
+  "user/photoUpload",
+  async (profileData, { rejectWithValue, getState, dispatch }) => {
+    const { userId, profileImg } = profileData;
+    console.log(profileImg?.profilePhoto);
+
+    try {
+      const formData = new FormData();
+      formData.append("new", 5);
+      formData.append("image", profileImg?.profilePhoto);
+
+      console.log(formData);
+
+      const { data } = await axiosInstance.put(
+        `${baseurl}/api/users/updateProfile/${userId}`,
+        formData
+      );
+      dispatch(resetProfilePhoto());
+      return data;
+    } catch (error) {
+      console.log(error);
+      if (!error?.response) throw error;
       return rejectWithValue(error?.response?.data);
     }
   }
@@ -708,6 +740,29 @@ const profileSlices = createSlice({
     });
     builder.addCase(updateUserAction.rejected, (state, action) => {
       state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+
+    // updateProfilePhotoAction
+
+    builder.addCase(updateProfilePhotoAction.pending, (state, action) => {
+      state.profilePhotoloading = true;
+    });
+
+    builder.addCase(resetProfilePhoto, (state, action) => {
+      state.isProfilePhotoUploaded = true;
+    });
+
+    builder.addCase(updateProfilePhotoAction.fulfilled, (state, action) => {
+      state.profilePhotoloading = false;
+      state.profilePhoto = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+      state.isProfilePhotoUploaded = false;
+    });
+    builder.addCase(updateProfilePhotoAction.rejected, (state, action) => {
+      state.profilePhotoloading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
