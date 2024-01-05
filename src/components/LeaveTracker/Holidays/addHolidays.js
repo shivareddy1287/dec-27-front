@@ -250,18 +250,18 @@ const ApplyLeave = () => {
 
               <div className="inputfield">
                 <label>Description</label>
-                <div style={{ width: "100%" }}>
-                  <textarea
-                    value={formik.values.description}
-                    className="textarea"
-                    onChange={formik.handleChange("description")}
-                    handleBlur={formik.handleBlur("description")}
-                  ></textarea>
-                  <span className="bl_err-msg">
+                {/* <div> */}
+                <textarea
+                  value={formik.values.description}
+                  className="textarea"
+                  onChange={formik.handleChange("description")}
+                  handleBlur={formik.handleBlur("description")}
+                ></textarea>
+                {/* <span className="bl_err-msg">
                     {formik?.touched?.description &&
                       formik?.errors?.description}
-                  </span>
-                </div>
+                  </span> */}
+                {/* </div> */}
               </div>
             </div>
           </div>

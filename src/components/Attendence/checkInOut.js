@@ -7,6 +7,7 @@ import { AiTwotoneHome } from "react-icons/ai";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { format } from "date-fns";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -74,16 +75,31 @@ const CheckInOut = () => {
     return () => clearInterval(intervalId);
   }, [setCurrentTimeMemoized]); // Include setCurrentTimeMemoized as a dependency
 
-  const formattedTime = currentTime.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  // const formattedTime = currentTime.toLocaleTimeString([], {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
 
-  const formattedDate = currentTime.toLocaleDateString([], {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  // const formattedDate = currentTime.toLocaleDateString([], {
+  //   year: "numeric",
+  //   month: "short",
+  //   day: "numeric",
+  // });
+
+  const formattedTime = currentTime
+    ? currentTime.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : "";
+
+  const formattedDate = currentTime
+    ? currentTime.toLocaleDateString([], {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "";
 
   let todaysAttendanceId = "";
 
@@ -121,6 +137,20 @@ const CheckInOut = () => {
 
   if (isPunChedOut) {
     dispatch(fetchDetailsProfileAction(userProfile?.userAuth?._id));
+  }
+
+  // console.log("pppp", punchInTime[0]?.date);
+  let dayOfWeek = "";
+
+  if (punchInTime !== undefined && punchInTime.length > 0) {
+    console.log("punchInTime", punchInTime);
+    const dateObject = new Date(punchInTime[0]?.date);
+
+    console.log("punchInTime1", dateObject);
+
+    dayOfWeek = format(dateObject, "EEEE");
+
+    console.log(dayOfWeek);
   }
 
   return (
@@ -161,12 +191,34 @@ const CheckInOut = () => {
                           borderTop: "1px solid grey",
                         }}
                       >
-                        <span
+                        <div className="attendence_checkout_card">
+                          <h1>{dayOfWeek}</h1>
+                          <span className="attendence_checkout_card_date">
+                            {new Date(punchInTime[0]?.date).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              }
+                            )}
+                          </span>
+                          <div className="attendence_checkout_b-card">
+                            <p>Punch-in</p>
+                            <span>: {punchInTime[0].punchIn} </span> <br />
+                            <p>Punch-out</p>
+                            <span>: {punchInTime[0].punchOut}</span> <br />
+                            <p>Duration</p>
+                            <span>: {punchInTime[0].duration}</span>
+                          </div>
+                        </div>
+
+                        {/* <span
                           style={{
                             padding: "10px",
                           }}
                         >
-                          Date:{" "}
+                          Date: {dayOfWeek}
                           {new Date(punchInTime[0]?.date).toLocaleDateString(
                             "en-US",
                             {
@@ -175,7 +227,7 @@ const CheckInOut = () => {
                               day: "numeric",
                             }
                           )}
-                        </span>{" "}
+                        </span>
                         <br />
                         <span
                           style={{
@@ -199,7 +251,7 @@ const CheckInOut = () => {
                           }}
                         >
                           Duration: {punchInTime[0].duration}{" "}
-                        </span>
+                        </span> */}
                       </div>
                     ) : (
                       <div
@@ -213,9 +265,9 @@ const CheckInOut = () => {
                         }}
                       >
                         <AttendenceTimer seconds={duration} />
-                        <div>
+                        <div style={{ display: "flex", alignItems: "center" }}>
                           <button className="button_disabled" disabled={true}>
-                            Punch In{" "}
+                            Punch In
                           </button>
                           <button
                             className="button"

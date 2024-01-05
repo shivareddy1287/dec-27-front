@@ -320,6 +320,17 @@ const ApplyLeave = () => {
 
       <div className="bl-apply-leave-form-cont">
         <form className="bl-apply-leave-form" onSubmit={formik.handleSubmit}>
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+
           <div className="wrapper">
             {userProfLoading ? (
               <div className="loader"></div>
@@ -547,7 +558,7 @@ const ApplyLeave = () => {
 
                   <div className="inputfield">
                     <label>Reason For Leave</label>
-                    <div style={{ width: "100%" }}>
+                    <div className="wrapper-textarea">
                       <textarea
                         value={formik.values.reasonForLeave}
                         className="textarea"
@@ -564,6 +575,17 @@ const ApplyLeave = () => {
               </>
             )}
           </div>
+
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
         </form>
       </div>
       <div className="bl-apply-leave_footer">

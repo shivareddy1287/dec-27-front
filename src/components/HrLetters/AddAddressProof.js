@@ -6,6 +6,14 @@ import "./addAdressProof.css";
 import { Document, Page } from "react-pdf";
 import zzzPdf from "./zzz.pdf";
 
+import pdfImg from "../../Assets/documents/pdf-file.png";
+
+// icons
+import DeleteIcon from "@mui/icons-material/Delete";
+import CreateIcon from "@mui/icons-material/Create";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import DownloadIcon from "@mui/icons-material/Download";
+
 import * as Yup from "yup";
 import {
   addUserDocumentsAction,
@@ -20,6 +28,8 @@ import {
 // Images
 import pdfIcon from "../../Assets/documents/pdf-file.png";
 import deleteIcon from "../../Assets/documents/delete.png";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 //Form Schema
 const formSchema = Yup.object({
@@ -106,6 +116,112 @@ const AddressProof = () => {
   const isUserUploadedDocuments =
     userProfile?.profileData?.userDocuments.length > 0;
   console.log(isUserUploadedDocuments);
+
+  const columns = [
+    {
+      field: "photoURL",
+      headerName: "",
+      width: 50,
+      renderCell: (params) => <Avatar className="table_img" src={pdfImg} />,
+      sortable: false,
+      filterable: false,
+    },
+
+    // {
+    //   field: "documentName",
+    //   headerName: "documentName",
+    //   flex: 1,
+    //   renderCell: (params) => {
+    //     return (
+    //       <>
+    //         {params?.basicInformation.firstName}
+    //         {"_"}
+    //         {params.documentName}
+    //       </>
+    //     );
+    //   },
+    //   // cellClassName: "name-column--cell",
+    // },
+
+    {
+      field: "documentName",
+      headerName: "Adress Proof",
+      flex: 1,
+      filterable: true,
+      renderCell: (params) => {
+        console.log("params", params.row.user);
+        return (
+          <Typography>
+            {`${userProfile?.profileData?.basicInformation.firstName}_${params.row.documentName}`}
+          </Typography>
+        );
+      },
+    },
+
+    {
+      field: "createdAt",
+      headerName: "createdAt",
+      flex: 1,
+    },
+
+    {
+      field: "actions",
+      headerName: "Actions",
+      type: "actions",
+      width: 200,
+      renderCell: (params) => {
+        console.log(params);
+        return (
+          <Box sx={{ m: 1, p: 2, postition: "relative" }}>
+            <IconButton
+              type="button"
+              sx={{ p: 1 }}
+              // onClick={() => console.log("view", params.row.id)}
+              onClick={() =>
+                generateAndDownloadPDF(
+                  params.row?.document.data,
+                  `${userProfile?.profileData?.basicInformation.firstName}_${params.row?.documentName}`
+                )
+              }
+            >
+              {" "}
+              <DownloadIcon />
+            </IconButton>
+            {/* {!params.row.isRejected && !params.row.isApproved && (
+              <>
+                <IconButton
+                  type="button"
+                  sx={{ p: 1 }}
+                  onClick={() =>
+                    navigate(
+                      `/leave-tracker/leave-applications/update/${params.row._id}`
+                    )
+                  }
+                >
+                  {" "}
+                  <CreateIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() =>
+                    dispatch(deleteLeaveAction(params.row._id)).then(() => {
+                      dispatch(fetchAllLeaves());
+                    })
+                  }
+                  type="button"
+                  sx={{ p: 1 }}
+                >
+                  {" "}
+                  <DeleteIcon />
+                </IconButton>
+              </>
+            )} */}
+          </Box>
+        );
+      },
+    },
+  ];
+
+  console.log(userProfile?.profileData?.userDocuments);
 
   return (
     <div className="bl-apply-leave-cont">
@@ -273,7 +389,7 @@ const AddressProof = () => {
             <>
               {isUserUploadedDocuments ? (
                 <>
-                  {userProfile?.profileData?.userDocuments.map((doc) => {
+                  {/* {userProfile?.profileData?.userDocuments.map((doc) => {
                     // console.log(doc);
                     return (
                       <div className="bl_documents">
@@ -299,12 +415,6 @@ const AddressProof = () => {
                           </div>
                         </div>
                         <div className="bl_document-r_cont">
-                          {/* <button className="button">Approve</button> */}
-                          {/* <img
-                        className="bl_document_icon"
-                        onClick={() => togglePdfViewer(doc.document.data)}
-                        src={viewIcon}
-                      /> */}
                           <button
                             onClick={() =>
                               generateAndDownloadPDF(
@@ -337,9 +447,42 @@ const AddressProof = () => {
                             src={deleteIcon}
                           />
                         </div>
+                        
                       </div>
                     );
-                  })}{" "}
+                  })}{" "} */}
+                  <Box
+                    // m={1}
+                    height="60.5vh"
+                    sx={{
+                      //   "& .MuiDataGrid-root": {
+                      //     border: "none",
+                      //   },
+                      //   "& .MuiDataGrid-cell": {
+                      //     borderBottom: "none",
+                      //   },
+                      //   "& .name-column-cell": {
+                      //     color: colors.greenAccent[300],
+                      //   },
+                      "& .MuiDataGrid-columnHeaders": {
+                        backgroundColor: "#ebebed",
+                        borderBottom: "none",
+                      },
+                      //   "& .MuiDataGrid-virtualScroller": {
+                      //     backgroundColor: colors.primary[400],
+                      //   },
+                      "& .MuiDataGrid-footerContainer": {
+                        borderTop: "none",
+                        backgroundColor: "#ebebed",
+                      },
+                    }}
+                  >
+                    <DataGrid
+                      rows={userProfile?.profileData?.userDocuments ?? []}
+                      columns={columns}
+                      components={{ Toolbar: GridToolbar }}
+                    />
+                  </Box>{" "}
                 </>
               ) : (
                 <p className="no_doc_uploaded_text">No Documents Uploaded</p>
@@ -349,7 +492,7 @@ const AddressProof = () => {
         </div>
         {/* </div> */}
         {/* </div> */}
-        {isPdfVisible && (
+        {/* {isPdfVisible && (
           <div className="pdf-viewer">
             <div style={{ width: "700px", border: "3px solid gray" }}>
               <Document
@@ -368,7 +511,7 @@ const AddressProof = () => {
             </div>
             <button onClick={togglePdfViewer}>Close PDF</button>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

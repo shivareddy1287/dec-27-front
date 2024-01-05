@@ -5,7 +5,7 @@
   background-color: rgb(82, 131, 173);
   /* background-color: #f9fafc; */
   /* border-right: 1px solid rgb(82, 131, 173); */
-  height: 7vh;
+  height: 50px;
   width: 100%;
 }
 .bl_leave-applications_header select {
@@ -25,6 +25,10 @@
   justify-content: center;
   margin: 0 20px;
   cursor: pointer;
+}
+
+.bl_table_box {
+  height: calc(100vh - 100px);
 }
 
 /* tabel */
