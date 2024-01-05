@@ -233,6 +233,10 @@ const Sidebar = () => {
             subPath: "payroll/employees",
           },
           {
+            name: "Generate Payslips",
+            subPath: "payroll/generate-payslips",
+          },
+          {
             name: "Payslips",
             subPath: "payroll/payslips",
           },

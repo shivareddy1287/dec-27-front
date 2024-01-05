@@ -1,96 +1,80 @@
 import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
 
-import Loader from "../../utils/Loader/Loader";
+import { fetchAllProfileAction } from "../../../redux/slices/profileSlice/profileSlice";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
+import Loader from "../../../utils/Loader/Loader";
 import {
-  fetchSinglepayrollAction,
-  updatepayrollAction,
-} from "../../redux/slices/payrollSlice/payrollSlice";
+  allFetchpayrollAction,
+  payrollCreateAction,
+} from "../../../redux/slices/payrollSlice/payrollSlice";
 
-const PayrollUpdate = () => {
-  const { id } = useParams();
+const PayrollAdd = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchSinglepayrollAction(id));
-  }, [dispatch, id]);
+    dispatch(fetchAllProfileAction());
+    dispatch(allFetchpayrollAction());
+  }, [dispatch]);
 
   const payroll = useSelector((state) => state?.payroll);
-  const { singlepayroll, ispayrolleUpdated, loading, appErr, serverErr } =
-    payroll;
+  const { payrollList, ispayrollAdded, loading, appErr, serverErr } = payroll;
   // console.log(asset, loading, appErr, serverErr);
-  const {
-    user,
-    accountInfo,
-    annualCtc,
-    earnings,
-    reimbursements,
-    deductions,
-    statusPayroll,
-  } = singlepayroll ? singlepayroll : "";
-  const { pfAccountNumber, bankAccountNumber, UAN, ESINumber } = accountInfo
-    ? accountInfo
-    : "";
-  const {
-    basic,
-    houseRentAllowance,
-    conveyanceAllowance,
-    fixedAllowance,
-    bonus,
-  } = earnings ? earnings : "";
-  const { telephoneReimbursement, fuelReimbursement } = reimbursements
-    ? reimbursements
-    : "";
-  const { EmployeeProvidentFund, HealthInsurance, IncomeTax } = deductions
-    ? deductions
-    : "";
 
-  const profile = useSelector((state) => state?.profile);
-  const { profileLoading, profileAppErr, profileServerErr } = profile;
-  const { _id, Access } = profile?.userAuth;
+  // profile
+  const user = useSelector((state) => state?.profile);
+  const { profilesList, profileLoading, profileAppErr, profileServerErr } =
+    user;
+  const { _id, Access } = user?.userAuth;
+
+  // Find uncommon elements in list1
+  const uniqueProfilesList = profilesList?.filter(
+    (item) =>
+      !payrollList?.some((element) => element?.user?.email === item?.email)
+  );
+  // console.log(uniqueProfilesList, "uniqueProfilesList");
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      user: user?._id,
+      user: uniqueProfilesList?.[0]?._id,
       accountInfo: {
-        pfAccountNumber,
-        bankAccountNumber,
-        UAN,
-        ESINumber,
+        pfAccountNumber: "",
+        bankAccountNumber: "",
+        UAN: "",
+        ESINumber: "",
       },
-      annualCtc,
+      annualCtc: "",
       earnings: {
-        basic,
-        houseRentAllowance,
-        conveyanceAllowance,
-        fixedAllowance,
-        bonus,
+        basic: "",
+        houseRentAllowance: "",
+        conveyanceAllowance: "",
+        fixedAllowance: "",
+        bonus: "",
       },
       reimbursements: {
-        telephoneReimbursement,
-        fuelReimbursement,
+        telephoneReimbursement: "",
+        fuelReimbursement: "",
       },
       deductions: {
-        EmployeeProvidentFund,
-        HealthInsurance,
-        IncomeTax,
+        EmployeeProvidentFund: "",
+        HealthInsurance: "",
+        IncomeTax: "",
       },
-      statusPayroll,
+      statusPayroll: "Inactive",
       addedBy: _id,
       ModifiedBy: _id,
     },
     onSubmit: (values) => {
-      dispatch(updatepayrollAction({ id, values }));
+      dispatch(payrollCreateAction(values));
       console.log(values);
     },
   });
 
-  if (ispayrolleUpdated || (!normalAdminAccessGivenFun(Access) && Access))
+  if (ispayrollAdded || (!normalAdminAccessGivenFun(Access) && Access))
     return <Navigate to={`/payroll/employees`} />;
 
   return (
@@ -117,7 +101,7 @@ const PayrollUpdate = () => {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="cs_edit_employee_head"> Edit Payroll</h2>
+                  <h2 className="cs_edit_employee_head"> Add Payroll</h2>
                 </div>
               </Link>
             </div>
@@ -144,11 +128,13 @@ const PayrollUpdate = () => {
                         value={formik.values.user}
                         onChange={formik.handleChange("user")}
                       >
-                        <option value={`${user?._id}`}>
-                          {user?.basicInformation?.employerId}-
-                          {user?.basicInformation?.firstName}{" "}
-                          {user?.basicInformation?.lastName}{" "}
-                        </option>
+                        {uniqueProfilesList?.map((each) => (
+                          <option value={`${each?._id}`}>
+                            {each?.basicInformation?.employerId}-
+                            {each?.basicInformation?.firstName}{" "}
+                            {each?.basicInformation?.lastName}{" "}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div className="cs_edit_input_div">
@@ -369,4 +355,4 @@ const PayrollUpdate = () => {
   );
 };
 
-export default PayrollUpdate;
+export default PayrollAdd;

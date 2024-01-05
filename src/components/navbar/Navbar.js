@@ -97,7 +97,7 @@ const Navbar = () => {
   useOnClickOutside(myRef, () => hideNotificationBar());
 
   // console.log("notifiactionLength", allNotifications);
-  console.log("every time calling navbar ============================");
+  // console.log("every time calling navbar ============================");
   // useRedirectLoggedOutUser("/login");
 
   return (

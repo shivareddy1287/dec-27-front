@@ -60,6 +60,13 @@ const CreateTasks = () => {
             </p>
           ) : null}
           <form onSubmit={formik.handleSubmit} className="cs_edit_div">
+            <div>
+              <div className="cs_edit_employee_head_div">
+                <div>
+                  <h2 className="cs_edit_employee_head"> Create Task</h2>
+                </div>
+              </div>
+            </div>
             <div className="cs_edit_form_div">
               <div>
                 <h1 className="cs_edit_side_head">Task Details</h1>

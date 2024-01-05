@@ -2,22 +2,21 @@ import React, { useEffect } from "react";
 
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 
-import Loader from "../../utils/Loader/Loader";
-import { fetchSinglepayrollAction } from "../../redux/slices/payrollSlice/payrollSlice";
+import Loader from "../../../utils/Loader/Loader";
+import { fetchSingleUserPayrollMonthAction } from "../../../redux/slices/payrollSlice/PayrollMonth/PayrollMonthSlice";
 
-const PayrollView = () => {
+const PaySlipsView = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSinglepayrollAction(id));
+    dispatch(fetchSingleUserPayrollMonthAction(id));
   }, [dispatch, id]);
 
-  const payroll = useSelector((state) => state?.payroll);
-  const { singlepayroll, ispayrolleUpdated, loading, appErr, serverErr } =
-    payroll;
+  const payrollMonth = useSelector((state) => state?.payrollMonth);
+  const { singlePayrollMonth, loading, appErr, serverErr } = payrollMonth;
   // console.log(asset, loading, appErr, serverErr);
   const {
     user,
@@ -27,7 +26,9 @@ const PayrollView = () => {
     reimbursements,
     deductions,
     statusPayroll,
-  } = singlepayroll ? singlepayroll : "";
+    month,
+    year,
+  } = singlePayrollMonth ? singlePayrollMonth : "";
   const { pfAccountNumber, bankAccountNumber, UAN, ESINumber } = accountInfo
     ? accountInfo
     : "";
@@ -49,8 +50,8 @@ const PayrollView = () => {
   const { profileLoading, profileAppErr, profileServerErr } = profile;
   const { Access } = profile?.userAuth;
 
-  if (ispayrolleUpdated || (!normalAdminAccessGivenFun(Access) && Access))
-    return <Navigate to={`/payroll/employees`} />;
+  if (!normalAdminAccessGivenFun(Access) && Access)
+    return <Navigate to={`/payroll/payslips`} />;
 
   return (
     <div>
@@ -62,7 +63,7 @@ const PayrollView = () => {
           <div className="cs_edit_div">
             <div>
               <Link
-                to={`/payroll/employees`}
+                to={`/payroll/payslips`}
                 className="cs_edit_employee_head_div"
               >
                 <div>
@@ -116,6 +117,10 @@ const PayrollView = () => {
                         {bankAccountNumber}
                       </h1>
                     </div>
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Month:</h1>
+                      <h1 className="cs_view_right_input">{month}</h1>
+                    </div>
                   </div>
                   <div className="cs_edit_left_input_right_input">
                     <div className="cs_edit_input_div">
@@ -129,6 +134,10 @@ const PayrollView = () => {
                     <div className="cs_edit_input_div">
                       <h1 className="cs_edit_left_input">Status Payroll:</h1>
                       <h1 className="cs_view_right_input">{statusPayroll}</h1>
+                    </div>{" "}
+                    <div className="cs_edit_input_div">
+                      <h1 className="cs_edit_left_input">Year:</h1>
+                      <h1 className="cs_view_right_input">{year}</h1>
                     </div>
                   </div>
                 </div>
@@ -222,7 +231,7 @@ const PayrollView = () => {
             </div>
             <div className="cs_edit_submit_cancel_div">
               <div>
-                <Link to={`/organization/asset`}>
+                <Link to={`/payroll/payslips`}>
                   <button className="cs_view_button_close">Close</button>
                 </Link>
               </div>
@@ -234,4 +243,4 @@ const PayrollView = () => {
   );
 };
 
-export default PayrollView;
+export default PaySlipsView;
