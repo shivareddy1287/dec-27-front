@@ -71,6 +71,28 @@ export const allFetchpayrollAction = createAsyncThunk(
 );
 
 //----------------------------------------------------------------
+// Fetch All Users
+//----------------------------------------------------------------
+
+export const allFetchActivePayrollAction = createAsyncThunk(
+  "payroll/fetchallactive",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    const url = id
+      ? `${baseurl}/api/payroll/active/users?id=${id}`
+      : `${baseurl}/api/payroll/active/users`;
+    try {
+      const { data } = await axiosInstance.get(url);
+      return data;
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//----------------------------------------------------------------
 // Update User Details
 //----------------------------------------------------------------
 
@@ -178,6 +200,26 @@ const payrollSlices = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(allFetchpayrollAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+
+    //----------------------------------------------------------------
+    // Fetch All Active payroll Users
+    //----------------------------------------------------------------
+
+    builder.addCase(allFetchActivePayrollAction.pending, (state, action) => {
+      state.loading = true;
+    });
+
+    builder.addCase(allFetchActivePayrollAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.ActivePayrollList = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(allFetchActivePayrollAction.rejected, (state, action) => {
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;

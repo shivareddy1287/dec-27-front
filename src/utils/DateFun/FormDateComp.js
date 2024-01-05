@@ -13,10 +13,11 @@ const FormikDateYour = (props) => {
         customInput={<CustomDatePickerInput />} // Use a custom input with the icon
         selected={formattedDate}
         onChange={(date) => props.onChange(props.name, date)}
-        dateFormat="dd/MM/yyyy" // Customize date format
+        dateFormat="MM/yyyy" // Customize date format
         showMonthDropdown
         showYearDropdown
-        dropdownMode="select"
+        // dropdownMode="select"
+        showMonthYearPicker
       />
     </div>
   );

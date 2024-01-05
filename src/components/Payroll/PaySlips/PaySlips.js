@@ -1,33 +1,32 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { allFetchAssetAction } from "../../redux/slices/assetSlice/assetSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
 
-import { dateTimeFormate } from "../../utils/DateFun/DateModify";
-import Loader from "../../utils/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
+
+import { dateTimeFormate } from "../../../utils/DateFun/DateModify";
+import Loader from "../../../utils/Loader/Loader";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Avatar, Box, IconButton } from "@mui/material";
-import TableReusable from "../../utils/TableReusable/TableReusable";
-import { allFetchpayrollAction } from "../../redux/slices/payrollSlice/payrollSlice";
+import TableReusable from "../../../utils/TableReusable/TableReusable";
+import { payMonthAllFetchAction } from "../../../redux/slices/payrollSlice/PayrollMonth/PayrollMonthSlice";
 
-const Payroll = () => {
+const PaySlips = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const profile = useSelector((state) => state?.profile);
   const { Access, profilePhoto } = profile?.userAuth;
   useEffect(() => {
-    dispatch(allFetchAssetAction());
-    dispatch(allFetchpayrollAction());
+    dispatch(payMonthAllFetchAction());
   }, [dispatch]);
 
-  const payroll = useSelector((state) => state?.payroll);
+  const payrollMonth = useSelector((state) => state?.payrollMonth);
 
-  const { payrollList, loading, appErr, serverErr } = payroll;
+  const { payrollMonthList, loading, appErr, serverErr } = payrollMonth;
 
   const columns = [
     {
@@ -56,39 +55,35 @@ const Payroll = () => {
               sx={{ p: 1 }}
               // onClick={() => console.log("view", params.row.id)}
               onClick={() =>
-                navigate(`/payroll/employees/view/${params.row.id}`)
+                navigate(`/payroll/payslips/view/${params.row.id}`)
               }
             >
               {" "}
               <VisibilityIcon />
             </IconButton>
-            {params.row.Access && (
-              <>
-                <IconButton
-                  type="button"
-                  sx={{ p: 1 }}
-                  onClick={() =>
-                    navigate(`/payroll/employees/update/${params.row.id}`)
-                  }
-                >
-                  {" "}
-                  <CreateIcon />
-                </IconButton>
-                <IconButton
-                  type="button"
-                  sx={{ p: 1 }}
-                  onClick={() =>
-                    navigate(`/payroll/employees/delete/${params.row.id}`)
-                  }
-                >
-                  {" "}
-                  <DeleteIcon />
-                </IconButton>
-              </>
-            )}
+            <IconButton>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="16"
+                width="16"
+                viewBox="0 0 512 512"
+              >
+                <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+              </svg>
+            </IconButton>
           </Box>
         );
       },
+    },
+    {
+      field: "month",
+      headerName: "Month",
+      width: 150,
+    },
+    {
+      field: "year",
+      headerName: "Year",
+      width: 150,
     },
     {
       field: "pfAccountNumber",
@@ -195,11 +190,13 @@ const Payroll = () => {
   ];
 
   const accessMain = normalAdminAccessGivenFun(Access);
-  console.log(payrollList?.[0]?._id);
+  console.log(payrollMonthList?.[0]?._id);
 
-  const newPayrollList = payrollList?.map((payrollEach) => ({
+  const newPayrollList = payrollMonthList?.map((payrollEach) => ({
     id: payrollEach?._id,
     Access: accessMain,
+    month: payrollEach?.month,
+    year: payrollEach?.year,
     userNames: `${payrollEach?.user?.basicInformation?.employerId}-${payrollEach?.user?.basicInformation?.firstName} ${payrollEach?.user?.basicInformation?.lastName}`,
     // accountInfo
     pfAccountNumber: payrollEach?.accountInfo?.pfAccountNumber,
@@ -247,14 +244,14 @@ const Payroll = () => {
           <div>
             <div className="cs_table_head_bg_create">
               <h2 className="cs_table_head_Assets_head">Payroll</h2>
-              {normalAdminAccessGivenFun(Access) && (
+              {/* {normalAdminAccessGivenFun(Access) && (
                 <Link
                   className="cs_table_add_asset_button"
                   to={`/payroll/employees/create`}
                 >
                   <span className="cs_asset_add_symbol">+</span> Add Payroll
                 </Link>
-              )}
+              )} */}
             </div>
             <TableReusable
               rows={newPayrollList ?? []}
@@ -277,4 +274,4 @@ const Payroll = () => {
   );
 };
 
-export default Payroll;
+export default PaySlips;

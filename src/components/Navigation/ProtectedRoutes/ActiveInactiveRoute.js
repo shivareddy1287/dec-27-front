@@ -5,7 +5,7 @@ import { loginStatus } from "../../../redux/slices/profileSlice/profileSlice";
 const ActiveInactiveRoute = ({ children }) => {
   const user = useSelector((state) => state?.profile);
   const { userAuth } = user;
-  console.log(userAuth?.workInformation?.employeeStatus);
+  // console.log(userAuth?.workInformation?.employeeStatus);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loginStatus());

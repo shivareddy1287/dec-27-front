@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { normalAdminAccessGivenFun } from "../../utils/restrictedAccess";
+import { normalAdminAccessGivenFun } from "../../../utils/restrictedAccess";
 
-import Loader from "../../utils/Loader/Loader";
+import Loader from "../../../utils/Loader/Loader";
 import {
   deletepayrollAction,
   fetchSinglepayrollAction,
-} from "../../redux/slices/payrollSlice/payrollSlice";
+} from "../../../redux/slices/payrollSlice/payrollSlice";
 
 const PayrollUpdate = () => {
   const { id } = useParams();
@@ -233,7 +233,7 @@ const PayrollUpdate = () => {
               </div>
 
               <div>
-                <Link to={`/organization/asset`}>
+                <Link to={`/payroll/employees`}>
                   <button className="cs_view_button_close">Close</button>
                 </Link>
               </div>

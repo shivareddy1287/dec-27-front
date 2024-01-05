@@ -142,14 +142,25 @@ import FindEmployee from "./components/Organization/FindEmployee/FindEmployee";
 import WithdrawSeparation from "./components/SelfService/ExitDetails/WithdrawSeparation";
 import OrgApproveSeparation from "./components/Organization/OrgExitDetails/OrgApproveSeparation";
 import ActiveInactiveRoute from "./components/Navigation/ProtectedRoutes/ActiveInactiveRoute.js";
-import Payroll from "./components/Payroll/Payroll.js";
-import PayrollAdd from "./components/Payroll/PayrollAdd.js";
-import PayrollUpdate from "./components/Payroll/PayrollUpdate.js";
-import PayrollView from "./components/Payroll/PayrollView.js";
-import PayrollDelete from "./components/Payroll/PayrollDelete.js";
+import Payroll from "./components/Payroll/Payroll/Payroll.js";
+import PayrollAdd from "./components/Payroll/Payroll/PayrollAdd.js";
+import PayrollUpdate from "./components/Payroll/Payroll/PayrollUpdate.js";
+import PayrollView from "./components/Payroll/Payroll/PayrollView.js";
+import PayrollDelete from "./components/Payroll/Payroll/PayrollDelete.js";
+
+// PaySlips
+import PaySlips from "./components/Payroll/PaySlips/PaySlips.js";
 
 // kalyani
 import HomePage from "./components/HomePage/MainFile/mainFile";
+
+// Generate Payslips
+import GeneratePayslips from "./components/Payroll/GeneratePayslips/GeneratePayslips.js";
+import GenPayrollView from "./components/Payroll/GeneratePayslips/GenPayrollView.js";
+import GenPayrollUpdate from "./components/Payroll/GeneratePayslips/GenPayrollUpdate.js";
+import GenerateConfirm from "./components/Payroll/GeneratePayslips/GenerateConfirm.js";
+import PaySlipsView from "./components/Payroll/PaySlips/PaySlipsView.js";
+import DemoPay from "./components/Payroll/PaySlips/DemoPay.js";
 
 // const SideBarLayout = ({ children }) => (
 //   <div>
@@ -1397,6 +1408,100 @@ const App = () => {
               <ActiveInactiveRoute>
                 <SideBarLayout>
                   <PayrollDelete />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        {/* payslips */}
+        <Route
+          path="/payroll/payslips"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PaySlips />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/payslips/view/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <PaySlipsView />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        {/* GeneratePayslips */}
+        <Route
+          path="/payroll/generate-payslips"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <GeneratePayslips />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/generate-payslips/generate"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <GenerateConfirm />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/generate-payslips/update/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <GenPayrollUpdate />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+
+        <Route
+          path="/payroll/generate-payslips/view/:id"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <GenPayrollView />
+                </SideBarLayout>
+              </ActiveInactiveRoute>
+            </PrivateProtectRoute>
+          }
+        />
+        {/* demo  */}
+
+        <Route
+          path="/payroll/demo"
+          element={
+            <PrivateProtectRoute>
+              <ActiveInactiveRoute>
+                <SideBarLayout>
+                  <DemoPay />
                 </SideBarLayout>
               </ActiveInactiveRoute>
             </PrivateProtectRoute>
