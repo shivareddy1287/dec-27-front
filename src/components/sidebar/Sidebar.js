@@ -127,7 +127,7 @@ const Sidebar = () => {
       {
         title: "Attandence",
         icon: <BsCalendar2Date />,
-        path: "attandence/checkin-out",
+        path: "attandence/dashboard",
         links: [
           {
             name: "Dashboard",
@@ -152,6 +152,10 @@ const Sidebar = () => {
           {
             name: "Adress Proof",
             subPath: "documents/adress-proof",
+          },
+          {
+            name: "Educational Documents",
+            subPath: "documents/educational-documents",
           },
           {
             name: "Bonafide Letter",

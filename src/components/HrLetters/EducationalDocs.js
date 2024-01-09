@@ -38,7 +38,7 @@ const formSchema = Yup.object({
   document: Yup.mixed().required("Document is Required"),
 });
 
-const AddressProof = () => {
+const EducationalDocs = () => {
   const [isPdfVisible, setIsPdfVisible] = useState(false);
   const dispatch = useDispatch();
 
@@ -226,13 +226,13 @@ const AddressProof = () => {
   return (
     <div className="bl-apply-leave-cont">
       <div className="bl-apply-leave_header">
-        <span>Adress Proofs</span>
+        <span>Educational Documents</span>
       </div>
 
       <div className="bl-apply-leave-form-cont2">
         <form className="bl-apply-leave-form2" onSubmit={formik.handleSubmit}>
           <div className="wrapper">
-            <div className="title">Add Address Proof</div>
+            <div className="title">Add Educational Documents</div>
             <div className="form">
               <div className="inputfield">
                 <label>Employee ID</label>
@@ -281,7 +281,7 @@ const AddressProof = () => {
               </div>
 
               <div className="inputfield">
-                <label>Adress Proof</label>
+                <label>Educational Document</label>
                 <div className="custom_select">
                   <select onChange={formik.handleChange("documentName")}>
                     <option value="">Select</option>
@@ -328,7 +328,7 @@ const AddressProof = () => {
                   dispatch(
                     addUserDocumentsAction({
                       ...formik.values,
-                      docType: "adressProofs",
+                      docType: "educationalDocument",
                     })
                   ).then(() => {
                     // Once the user document is successfully added, fetch the user's details
@@ -507,4 +507,4 @@ const AddressProof = () => {
   );
 };
 
-export default AddressProof;
+export default EducationalDocs;

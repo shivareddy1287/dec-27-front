@@ -143,77 +143,77 @@ const CheckInOut = () => {
   let dayOfWeek = "";
 
   if (punchInTime !== undefined && punchInTime.length > 0) {
-    console.log("punchInTime", punchInTime);
+    // console.log("punchInTime", punchInTime);
     const dateObject = new Date(punchInTime[0]?.date);
 
-    console.log("punchInTime1", dateObject);
+    // console.log("punchInTime1", dateObject);
 
     dayOfWeek = format(dateObject, "EEEE");
 
-    console.log(dayOfWeek);
+    // console.log(dayOfWeek);
   }
 
   return (
-    <div>
-      <div className="bl_a_checkin_card">
-        <div className="bl_a_checkin_card_head">
-          <h1>Attendence</h1>
+    // <div>
+    <div className="bl_a_checkin_card">
+      <div className="bl_a_checkin_card_head">
+        <h1>Attendence</h1>
+      </div>
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80%",
+          }}
+        >
+          <div className="loader"></div>
         </div>
-        {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "80%",
-            }}
-          >
-            <div className="loader"></div>
-          </div>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              // alignItems: "center",
-              height: "360px",
-            }}
-          >
-            {isPunchIn !== undefined ? (
-              <>
-                {isPunchIn ? (
-                  <>
-                    {punchInTime[0]?.isPunchOut || isPunChedOut ? (
-                      <div
-                        style={{
-                          // display: "flex",
-                          width: "100%",
-                          borderTop: "1px solid grey",
-                        }}
-                      >
-                        <div className="attendence_checkout_card">
-                          <h1>{dayOfWeek}</h1>
-                          <span className="attendence_checkout_card_date">
-                            {new Date(punchInTime[0]?.date).toLocaleDateString(
-                              "en-US",
-                              {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              }
-                            )}
-                          </span>
-                          <div className="attendence_checkout_b-card">
-                            <p>Punch-in</p>
-                            <span>: {punchInTime[0].punchIn} </span> <br />
-                            <p>Punch-out</p>
-                            <span>: {punchInTime[0].punchOut}</span> <br />
-                            <p>Duration</p>
-                            <span>: {punchInTime[0].duration}</span>
-                          </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            // alignItems: "center",
+            height: "360px",
+          }}
+        >
+          {isPunchIn !== undefined ? (
+            <>
+              {isPunchIn ? (
+                <>
+                  {punchInTime[0]?.isPunchOut || isPunChedOut ? (
+                    <div
+                      style={{
+                        // display: "flex",
+                        width: "100%",
+                        borderTop: "1px solid grey",
+                      }}
+                    >
+                      <div className="attendence_checkout_card">
+                        <h1>{dayOfWeek}</h1>
+                        <span className="attendence_checkout_card_date">
+                          {new Date(punchInTime[0]?.date).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
+                        <div className="attendence_checkout_b-card">
+                          <p>Punch-in</p>
+                          <span>: {punchInTime[0].punchIn} </span> <br />
+                          <p>Punch-out</p>
+                          <span>: {punchInTime[0].punchOut}</span> <br />
+                          <p>Duration</p>
+                          <span>: {punchInTime[0].duration}</span>
                         </div>
+                      </div>
 
-                        {/* <span
+                      {/* <span
                           style={{
                             padding: "10px",
                           }}
@@ -252,151 +252,149 @@ const CheckInOut = () => {
                         >
                           Duration: {punchInTime[0].duration}{" "}
                         </span> */}
-                      </div>
-                    ) : (
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          width: "100%",
-                          height: "360px",
-                        }}
-                      >
-                        <AttendenceTimer seconds={duration} />
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <button className="button_disabled" disabled={true}>
-                            Punch In
-                          </button>
-                          <button
-                            className="button"
-                            onClick={() =>
-                              dispatch(
-                                attendancePunchOutAction({
-                                  id: todaysAttendanceId,
-                                  punchOut: formattedTime,
-                                  duration: duration,
-                                  isPunchOut: true,
-                                })
-                              )
-                            }
-                          >
-                            Punch Out
-                          </button>
-                          {punchInLoading && <div className="loader"></div>}
-                        </div>
-                        <hr />
-                        <div
-                          style={{
-                            // display: "flex",
-                            width: "100%",
-                            borderTop: "1px solid #fff",
-                          }}
-                        >
-                          <span
-                            style={{
-                              padding: "10px",
-                            }}
-                          >
-                            Date:{" "}
-                            {new Date(punchInTime[0]?.date).toLocaleDateString(
-                              "en-US",
-                              {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              }
-                            )}
-                          </span>{" "}
-                          <br />
-                          <span
-                            style={{
-                              padding: "10px",
-                            }}
-                          >
-                            Punch-in: {punchInTime[0].punchIn}{" "}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <div className="bl_a_checkin_card_wf">
-                      <p className="bl_a_checkin_card_wf_text">Work Mode </p>
-
-                      <div className="bl_a_checkin_card_wf_inputs">
-                        <input
-                          type="radio"
-                          value="Work from Home"
-                          checked={
-                            formik.values.workFrom === "Work from Office"
-                          }
-                          onChange={() =>
-                            formik.setFieldValue("workFrom", "Work from Office")
-                          }
-                          name="workFrom"
-                          id="officeRadio"
-                        />
-                        <label htmlFor="officeRadio">
-                          <HiOutlineBuildingOffice2 />
-                          Office
-                        </label>
-                        <input
-                          type="radio"
-                          value="Work from Office"
-                          checked={formik.values.workFrom === "Work from Home"}
-                          onChange={() =>
-                            formik.setFieldValue("workFrom", "Work from Home")
-                          }
-                          id="homeRadio"
-                          name="workFrom"
-                        />
-
-                        <label htmlFor="homeRadio">
-                          <AiTwotoneHome />
-                          Home
-                        </label>
-                      </div>
                     </div>
-                    <div className="bl_a_checkin_card_body">
-                      <h1>{formattedTime}</h1>
-                      <h2>{formattedDate}</h2>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "360px",
+                      }}
+                    >
+                      <AttendenceTimer seconds={duration} />
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <button className="button_disabled" disabled={true}>
+                          Punch In
+                        </button>
                         <button
                           className="button"
-                          onClick={() => {
+                          onClick={() =>
                             dispatch(
-                              attendencePunchInAction({
-                                workFrom: formik.values.workFrom,
-                                date: currentTime,
-                                punchIn: formattedTime,
+                              attendancePunchOutAction({
+                                id: todaysAttendanceId,
+                                punchOut: formattedTime,
+                                duration: duration,
+                                isPunchOut: true,
                               })
-                            );
-                          }}
+                            )
+                          }
                         >
-                          Punch In
+                          Punch Out
                         </button>
                         {punchInLoading && <div className="loader"></div>}
                       </div>
+                      <hr />
+                      <div
+                        style={{
+                          // display: "flex",
+                          width: "100%",
+                          borderTop: "1px solid #fff",
+                        }}
+                      >
+                        <span
+                          style={{
+                            padding: "10px",
+                          }}
+                        >
+                          Date:{" "}
+                          {new Date(punchInTime[0]?.date).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>{" "}
+                        <br />
+                        <span
+                          style={{
+                            padding: "10px",
+                          }}
+                        >
+                          Punch-in: {punchInTime[0].punchIn}{" "}
+                        </span>
+                      </div>
                     </div>
-                  </>
-                )}
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-        )}
-      </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="bl_a_checkin_card_wf">
+                    <p className="bl_a_checkin_card_wf_text">Work Mode </p>
+
+                    <div className="bl_a_checkin_card_wf_inputs">
+                      <input
+                        type="radio"
+                        value="Work from Home"
+                        checked={formik.values.workFrom === "Work from Office"}
+                        onChange={() =>
+                          formik.setFieldValue("workFrom", "Work from Office")
+                        }
+                        name="workFrom"
+                        id="officeRadio"
+                      />
+                      <label htmlFor="officeRadio">
+                        <HiOutlineBuildingOffice2 />
+                        Office
+                      </label>
+                      <input
+                        type="radio"
+                        value="Work from Office"
+                        checked={formik.values.workFrom === "Work from Home"}
+                        onChange={() =>
+                          formik.setFieldValue("workFrom", "Work from Home")
+                        }
+                        id="homeRadio"
+                        name="workFrom"
+                      />
+
+                      <label htmlFor="homeRadio">
+                        <AiTwotoneHome />
+                        Home
+                      </label>
+                    </div>
+                  </div>
+                  <div className="bl_a_checkin_card_body">
+                    <h1>{formattedTime}</h1>
+                    <h2>{formattedDate}</h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <button
+                        className="button"
+                        onClick={() => {
+                          dispatch(
+                            attendencePunchInAction({
+                              workFrom: formik.values.workFrom,
+                              date: currentTime,
+                              punchIn: formattedTime,
+                            })
+                          );
+                        }}
+                      >
+                        Punch In
+                      </button>
+                      {punchInLoading && <div className="loader"></div>}
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+      )}
     </div>
+    // </div>
   );
 };
 

@@ -28,6 +28,7 @@ export const addUserDocumentsAction = createAsyncThunk(
       formData.append("employeeId", userDoc.employeeId);
       formData.append("documentName", userDoc.documentName);
       formData.append("document", userDoc.document);
+      formData.append("docType", userDoc.docType);
       console.log(formData);
       const { data } = await axiosInstance.post(
         `${baseUrl}/api/hr-letters/userDocuments`,

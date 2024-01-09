@@ -6,6 +6,19 @@ import axiosInstance from "../axiosInstance";
 export const resetAttendancePunchIn = createAction("attendence/punchIn");
 export const reserAttendencePunchOut = createAction("attendence/punchOut");
 
+export const fetchAttendencesAction = createAsyncThunk(
+  "attendence/fetch",
+  async (attendence, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const { data } = await axiosInstance.get(`${baseUrl}/api/attendence`);
+      return data;
+    } catch (error) {
+      if (!error?.response) throw error;
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 export const attendencePunchInAction = createAsyncThunk(
   "attendence/punchIn",
   async (attendence, { rejectWithValue, getState, dispatch }) => {
@@ -45,6 +58,22 @@ const attendenceSlice = createSlice({
   name: "attendence",
   initialState: {},
   extraReducers: (builder) => {
+    // fetch
+    builder.addCase(fetchAttendencesAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchAttendencesAction.fulfilled, (state, action) => {
+      state.attendences = action?.payload;
+      state.loading = false;
+      state.appErr = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(fetchAttendencesAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverError = action?.error?.message;
+    });
+
     builder.addCase(attendencePunchInAction.pending, (state, action) => {
       state.loading = true;
     });

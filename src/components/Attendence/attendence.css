@@ -3,14 +3,14 @@
 }
 
 .bl_a_checkin_card {
-  width: 300px;
+  min-width: 300px;
   height: 400px;
-  margin: 20px;
+  /* margin: 20px; */
   border-radius: 10px;
-  background-color: rgb(224, 226, 227);
+  background-color: #fff;
 }
 .bl_a_checkin_card_head {
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(197, 197, 197);
   height: 40px;
 }
 
@@ -149,4 +149,128 @@
 
 .bl_filter_date_range_footer {
   border-top: 1px solid rgba(177, 177, 177, 0.333);
+}
+
+/* attendence dashboard */
+
+.bl_att_dashboard_heading {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.bl_att_dashboard {
+  width: 100%;
+  background-color: #f2f3f3;
+}
+
+.bl_att_card_header {
+  padding: 10px;
+  font-size: 20px;
+  height: 25px;
+  font-weight: 400;
+  border-bottom: 2px solid rgb(228, 221, 221);
+}
+
+.bl_att_d_t-cont {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.bl_att3-4 {
+  flex: 3 0 0;
+  /* background-color: #779aa0; */
+}
+
+.bl_att1-4 {
+  flex: 1 0 0;
+  background-color: #fff;
+  height: 80vh;
+  border-radius: 10px;
+}
+
+.bl_att-t-1-3 {
+  flex: 1 0 0;
+  background-color: #fff;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.bl_att-t2-1-2 {
+  flex: 1 0 0;
+  background-color: #fff;
+  /* padding: 10px; */
+  border-radius: 10px;
+  height: 300px;
+}
+
+.bl_att_cen {
+  /* background-color: #18cbeb; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.bl_circular-bar-cont {
+  width: 60px;
+  /* height: 100%; */
+}
+
+.bl_att_1-3-text {
+  font-size: 20px;
+}
+
+/* user cont */
+.bl_att_user-cont {
+  /* background-color: #779aa0; */
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.bl_att_user-cont img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.bl_att_user-cont_name {
+  color: #434242;
+}
+
+.bl_att_user-cont_role {
+  color: #646465;
+}
+
+.bl_att_user-cont_manager {
+  color: #646465;
+}
+
+.bl_att_user-cont_date {
+  display: flex;
+  align-items: center;
+  color: #868686;
+}
+
+/* chart */
+.bl_att_weekly-chart {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 400px;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ui checkin out */
+.bl_ui_checkin-cont {
+  background-color: #f2f3f3;
+  height: calc(100vh - 90px);
+  padding: 20px;
+  display: flex;
+  gap: 10px;
 }
