@@ -54,11 +54,12 @@ class WorkingFormatDonut extends Component {
         //   margin: 0,
         // },
       },
-      series: [44, 55],
+      series: [100 - this.props.workfromoffice, this.props.workfromoffice],
     };
   }
 
   render() {
+    console.log(this.props.workfromoffice);
     return (
       <div className="donut">
         <Chart

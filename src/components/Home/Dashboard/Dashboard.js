@@ -151,7 +151,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
               <div className="bl_dashboard_W_card_donut">
-                <WorkingFormatDonut />
+                <WorkingFormatDonut workfromoffice={50} />
               </div>
             </div>
           </div>

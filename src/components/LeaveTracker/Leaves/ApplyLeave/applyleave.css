@@ -18,7 +18,16 @@
   position: sticky;
   top: 0;
   /* padding: 0 10px; */
+  z-index: 5;
 }
+
+.bl-apply-leave_header span {
+  color: #fff;
+  font-size: 20px;
+  /* font-weight: 400; */
+  padding: 0 10px;
+}
+
 .bl-apply-leave_header_left-cont {
   display: flex;
   justify-content: center;

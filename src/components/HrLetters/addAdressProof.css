@@ -5,7 +5,7 @@
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  padding: 20px;
+  padding: 20px 0;
 }
 .bl_documents {
   display: flex;
@@ -153,4 +153,24 @@
   font-size: 24px;
   color: #7d8082;
   text-align: center;
+}
+
+.bl-apply-leave-form-cont2 {
+  padding: 20px;
+  /* height: 80vh; */
+  /* background-color: #fec107; */
+  /* height: calc(100vh - 190px); */
+  background-color: #0072ff;
+  background-color: rgb(242, 243, 243);
+
+  overflow: auto;
+  /* background-color: #fec107; */
+}
+
+.bl-apply-leave-form2 {
+  background-color: #fff;
+  /* background-color: #fec107; */
+  padding: 50px;
+  /* height: calc(100vh - 290px); */
+  overflow: auto;
 }

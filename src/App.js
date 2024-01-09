@@ -19,6 +19,8 @@ import UpdateLeave from "./components/LeaveTracker/Leaves/updateLeave/UpdateLeav
 
 import CalenderView from "./components/LeaveTracker/Leaves/CalenderView/CalenderView";
 import AddAddressProof from "./components/HrLetters/AddAddressProof";
+import EducationalDocs from "./components/HrLetters/EducationalDocs.js";
+
 import HolidayRecord from "./components/LeaveTracker/Holidays/holidayRecord";
 import UpdateHoliday from "./components/LeaveTracker/Holidays/updateHoliday";
 
@@ -26,7 +28,9 @@ import UpdateHoliday from "./components/LeaveTracker/Holidays/updateHoliday";
 import Dashboard from "./components/Home/Dashboard/Dashboard";
 
 // Attendence
-import CheckInOut from "./components/Attendence/checkInOut";
+// import CheckInOut from "./components/Attendence/checkInOut";
+import UcheckInOut from "./components/Attendence/UcheckInOut.js";
+
 import Attendences from "./components/Attendence/Attendences";
 import AttendenceDashboard from "./components/Attendence/AttendenceDashboard.js";
 
@@ -338,6 +342,14 @@ const App = () => {
             </SideBarLayout>
           }
         />
+        <Route
+          path="/documents/educational-documents"
+          element={
+            <SideBarLayout>
+              <EducationalDocs />{" "}
+            </SideBarLayout>
+          }
+        />
 
         {/* <Route
               path="/documents/bonafide-letter"
@@ -356,7 +368,7 @@ const App = () => {
           path="/attandence/checkin-out"
           element={
             <SideBarLayout>
-              <CheckInOut />{" "}
+              <UcheckInOut />{" "}
             </SideBarLayout>
           }
         />
